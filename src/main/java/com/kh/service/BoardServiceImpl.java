@@ -13,7 +13,7 @@ import com.kh.vo.SearchCriteria;
 
 @Service
 public class BoardServiceImpl implements BoardService {
-//asss
+//test
 	@Inject
 	private BoardDAO dao;
 	
