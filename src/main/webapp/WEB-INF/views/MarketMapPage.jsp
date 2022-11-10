@@ -105,38 +105,36 @@ li {
 		<div class="leftContaine container" style="width: 420px; height: 1000px; text-align: center; display: flex; flex-direction: column;">
 
 			<!--왼쪽위 -->
-			<form>
-				<div class="mb-3">
-					<label for="inputAddress" class="form-label fw-bold">주소 검색</label>
-					<input type="text" class="form-control" id="searchText" name="searchText">
+			<div class="mb-3">
+				<label for="inputAddress" class="form-label fw-bold">주소 검색</label>
+				<input type="text" class="form-control" id="searchText" name="searchText">
+			</div>
+			<div class="mb-3 row g-4">
+				<div class="col-6">
+					<label for="inputYear" class="fw-bold">연도</label>
+					<select class="form-select form-control-sm" aria-label="Default select year">
+						<option value="2021" selected>2021</option>
+						<option value="2020">2020</option>
+						<option value="2020">2019</option>
+						<option value="2020">2018</option>
+						<option value="2020">2017</option>
+						<option value="2020">2016</option>
+						<option value="2020">2015</option>
+						<option value="2020">2014</option>
+					</select>
 				</div>
-				<div class="mb-3 row g-4">
-					<div class="col-6">
-						<label for="inputYear" class="fw-bold">연도</label>
-						<select class="form-select form-control-sm" aria-label="Default select year">
-							<option value="2021" selected>2021</option>
-							<option value="2020">2020</option>
-							<option value="2020">2019</option>
-							<option value="2020">2018</option>
-							<option value="2020">2017</option>
-							<option value="2020">2016</option>
-							<option value="2020">2015</option>
-							<option value="2020">2014</option>
-						</select>
-					</div>
-					<div class="col-6">
-						<label for="inputQuarter" class="fw-bold">분기</label>
-						<select class="form-select form-control-sm" aria-label="Default select qyarter">
-							<option value="1" selected>1분기</option>
-							<option value="2">2분기</option>
-							<option value="3">3분기</option>
-							<option value="4">4분기</option>
-						</select>
-					</div>
+				<div class="col-6">
+					<label for="inputQuarter" class="fw-bold">분기</label>
+					<select class="form-select form-control-sm" aria-label="Default select qyarter">
+						<option value="1" selected>1분기</option>
+						<option value="2">2분기</option>
+						<option value="3">3분기</option>
+						<option value="4">4분기</option>
+					</select>
 				</div>
-				<button type="reset" class="reset btn btn-secondary">리 셋</button>
-				<button type="submit" id="SearchAndHistory" class="history btn btn-dark">검 색</button>
-			</form>
+			</div>
+			<button type="reset" class="reset btn btn-secondary">리 셋</button>
+			<button type="submit" id="SearchAndHistory" class="history btn btn-dark">검 색</button>
 
 			<!-- 왼쪽중간 -->
 			<div class="left-middle" style="width: 100%; height: 45%; display: flex; justify-content: center; align-items: center;">
