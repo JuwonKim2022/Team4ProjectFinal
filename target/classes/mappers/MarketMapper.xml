@@ -47,7 +47,7 @@
 		<!-- SELECT m.marketyear, m.marketquarter, b.district, m.service_codename, m.marketquartersales, m.marketquartercount, m.marketofstores
 		FROM market m JOIN bd_codelist b ON m.bd_code = b.bd_code AND m.service_codename = '패스트푸드점' AND b.district = #{district} AND m.marketyear = #{marketyear} AND m.marketquarter = #{marketquarter} -->
 		SELECT m.marketyear, m.marketquarter, b.district, m.service_codename, m.marketquartersales, m.marketquartercount, m.marketofstores
-		FROM market m JOIN bd_codelist b ON m.bd_code = b.bd_code AND m.service_codename = '패스트푸드점' AND b.district = #{district} AND m.marketyear = 2021 AND m.marketquarter = 1 AND ROWNUM <![CDATA[ <= ]]> 5
+		FROM market m JOIN bd_codelist b ON m.bd_code = b.bd_code AND m.service_codename = '패스트푸드점' AND b.district = #{district} AND m.marketyear = #{marketyear} AND m.marketquarter = #{marketquarter} AND ROWNUM <![CDATA[ <= ]]> 5
 	</select>
 	
 	<!-- 자세한 분석 하기 -->
