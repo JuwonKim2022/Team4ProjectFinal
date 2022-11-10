@@ -124,28 +124,28 @@ li {
 			<div class="mb-3 row g-4">
 				<div class="col-6">
 					<label for="inputYear" class="fw-bold">연도</label>
-					<select class="form-select form-control-sm" aria-label="Default select year">
+					<select class="form-select form-control-sm" aria-label="Default select year" id="marketyear">
 						<option value="2021" selected>2021</option>
 						<option value="2020">2020</option>
-						<option value="2020">2019</option>
-						<option value="2020">2018</option>
-						<option value="2020">2017</option>
-						<option value="2020">2016</option>
-						<option value="2020">2015</option>
-						<option value="2020">2014</option>
+						<option value="2019">2019</option>
+						<option value="2018">2018</option>
+						<option value="2017">2017</option>
+						<option value="2016">2016</option>
+						<option value="2015">2015</option>
+						<option value="2014">2014</option>
 					</select>
 				</div>
 				<div class="col-6">
 					<label for="inputQuarter" class="fw-bold">분기</label>
-					<select class="form-select form-control-sm" aria-label="Default select qyarter">
-						<option value="1" selected>1분기</option>
-						<option value="2">2분기</option>
-						<option value="3">3분기</option>
-						<option value="4">4분기</option>
+					<select class="form-select form-control-sm" aria-label="Default select qyarter" id="marketquarter">
+						<option value="1" selected>1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
 					</select>
 				</div>
 			</div>
-			<button type="reset" class="reset btn btn-secondary">리 셋</button>
+			<button type="reset" id="resetButton" class="reset btn btn-secondary">리 셋</button>
 			<button onclick="onDisplay()" type="submit" id="SearchAndHistory" class="history btn btn-dark">검 색</button>
 
 			<!-- 왼쪽중간 -->
@@ -165,7 +165,7 @@ li {
 						<div id="marketList"></div>
 					</li>
 					<li>
-						<button class="modalOpenBtn btn btn-dark">자세한 분석 정보</button>
+						<button class="modalOpenBtn btn btn-dark" id="modalOpenBtn">자세한 분석 정보</button>
 					</li>
 				</ul>
 			</div>
@@ -174,6 +174,7 @@ li {
 		<!-- 지도 -->
 		<div class="rightContainer" id="rightContainer" style="width: 100%; height: 1000px;">
 			<div class="modalContainer">
+				<div id="modalName"></div>
 				<button class="modalCloseBtn">&times;</button>
 				<div id="marketOfStores">
 					<!-- <img src="/resources/png/taos.png"> <img src="/resources/png/tvos.png"> <img src="/resources/png/tnos.png"> -->
@@ -187,15 +188,22 @@ li {
 
 
 	<script>
+		$('#resetButton').click(function(){
+			$('input[name=searchText]').prop('value', '');
+			$('#marketyear option').prop("selected", false);
+			$('#marketquarter option').prop("selected", false);
+		});
+		
 		////////////////////자세한 분석 정보  ////////////////////
 		$('.modalOpenBtn').click(function() {
-			let bd_codename = $('input[name=district]').val();
+			let searchText = $('input[name=searchText]').val();
+			$('#modalName').val(searchText); // 수정필요
 			
 			$.ajax({
 				type : 'POST',
 				url : '/MarketMapPage/modal',
 				dataType : 'json',
-				data : { bd_codename : bd_codename },
+				data : { searchText : searchText },
 				success : function (data) {
 					console.log("모달창 전송 성공");
 				},
@@ -207,7 +215,7 @@ li {
 		//////////////////// 자세한 분석 정보  ////////////////////
 
 		let toHtmlHi = function(historyLists) {
-				let tmp = "<table class=\"table table-striped shadow p-3 mb-5 bg-body rounded\"><thead><tr><th scope=\"col\">회원번호</th><th scope=\"col\">연도</th><th scope=\"col\">분기</th><th>주소</th><th scope=\"col\">검색 일자</th></tr></thead><tbody class=\"table-group-divider\">";
+				let tmp = "<table class=\"table table-striped shadow p-3 mb-5 bg-body rounded\"><thead><tr><th scope=\"col\">회원번호</th><th scope=\"col\">연도</th><th scope=\"col\">분기</th><th width=\"35%\">주소</th><th scope=\"col\">검색 일자</th></tr></thead><tbody class=\"table-group-divider\">";
 				
 				historyLists.forEach(function(historyList) {
 					tmp += '<tr><td>' + historyList.membernumber + '</td>'
@@ -237,13 +245,20 @@ li {
 			}
 
 		$('#SearchAndHistory').click(function() {
+			let membernumber;
 			let searchText = $('input[name=searchText]').val();
+			let marketyear = $('#marketyear option:selected').val();
+			let marketquarter = $('#marketquarter option:selected').val();
 			
 			$.ajax({
 				type : 'POST',
 				url : '/MarketMapPage/SearchInsertHistory',
 				dataType : 'json',
-				data : { searchText : searchText },
+				data : { 
+					searchText : searchText,
+					marketyear : marketyear,
+					marketquarter : marketquarter
+					},
 				success : function(data) {
 					console.log("검색 기록 삽입 성공");
 					var dataList = $(data).get();
@@ -275,7 +290,11 @@ li {
 				type : 'POST',
 				url : '/MarketMapPage/marketAnalysis',
 				dataType : 'json',
-				data : { searchText : searchText },
+				data : { 
+					searchText : searchText,
+					marketyear : marketyear,
+					marketquarter : marketquarter
+					},
 				success : function(data) {
 					console.log("분석 받아오기 성공");
 					var dataList = $(data).get();
@@ -3994,7 +4013,7 @@ var areas = [
 
 			// 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다
 			kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
-				$('input[name=searchText]').attr('value', area.name);
+				$('input[name=searchText]').prop('value', area.name);
 			});
 		}
 		
