@@ -14,14 +14,19 @@
 <script src="https://kit.fontawesome.com/e4a42c4ca5.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fd83cebb54ee789e97f96b80202a3688"></script> <!-- 송강주 -->
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=178acc040ba10cc91f6038853c5e14b9"></script> 김주원 -->
+<!-- script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fd83cebb54ee789e97f96b80202a3688"></script> <!-- 송강주 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=178acc040ba10cc91f6038853c5e14b9"></script> <!-- 김주원 -->
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script type="text/javascript">
 	function onDisplay(){
-		$('#noneDiv').show();
+		$('#noneDiv1').show();
+		$('#noneDiv2').show();
+	}
+	function offDisplay(){
+		$('#noneDiv1').hide();
+		$('#noneDiv2').hide();
 	}
 </script>
 
@@ -41,7 +46,6 @@ a {
 table {
 	font-size: 13px;
 }
-
 
 ul {
 	padding: 0;
@@ -114,9 +118,9 @@ li {
 	<!-- 전체박스 -->
 	<div class="mainContainer shadow p-3 mb-5 bg-body rounded" style="width: 100%; height: 100%; margin: 0; padding: 0; display: flex;">
 		<!-- 왼쪽박스전체 -->
-		<div class="leftContaine container" style="width: 800px; height: 1000px; text-align: center; display: flex; flex-direction: column;">
+		<div class="leftContaine container" style="width: 600px; height: 1000px; text-align: center; display: flex; flex-direction: column;">
 
-			<!--왼쪽위 -->
+			<!--왼쪽 위 -->
 			<div class="mb-3">
 				<label for="inputAddress" class="form-label fw-bold">주소 검색</label>
 				<input type="text" class="form-control" id="searchText" name="searchText">
@@ -145,23 +149,33 @@ li {
 					</select>
 				</div>
 			</div>
-			<button type="reset" id="resetButton" class="reset btn btn-secondary">리 셋</button>
-			<button onclick="onDisplay()" type="submit" id="SearchAndHistory" class="history btn btn-dark">검 색</button>
+			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+				<div class="col-1 btn-group me-2"></div>
+		  		<div class="col-4 btn-group me-2 btn-group-sm" role="group" aria-label="First group  Small button group">
+		    		<button onclick="offDisplay()" type="reset" id="resetButton" class="reset btn btn-secondary">리 셋</button>
+				</div>
+				<div class="col-1 btn-group me-2"></div>
+				<div class="col-4 btn-group me-2 btn-group-sm" role="group" aria-label="Second group  Small button group">
+				    <button onclick="onDisplay()" type="submit" id="SearchAndHistory" class="history btn btn-dark">검 색</button>
+				</div>
+				<div class="col-2 btn-group me-2"></div>
+			</div>
 
-			<!-- 왼쪽중간 -->
+			<!-- 왼쪽 중간 -->
 			<div class="left-middle" style="width: 100%; height: 45%; display: flex; justify-content: center; align-items: center;">
 				<ul>
 					<li>
+						<div id="noneDiv1" style="display: none;"><h5><b>&lt;검색 기록&gt;</b></h5></div>
 						<div id="historyList"></div>
 					</li>
 				</ul>
 			</div>
 
 			<!-- 왼쪽 아래 -->
-			<div class=" left-bottom" style="width: 100%; height: 40%; display: flex; justify-content: center; align-items: center;">
+			<div class="left-bottom" style="width: 100%; height: 40%; display: flex; justify-content: center; align-items: center;">
 				<ul>
 					<li>
-						<div id="noneDiv" style="display: none;"><h5>분기별 그래프</h5></div>
+						<div id="noneDiv2" style="display: none;"><h5><b>&lt;분기별 그래프&gt;</b></h5></div>
 						<div id="marketList"></div>
 					</li>
 					<li>
@@ -215,16 +229,16 @@ li {
 		//////////////////// 자세한 분석 정보  ////////////////////
 
 		let toHtmlHi = function(historyLists) {
-				let tmp = "<table class=\"table table-striped shadow p-3 mb-5 bg-body rounded\"><thead><tr><th scope=\"col\">회원번호</th><th scope=\"col\">연도</th><th scope=\"col\">분기</th><th width=\"35%\">주소</th><th scope=\"col\">검색 일자</th></tr></thead><tbody class=\"table-group-divider\">";
+				let tmp = "<table style=\"width:450px\" class=\"table table-striped shadow p-3 mb-5 bg-body rounded\" ><thead><tr><th scope=\"col\" valign=\"middle\">회원번호</th><th scope=\"col\" valign=\"middle\">연도</th><th scope=\"col\" valign=\"middle\">분기</th><th width=\"35%\" valign=\"middle\">주소</th><th scope=\"col\" valign=\"middle\">검색 일자</th></tr></thead><tbody class=\"table-group-divider\">";
 				
 				historyLists.forEach(function(historyList) {
-					tmp += '<tr><td>' + historyList.membernumber + '</td>'
-					tmp += '<td>' + historyList.marketyear + '</td>'
-					tmp += '<td>' + historyList.marketquarter + '</td>'
+					tmp += '<tr><td valign=\"middle\">' + historyList.membernumber + '</td>'
+					tmp += '<td valign=\"middle\">' + historyList.marketyear + '</td>'
+					tmp += '<td valign=\"middle\">' + historyList.marketquarter + '</td>'
 					if(historyList.bd_codename == null){
-						tmp += '<td>' + historyList.district + '</td>'
+						tmp += '<td valign=\"middle\">' + historyList.district + '</td>'
 					} else {
-						tmp += '<td>' + historyList.district + " " + historyList.bd_codename + '</td>'
+						tmp += '<td valign=\"middle\">' + historyList.district + " " + historyList.bd_codename + '</td>'
 					}
 					function formatDate(date) {
 						var d = new Date(date),
@@ -238,7 +252,7 @@ li {
 							day = '0' + day;
 						return [ year, month, day ].join('-');
 					}
-					tmp += '<td>' + formatDate(historyList.search_date) + '</td>'
+					tmp += '<td valign=\"middle\">' + formatDate(historyList.search_date) + '</td>'
 					tmp += '</tr>'
 				})
 				return tmp + "</table>";
@@ -272,15 +286,15 @@ li {
 
 			////////////////////////검색박스 일반 분석////////////////////////
 			let toHTMLMa = function(marketLists) {
-				let tmp = "<table class=\"table table-striped shadow p-3 mb-5 bg-body rounded\"><thead><tr><th scope=\"col\">년도</th><th scope=\"col\">분기</th><th scope=\"col\">구</th><th scope=\"col\">업종명</th><th scope=\"col\">매출 금액</th><th scope=\"col\">매출 건수</th><th scope=\"col\">점포수</th></tr></thead><tbody class=\"table-group-divider\">";
+				let tmp = "<table style=\"width:460px\" class=\"table  table-striped shadow p-3 mb-5 bg-body rounded\"><thead><tr><th scope=\"col\" valign=\"middle\">년도</th><th scope=\"col\" valign=\"middle\">분기</th><th scope=\"col\" valign=\"middle\">지역</th><th scope=\"col\" valign=\"middle\">업종명</th><th scope=\"col\" valign=\"middle\">매출 금액</th><th scope=\"col\" valign=\"middle\">매출 건수</th><th scope=\"col\" valign=\"middle\">점포수</th></tr></thead><tbody class=\"table-group-divider\">";
 				marketLists.forEach(function(marketList) {
-					tmp += '<tr><td>' + marketList.marketyear + '</td>'
-					tmp += '<td>'+ marketList.marketquarter + '</td>'
-					tmp += '<td>' + marketList.codelistDTO.district + '</td>'
-					tmp += '<td>' + marketList.service_codename + '</td>'
-					tmp += '<td>₩' + marketList.marketquartersales + '</td>'
-					tmp += '<td>' + marketList.marketquartercount + '</td>'
-					tmp += '<td>' + marketList.marketofstores + '</td>'
+					tmp += '<tr><td valign=\"middle\">' + marketList.marketyear + '</td>'
+					tmp += '<td valign=\"middle\">'+ marketList.marketquarter + '</td>'
+					tmp += '<td valign=\"middle\">' + marketList.codelistDTO.district + '</td>'
+					tmp += '<td valign=\"middle\">' + marketList.service_codename + '</td>'
+					tmp += '<td valign=\"middle\">₩' + marketList.marketquartersales + '</td>'
+					tmp += '<td valign=\"middle\">' + marketList.marketquartercount + '</td>'
+					tmp += '<td valign=\"middle\">' + marketList.marketofstores + '</td>'
 					tmp += '</tr>'
 				})
 				return tmp + "</table>";
