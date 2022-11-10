@@ -70,6 +70,7 @@ public class MarketController {
 
 		List<HistoryDTO> historyList = historyService.selectRecentHistory(membernumber);
 		model.addAttribute("historyList", historyList);
+		
 		return historyList;
 	}
 
@@ -88,7 +89,6 @@ public class MarketController {
 			model.addAttribute("marketList", marketList);
 			return marketList;
 		}
-
 	}
 
 	@ResponseBody

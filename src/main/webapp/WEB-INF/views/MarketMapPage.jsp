@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 지도는 구, 검색창은 도로명주소 -->
-<!-- ######################## -->
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +14,8 @@
 <script src="https://kit.fontawesome.com/e4a42c4ca5.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=178acc040ba10cc91f6038853c5e14b9"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fd83cebb54ee789e97f96b80202a3688"></script> <!-- 송강주 -->
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=178acc040ba10cc91f6038853c5e14b9"></script> 김주원 -->
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -108,7 +108,7 @@ li {
 			<form>
 				<div class="mb-3">
 					<label for="inputAddress" class="form-label fw-bold">주소 검색</label>
-					<input type="text" class="form-control" id="district" placeholder="도로명 주소를 입력해주세요">
+					<input type="text" class="form-control" id="searchText" name="searchText">
 				</div>
 				<div class="mb-3 row g-4">
 					<div class="col-6">
@@ -135,7 +135,7 @@ li {
 					</div>
 				</div>
 				<button type="reset" class="reset btn btn-secondary">리 셋</button>
-				<button type="submit" class="history btn btn-dark">검 색</button>
+				<button type="submit" id="SearchAndHistory" class="history btn btn-dark">검 색</button>
 			</form>
 
 			<!-- 왼쪽중간 -->
@@ -165,9 +165,10 @@ li {
 			<div class="modalContainer">
 				<button class="modalCloseBtn">&times;</button>
 				<div id="marketOfStores">
-					<img src="/resources/png/taos.png"> <img src="/resources/png/tvos.png"> <img src="/resources/png/tnos.png">
+					<!-- <img src="/resources/png/taos.png"> <img src="/resources/png/tvos.png"> <img src="/resources/png/tnos.png"> -->
 				</div>
-				<div id="marketOpenClose"></div>
+				<div id="marketOpenClose">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -178,18 +179,16 @@ li {
 		////////////////////자세한 분석 정보  ////////////////////
 		$('.modalOpenBtn').click(function() {
 			let bd_codename = $('input[name=district]').val();
-
+			
 			$.ajax({
 				type : 'POST',
 				url : '/MarketMapPage/modal',
 				dataType : 'json',
-				data : {
-					bd_codename : bd_codename
-				},
-				success : function(data) {
+				data : { bd_codename : bd_codename },
+				success : function (data) {
 					console.log("모달창 전송 성공");
 				},
-				error : function(error) {
+				error : function (error) {
 					console.log("모달창 전송 실패");
 				}
 			});
@@ -197,100 +196,83 @@ li {
 		//////////////////// 자세한 분석 정보  ////////////////////
 
 		let toHtmlHi = function(historyLists) {
-			let tmp = "<table border=1><tr><th>회원번호</th><th>년도</th><th>분기</th><th>구</th><th>길이름</th><th>검색일자</th></tr>";
+				let tmp = "<table border=1><tr><th>회원번호</th><th>년도</th><th>분기</th><th>구</th><th>길이름</th><th>검색일자</th></tr>";
+				
+				historyLists.forEach(function(historyList) {
+					tmp += '<tr><td>' + historyList.membernumber + '</td>'
+					tmp += '<td>' + historyList.marketyear + '</td>'
+					tmp += '<td>' + historyList.marketquarter + '</td>'
+					tmp += '<td>' + historyList.district + '</td>'
+					tmp += '<td>' + historyList.bd_codename + '</td>'
+					function formatDate(date) {
+						var d = new Date(date),
+						month = '' + (d.getMonth() + 1),
+						day = '' + d.getDate(),
+						year = d.getFullYear();
 
-			historyLists
-					.forEach(function(historyList) {
-						tmp += '<tr><td>' + historyList.membernumber + '</td>'
-						tmp += '<td>' + historyList.marketyear + '</td>'
-						tmp += '<td>' + historyList.marketquarter + '</td>'
-						tmp += '<td>' + historyList.district + '</td>'
-						tmp += '<td>' + historyList.bd_codename + '</td>'
-						function formatDate(date) {
-							var d = new Date(date), month = ''
-									+ (d.getMonth() + 1), day = ''
-									+ d.getDate(), year = d.getFullYear();
+						if (month.length < 2)
+							month = '0' + month;
+						if (day.length < 2)
+							day = '0' + day;
+						return [ year, month, day ].join('-');
+					}
+					tmp += '<td>' + formatDate(historyList.search_date) + '</td>'
+					tmp += '</tr>'
+				})
+				return tmp + "</table>";
+			}
 
-							if (month.length < 2)
-								month = '0' + month;
-							if (day.length < 2)
-								day = '0' + day;
-							return [ year, month, day ].join('-');
-						}
-						tmp += '<td>' + formatDate(historyList.search_date)
-								+ '</td>'
-						tmp += '</tr>'
-					})
-			return tmp + "</table>";
-		}
+		$('#SearchAndHistory').click(function() {
+			let searchText = $('input[name=searchText]').val();
+			
+			$.ajax({
+				type : 'POST',
+				url : '/MarketMapPage/SearchInsertHistory',
+				dataType : 'json',
+				data : { searchText : searchText },
+				success : function(data) {
+					console.log("검색 기록 삽입 성공");
+					var dataList = $(data).get();
+					$('#historyList').html(toHtmlHi(dataList));
+					console.log("검색 기록 불러오기 성공");
+				},
+				error : function(error) {
+					console.log("검색 기록 삽입 실패");
+				}
+			});
 
-		$('.history')
-				.click(
-						function() {
-							let searchText = $('input[name=district]').val();
-
-							$.ajax({
-								type : 'POST',
-								url : '/MarketMapPage/SearchInsertHistory',
-								dataType : 'json',
-								data : {
-									searchText : searchText
-								},
-								success : function(data) {
-									console.log("검색 기록 삽입 성공");
-									var dataList = $(data).get();
-									$('#historyList').html(toHtmlHi(dataList));
-									console.log("검색 기록 불러오기 성공");
-								},
-								error : function(error) {
-									console.log("검색 기록 삽입 실패");
-								}
-							});
-
-							////////////////////////검색박스 일반 분석////////////////////////
-							let toHTMLMa = function(marketLists) {
-								let tmp = "<table border=1><tr><th>년도</th><th>분기</th><th>구</th><th>서비스 업종명</th><th>분기별 매출 금액</th><th>분기별 매출 건수</th><th>점포수</th></tr>";
-								marketLists.forEach(function(marketList) {
-									tmp += '<tr><td>' + marketList.marketyear
-											+ '</td>'
-									tmp += '<td>' + marketList.marketquarter
-											+ '</td>'
-									tmp += '<td>'
-											+ marketList.codelistDTO.district
-											+ '</td>'
-									tmp += '<td>' + marketList.service_codename
-											+ '</td>'
-									tmp += '<td>'
-											+ marketList.marketquartersales
-											+ '</td>'
-									tmp += '<td>'
-											+ marketList.marketquartercount
-											+ '</td>'
-									tmp += '<td>' + marketList.marketofstores
-											+ '</td>'
-									tmp += '</tr>'
-								})
-								return tmp + "</table>";
-							}
-
-							$.ajax({
-								type : 'POST',
-								url : '/MarketMapPage/marketAnalysis',
-								dataType : 'json',
-								data : {
-									searchText : searchText
-								},
-								success : function(data) {
-									console.log("분석 받아오기 성공");
-									var dataList = $(data).get();
-									$('#marketList').html(toHTMLMa(dataList));
-								},
-								error : function(error) {
-									console.log("분석 받아오기 실패");
-								}
-							});
-							////////////////////////검색박스 일반 분석////////////////////////
-						});
+			////////////////////////검색박스 일반 분석////////////////////////
+			let toHTMLMa = function(marketLists) {
+				let tmp = "<table border=1><tr><th>년도</th><th>분기</th><th>구</th><th>서비스 업종명</th><th>분기별 매출 금액</th><th>분기별 매출 건수</th><th>점포수</th></tr>";
+				marketLists.forEach(function(marketList) {
+					tmp += '<tr><td>' + marketList.marketyear + '</td>'
+					tmp += '<td>'+ marketList.marketquarter + '</td>'
+					tmp += '<td>' + marketList.codelistDTO.district + '</td>'
+					tmp += '<td>' + marketList.service_codename + '</td>'
+					tmp += '<td>' + marketList.marketquartersales + '</td>'
+					tmp += '<td>' + marketList.marketquartercount + '</td>'
+					tmp += '<td>' + marketList.marketofstores + '</td>'
+					tmp += '</tr>'
+				})
+				return tmp + "</table>";
+			}
+			
+			$.ajax({
+				type : 'POST',
+				url : '/MarketMapPage/marketAnalysis',
+				dataType : 'json',
+				data : { searchText : searchText },
+				success : function(data) {
+					console.log("분석 받아오기 성공");
+					var dataList = $(data).get();
+					$('#marketList').html(toHTMLMa(dataList));
+				},
+				error : function(error) {
+					console.log("분석 받아오기 실패");
+				}
+			});
+			////////////////////////검색박스 일반 분석////////////////////////
+		});
 
 		$('.modalOpenBtn').click(function() {
 			$('.modalContainer').addClass('active');
@@ -301,7 +283,7 @@ li {
 		});
 
 		///////////////////////////////////////////
-		var areas = [
+var areas = [
 			  {
 			    name: "도봉구",
 			    path: [
@@ -3940,14 +3922,11 @@ li {
 
 		var mapContainer = document.getElementById('rightContainer'), // 지도를 표시할 div
 		mapOption = {
-			center : new kakao.maps.LatLng(37.56444257505349,
-					127.00999440903283), // 지도의 중심좌표
-			level : 8
-		// 지도의 확대 레벨
+			center : new kakao.maps.LatLng(37.56444257505349, 127.00999440903283), // 지도의 중심좌표
+			level : 8 // 지도의 확대 레벨
 		};
 
-		var map = new kakao.maps.Map(mapContainer, mapOption), customOverlay = new kakao.maps.CustomOverlay(
-				{}), infowindow = new kakao.maps.InfoWindow({
+		var map = new kakao.maps.Map(mapContainer, mapOption), customOverlay = new kakao.maps.CustomOverlay({}), infowindow = new kakao.maps.InfoWindow({
 			removable : true
 		});
 
@@ -3975,8 +3954,7 @@ li {
 
 			// 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다
 			// 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
-			kakao.maps.event.addListener(polygon, 'mouseover', function(
-					mouseEvent) {
+			kakao.maps.event.addListener(polygon, 'mouseover', function(mouseEvent) {
 				polygon.setOptions({
 					fillColor : '#09f' // 다각형 색깔
 				});
@@ -3987,8 +3965,7 @@ li {
 			});
 
 			// 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다
-			kakao.maps.event.addListener(polygon, 'mousemove', function(
-					mouseEvent) {
+			kakao.maps.event.addListener(polygon, 'mousemove', function(mouseEvent) {
 				customOverlay.setPosition(mouseEvent.latLng);
 			});
 
@@ -4002,11 +3979,9 @@ li {
 			});
 
 			// 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다
-			kakao.maps.event.addListener(polygon, 'click',
-					function(mouseEvent) {
-						let text_district = $('input[name=district]').attr(
-								'value', area.name);
-					});
+			kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
+				$('input[name=searchText]').attr('value', area.name);
+			});
 		}
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
