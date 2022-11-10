@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 지도는 구, 검색창은 도로명주소 -->
-<!-- fasddfsfd -->
+<!-- ######################## -->
 
 <!DOCTYPE html>
 <html>
