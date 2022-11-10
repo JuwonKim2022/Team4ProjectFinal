@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MarketMapper">
+
+	<resultMap id="CodelistDTO" type="com.kh.vo.CodelistDTO">
+		<result property="bd_code" column="bd_code" />
+		<result property="district" column="district" />
+	</resultMap>
+
+	<resultMap id="MarketDTO" type="com.kh.vo.MarketDTO">
+		<result property="marketyear" column="marketyear" />
+		<result property="marketquarter" column="marketquarter" />
+		<result property="bd_code" column="bd_code" />
+		<result property="bd_codename" column="bd_codename" />
+		<result property="service_code" column="service_code" />
+		<result property="service_codename" column="service_codename" />
+		<result property="marketquartersales" column="marketquartersales" />
+		<result property="marketquartercount" column="marketquartercount" />
+		<result property="marketofstores" column="marketofstores" />
+		<collection property="codelistDTO" resultMap="CodelistDTO"/>
+	</resultMap>
+
+	<select id="selectAll" parameterType="com.kh.vo.MarketDTO" resultMap="MarketDTO">
+		SELECT m.marketyear, m.marketquarter, b.district, m.service_codename,
+		m.marketquartersales, m.marketquartercount, m.marketofstores
+		FROM
+		market m JOIN bd_codelist b ON m.bd_code = b.bd_code AND
+		service_codename = '패스트푸드점'
+	</select>
+	
+	<!-- 테스트용 -->
+	<select id="selectByDistrict" parameterType="com.kh.vo.MarketDTO" resultMap="MarketDTO">
+		SELECT m.marketyear, m.marketquarter, b.district, m.service_codename,
+		m.marketquartersales, m.marketquartercount, m.marketofstores
+		FROM
+		market m JOIN bd_codelist b ON m.bd_code = b.bd_code AND
+		m.service_codename = '패스트푸드점' AND b.district = #{district, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 구 반환 -->	
+	<select id="returnDistrict" parameterType="com.kh.vo.MarketDTO" resultType="String">
+		SELECT b.district FROM market m, bd_codeList b WHERE m.bd_codename = #{bd_codename} AND m.bd_code = b.bd_code GROUP BY b.district
+	</select>
+	
+	<!-- 분석 하기 -->
+	<select id="selectDataByDYQ" parameterType="com.kh.vo.MarketDTO" resultMap="MarketDTO">
+		<!-- SELECT m.marketyear, m.marketquarter, b.district, m.service_codename, m.marketquartersales, m.marketquartercount, m.marketofstores
+		FROM market m JOIN bd_codelist b ON m.bd_code = b.bd_code AND m.service_codename = '패스트푸드점' AND b.district = #{district} AND m.marketyear = #{marketyear} AND m.marketquarter = #{marketquarter} -->
+		SELECT m.marketyear, m.marketquarter, b.district, m.service_codename, m.marketquartersales, m.marketquartercount, m.marketofstores
+		FROM market m JOIN bd_codelist b ON m.bd_code = b.bd_code AND m.service_codename = '패스트푸드점' AND b.district = #{district} AND m.marketyear = 2021 AND m.marketquarter = 1 AND ROWNUM <![CDATA[ <= ]]> 5
+	</select>
+	
+	<!-- 자세한 분석 하기 -->
+	<select id="selectDataByOC" parameterType="com.kh.vo.MarketDTO" resultMap="MarketDTO">
+		SELECT mop.marketyear, mop.marketquarter, b.district, mop.bd_codename, mop.marketopen, mop.marketclose 
+		FROM bd_codelist b, (SELECT * FROM marketopenclose WHERE marketopen != '0' or marketclose != '0') mop
+		WHERE mop.service_codename = '패스트푸드점' AND b.bd_code = mop.bd_code AND mop.marketyear = #{marketyear} AND mop.marketquarter = #{marketquarter} AND b.district = #{district}
+	</select>
+	
+	<select id="selectRData" parameterType="com.kh.vo.MarketDTO" resultMap="MarketDTO">
+		SELECT marketyear, marketquarter, ROUND(AVG(marketquartersales), -1) AS MARKETQUARTERSALES, ROUND(AVG(marketquartercount), -1) AS MARKETQUARTERCOUNT, ROUND(AVG(marketofstores) , 2) AS MARKETOFSTORES
+		FROM
+		    (SELECT m.marketyear, m.marketquarter, b.district, m.service_codename, m.marketquartersales, m.marketquartercount, m.marketofstores
+		    FROM market m, bd_codelist b WHERE m.service_codename = '패스트푸드점' AND b.district = #{district})
+		GROUP BY marketyear, marketquarter
+		ORDER BY marketyear DESC
+	</select>
+	
+</mapper>                 

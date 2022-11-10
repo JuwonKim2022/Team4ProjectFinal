@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HistoryMapper">
+
+	<resultMap id="HistoryDTO" type="com.kh.vo.HistoryDTO">
+		<result property="membernumber" 		column="membernumber"/>
+		<result property="marketyear" 	column="marketyear"/>
+		<result property="marketquarter" 	column="marketquarter"/>
+		<result property="bd_codename" 	column="bd_codename"/>
+		<result property="district" 	column="district"/>
+		<result property="search_date" 	column="search_date"/>
+	</resultMap>
+	
+	<select id="selectAll" resultMap="HistoryDTO">
+		SELECT * FROM history
+	</select>
+	
+	<select id="selectRecentHistory" resultMap="HistoryDTO">
+		SELECT * FROM (SELECT * FROM history WHERE membernumber = #{membernumber} ORDER BY search_date DESC) WHERE ROWNUM <![CDATA[ <= ]]> 5
+	</select>
+	
+	<insert id="insertSearchBoxSearchData" parameterType="com.kh.vo.HistoryDTO">
+		INSERT INTO history (membernumber, marketyear, marketquarter, bd_codename, district, search_date) 
+		VALUES (#{membernumber}, #{marketyear}, #{marketquarter},
+		#{bd_codename, jdbcType=VARCHAR},
+		'없음',
+		#{search_date, jdbcType=TIMESTAMP})
+	</insert>
+	
+	<insert id="insertPolygonSearchData" parameterType="com.kh.vo.HistoryDTO">
+		INSERT INTO history (membernumber, marketyear, marketquarter, bd_codename, district, search_date) 
+		VALUES (#{membernumber}, #{marketyear}, #{marketquarter},
+		'없음', 
+		#{district, jdbcType=VARCHAR},
+		#{search_date, jdbcType=TIMESTAMP})
+	</insert>
+	
+</mapper>                 
