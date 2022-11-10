@@ -19,6 +19,12 @@
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
+<script type="text/javascript">
+	function onDisplay(){
+		$('#noneDiv').show();
+	}
+</script>
+
 <style>
 * {
 	box-sizing: border-box;
@@ -32,6 +38,11 @@ a {
 	color: orange;
 }
 
+table {
+	font-size: 13px;
+}
+
+
 ul {
 	padding: 0;
 	float: left;
@@ -42,6 +53,7 @@ li {
 	display: inline-block;
 	text-align: center;
 }
+
 
 .modalContainer {
 	background-color: yellow;
@@ -102,7 +114,7 @@ li {
 	<!-- 전체박스 -->
 	<div class="mainContainer shadow p-3 mb-5 bg-body rounded" style="width: 100%; height: 100%; margin: 0; padding: 0; display: flex;">
 		<!-- 왼쪽박스전체 -->
-		<div class="leftContaine container" style="width: 420px; height: 1000px; text-align: center; display: flex; flex-direction: column;">
+		<div class="leftContaine container" style="width: 800px; height: 1000px; text-align: center; display: flex; flex-direction: column;">
 
 			<!--왼쪽위 -->
 			<div class="mb-3">
@@ -134,7 +146,7 @@ li {
 				</div>
 			</div>
 			<button type="reset" class="reset btn btn-secondary">리 셋</button>
-			<button type="submit" id="SearchAndHistory" class="history btn btn-dark">검 색</button>
+			<button onclick="onDisplay()" type="submit" id="SearchAndHistory" class="history btn btn-dark">검 색</button>
 
 			<!-- 왼쪽중간 -->
 			<div class="left-middle" style="width: 100%; height: 45%; display: flex; justify-content: center; align-items: center;">
@@ -149,6 +161,7 @@ li {
 			<div class=" left-bottom" style="width: 100%; height: 40%; display: flex; justify-content: center; align-items: center;">
 				<ul>
 					<li>
+						<div id="noneDiv" style="display: none;"><h5>분기별 그래프</h5></div>
 						<div id="marketList"></div>
 					</li>
 					<li>
@@ -194,7 +207,7 @@ li {
 		//////////////////// 자세한 분석 정보  ////////////////////
 
 		let toHtmlHi = function(historyLists) {
-				let tmp = "<table border=1><tr><th>회원번호</th><th>년도</th><th>분기</th><th>주소</th><th>검색일자</th></tr>";
+				let tmp = "<table class=\"table table-striped shadow p-3 mb-5 bg-body rounded\"><thead><tr><th scope=\"col\">회원번호</th><th scope=\"col\">연도</th><th scope=\"col\">분기</th><th>주소</th><th scope=\"col\">검색 일자</th></tr></thead><tbody class=\"table-group-divider\">";
 				
 				historyLists.forEach(function(historyList) {
 					tmp += '<tr><td>' + historyList.membernumber + '</td>'
@@ -244,13 +257,13 @@ li {
 
 			////////////////////////검색박스 일반 분석////////////////////////
 			let toHTMLMa = function(marketLists) {
-				let tmp = "<table border=1><tr><th>년도</th><th>분기</th><th>구</th><th>서비스 업종명</th><th>분기별 매출 금액</th><th>분기별 매출 건수</th><th>점포수</th></tr>";
+				let tmp = "<table class=\"table table-striped shadow p-3 mb-5 bg-body rounded\"><thead><tr><th scope=\"col\">년도</th><th scope=\"col\">분기</th><th scope=\"col\">구</th><th scope=\"col\">업종명</th><th scope=\"col\">매출 금액</th><th scope=\"col\">매출 건수</th><th scope=\"col\">점포수</th></tr></thead><tbody class=\"table-group-divider\">";
 				marketLists.forEach(function(marketList) {
 					tmp += '<tr><td>' + marketList.marketyear + '</td>'
 					tmp += '<td>'+ marketList.marketquarter + '</td>'
 					tmp += '<td>' + marketList.codelistDTO.district + '</td>'
 					tmp += '<td>' + marketList.service_codename + '</td>'
-					tmp += '<td>' + marketList.marketquartersales + '</td>'
+					tmp += '<td>₩' + marketList.marketquartersales + '</td>'
 					tmp += '<td>' + marketList.marketquartercount + '</td>'
 					tmp += '<td>' + marketList.marketofstores + '</td>'
 					tmp += '</tr>'
@@ -3984,6 +3997,7 @@ var areas = [
 				$('input[name=searchText]').attr('value', area.name);
 			});
 		}
+		
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
