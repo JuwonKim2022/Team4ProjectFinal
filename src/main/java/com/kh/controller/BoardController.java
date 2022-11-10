@@ -20,7 +20,7 @@ import com.kh.vo.Criteria;
 import com.kh.vo.PageMaker;
 import com.kh.vo.ReplyVO;
 import com.kh.vo.SearchCriteria;
-//sadddasad
+
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
