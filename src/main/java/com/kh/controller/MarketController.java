@@ -41,14 +41,12 @@ public class MarketController {
 		return "MarketMapPage";
 	}
 
-	// 작동: 검색 및 검색기록 조회 / 회원번호, 년도, 분기 설정 필요
+	// 작동: 검색 및 검색기록 조회 / 회원번호 설정 필요
 	@ResponseBody
 	@RequestMapping(value = "/MarketMapPage/SearchInsertHistory", method = RequestMethod.POST)
-	public List<HistoryDTO> SearchInsertHistory(Model model, @RequestParam String searchText, HistoryDTO historyDTO) throws Exception {
+	public List<HistoryDTO> SearchInsertHistory(Model model, @RequestParam String searchText, @RequestParam int marketyear, @RequestParam int marketquarter, HistoryDTO historyDTO) throws Exception {
 
 		int membernumber = 1;
-		int marketyear = 2021;
-		int marketquarter = 1;
 
 		if (searchText.contains("구")) {
 			historyDTO.setMembernumber(membernumber); // 회원번호
@@ -74,23 +72,24 @@ public class MarketController {
 		return historyList;
 	}
 
-	// 작동: 정보 조회 / 회원번호, 년도, 분기 설정 필요
+	// 작동: 정보 조회 / 회원번호 설정 필요
 	@ResponseBody
 	@RequestMapping(value = "/MarketMapPage/marketAnalysis", method = RequestMethod.POST)
-	public List<MarketDTO> marketAnalysis(Model model, @RequestParam String searchText) throws Exception {
+	public List<MarketDTO> marketAnalysis(Model model, @RequestParam String searchText, @RequestParam int marketyear, @RequestParam int marketquarter) throws Exception {
 
 		if (searchText.contains("구")) {
-			List<MarketDTO> marketList = marketService.selectDataByDYQ(searchText);
+			List<MarketDTO> marketList = marketService.selectDataByDYQ(searchText, marketyear, marketquarter);
 			model.addAttribute("marketList", marketList);
 			return marketList;
 		} else {
 			String returnDistrict = marketService.returnDistrict(searchText);
-			List<MarketDTO> marketList = marketService.selectDataByDYQ(returnDistrict);
+			List<MarketDTO> marketList = marketService.selectDataByDYQ(returnDistrict, marketyear, marketquarter);
 			model.addAttribute("marketList", marketList);
 			return marketList;
 		}
 	}
 
+	// 미작동: R
 	@ResponseBody
 	@RequestMapping(value = "/RTest", method = RequestMethod.POST)
 	public void modal(HttpServletRequest request, @RequestParam String bd_codename) throws Exception {

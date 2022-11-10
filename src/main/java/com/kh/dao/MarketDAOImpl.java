@@ -1,6 +1,8 @@
 package com.kh.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +32,13 @@ public class MarketDAOImpl implements MarketDAO {
 	}
 	
 	@Override
-	public List<MarketDTO> selectDataByDYQ(String district) throws Exception {
-		return sqlSession.selectList(NameSpace + ".selectDataByDYQ", district);
+	public List<MarketDTO> selectDataByDYQ(String district, int marketyear, int marketquarter) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("district", district);
+		paramMap.put("marketyear", marketyear);
+		paramMap.put("marketquarter", marketquarter);
+		
+		return sqlSession.selectList(NameSpace + ".selectDataByDYQ", paramMap);
 	}
 	
 	@Override

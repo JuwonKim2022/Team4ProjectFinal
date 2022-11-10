@@ -29,8 +29,8 @@ public class MarketServiceImpl implements MarketService {
 	}
 	
 	@Override
-	public List<MarketDTO> selectDataByDYQ(String district) throws Exception {
-		return marketDAO.selectDataByDYQ(district);
+	public List<MarketDTO> selectDataByDYQ(String district, int marketyear, int marketquarter) throws Exception {
+		return marketDAO.selectDataByDYQ(district, marketyear, marketquarter);
 	}
 	
 	@Override

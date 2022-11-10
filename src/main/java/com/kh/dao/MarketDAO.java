@@ -12,7 +12,7 @@ public interface MarketDAO {
 
 	String returnDistrict(String bd_codename) throws Exception;
 	
-	List<MarketDTO> selectDataByDYQ(String district) throws Exception;
+	List<MarketDTO> selectDataByDYQ(String district, int marketyear, int marketquarter) throws Exception;
 
 	List<MarketDTO> selectRData(String district) throws Exception;
 
