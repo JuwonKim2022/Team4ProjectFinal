@@ -194,14 +194,17 @@ li {
 		//////////////////// 자세한 분석 정보  ////////////////////
 
 		let toHtmlHi = function(historyLists) {
-				let tmp = "<table border=1><tr><th>회원번호</th><th>년도</th><th>분기</th><th>구</th><th>길이름</th><th>검색일자</th></tr>";
+				let tmp = "<table border=1><tr><th>회원번호</th><th>년도</th><th>분기</th><th>주소</th><th>검색일자</th></tr>";
 				
 				historyLists.forEach(function(historyList) {
 					tmp += '<tr><td>' + historyList.membernumber + '</td>'
 					tmp += '<td>' + historyList.marketyear + '</td>'
 					tmp += '<td>' + historyList.marketquarter + '</td>'
-					tmp += '<td>' + historyList.district + '</td>'
-					tmp += '<td>' + historyList.bd_codename + '</td>'
+					if(historyList.bd_codename == null){
+						tmp += '<td>' + historyList.district + '</td>'
+					} else {
+						tmp += '<td>' + historyList.district + " " + historyList.bd_codename + '</td>'
+					}
 					function formatDate(date) {
 						var d = new Date(date),
 						month = '' + (d.getMonth() + 1),
