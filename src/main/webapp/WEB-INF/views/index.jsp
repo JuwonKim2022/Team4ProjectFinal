@@ -106,7 +106,7 @@
       <img src="/resources/img/map.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">지도로 보는 상권</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text">지도로 쉽고 빠르게 원하는 상권의 동향 파악!</p>
       </div>
     </div>
   </div>
@@ -115,7 +115,7 @@
       <img src="/resources/img/community.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">이야기 공간</h5>
-        <p class="card-text">This is a short card.</p>
+        <p class="card-text">상권 및 창업과 관련된 자유로운 이야기 공간.</p>
       </div>
     </div>
   </div>
@@ -124,7 +124,7 @@
       <img src="/resources/img/site.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">사이트 소개</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text">이 사이트에 대한 자세한 내용.</p>
       </div>
     </div>
   </div>
