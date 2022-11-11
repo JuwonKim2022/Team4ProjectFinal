@@ -102,7 +102,7 @@ body {
 						</div>
 						<div class="mb-3 d-grid gap-2 d-md-bloc">
 							<button class="btn btn-dark btn btn-primary" type="submit">로그인</button>
-							<button class="btn btn-secondary btn btn-primary" type="button">회원가입</button>
+							<button class="btn btn-secondary btn btn-primary" type="button"><a class="nav-link active" href="/signUp/signUp/">회원가입</a></button>
 						</div>
 					</c:if>	
 					<c:if test="${member != null }">
@@ -120,10 +120,7 @@ body {
 		</div>
 	</div>		
 						
-						
-					
-					
-					
+							
 						
 	
 	
