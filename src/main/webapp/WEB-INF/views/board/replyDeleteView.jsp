@@ -25,17 +25,76 @@
 		
 	</script>
 	<body>
+	 <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="<c:url value='/'/>">
+        <i class="fa-brands fa-freebsd"> market A</i>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+          <li class="nav-item1">
+            <a class="nav-link active1" aria-current="page1" href="<c:url value='/MarketMapPage'/>">상권지도</a>
+          </li>
+          <li class="nav-item2">
+            <a class="nav-link active2" aria-current="page2" href="<c:url value='/board/list'/>">자유게시판</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">내 공간</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">내 정보</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">내 기록</a></li>
+              <li><a class="dropdown-item" href="#">북마크</a></li>
+            </ul>
+          </li>
+          <!-- li class="nav-item3">
+            <a class="nav-link active3" aria-current="page3" href="<c:url value='/member/login'/>">로그인</a>
+          </li>
+          <li class="nav-item4">
+            <a class="nav-link active4" aria-current="page4" href="<c:url value='/signUp/signUp'/>">회원가입</a>
+          </li-->
+          <li class="nav-item3">
+            <c:if test="${member != null}"><a class="nav-link active3" aria-current="page3" href="/member/logout">로그아웃</a></c:if>
+            <c:if test="${member == null}"><a class="nav-link active3" aria-current="page3" href="/member/login">로그인</a></c:if>
+         </li>
+          <li class="nav-item4">
+            <c:if test="${member == null}"><a class="nav-link active4" aria-current="page4" href="/signUp/signUp/">회원가입</a></c:if>
+         </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-secondary" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
 	
-		<div id="root">
+		<div class="container">
 			<header>
-				<h1> 게시판</h1>
+				<h1> 댓글 삭제</h1>
 			</header>
 			<hr />
 			 
-			<div>
+			<!-- div>
 				<%@include file="nav.jsp" %>
+			</div-->
+			<div class="container text-left">
+  				<div class="row">
+    				<div class="col">
+      				<div class="d-grid gap-2 d-md-block">
+								<button type="submit" class="list_btn btn btn-dark"><a style="list-style:none; text-decoration: none; color: white;" href="/board/list">목록</a></button>	
+							</div>
+    				</div>
+    				<div class="col">
+      				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+								<button type="submit" class="delete_btn btn btn-success"><a style="list-style:none; text-decoration: none; color: white;" href="/board/writeView">글 작성</a></button>
+							</div>
+    				</div>
+  				</div>
 			</div>
-			<hr />
 			
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/board/replyDelete">
@@ -46,10 +105,13 @@
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 						
-					<div>
-						<p>삭제 하시겠습니까?</p>
-						<button type="submit" class="delete_btn">예 삭제합니다.</button>
-						<button type="button" class="cancel_btn">아니오. 삭제하지 않습니다.</button>
+					<br>
+					<p class="text-center fs-2">삭제 하시겠습니까?</p>
+					<br>	
+					<div class="d-grid gap-2 col-6 mx-auto">
+						<br>
+						<button type="submit" class="delete_btn btn btn-dark">예 삭제합니다.</button>
+						<button type="button" class="cancel_btn btn btn-secondary">아니오. 삭제하지 않습니다.</button>
 					</div>
 				</form>
 			</section>
