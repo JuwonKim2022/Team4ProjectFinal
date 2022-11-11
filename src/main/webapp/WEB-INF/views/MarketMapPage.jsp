@@ -14,8 +14,8 @@
 <script src="https://kit.fontawesome.com/e4a42c4ca5.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fd83cebb54ee789e97f96b80202a3688"></script> <!-- 송강주 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=178acc040ba10cc91f6038853c5e14b9"></script> <!-- 김주원 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fd83cebb54ee789e97f96b80202a3688"></script> <!-- 송강주 -->
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=178acc040ba10cc91f6038853c5e14b9"></script> <!-- 김주원 -->
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -201,7 +201,9 @@ li {
 				<div id="modalName"></div>
 				<button class="modalCloseBtn">&times;</button>
 				<div id="marketOfStores">
-					<!-- <img src="/resources/png/taos.png"> <img src="/resources/png/tvos.png"> <img src="/resources/png/tnos.png"> -->
+					<img src="\resources\png\taos.png">
+					<img src="\resources\png\tvos.png">
+					<img src="\resources\png\tnos.png">
 				</div>
 				<div id="marketOpenClose">
 				</div>
@@ -209,9 +211,8 @@ li {
 		</div>
 	</div>
 
-
-
 	<script>
+		
 		$('#resetButton').click(function(){
 			$('input[name=searchText]').prop('value', '');
 			$('#marketyear option').prop("selected", false);
