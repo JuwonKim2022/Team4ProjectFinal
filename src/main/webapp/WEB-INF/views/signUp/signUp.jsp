@@ -18,7 +18,7 @@
 body {
 	height: 100vh;
     width: 100vw;
-    background-image: url('/resources/img/bwSingupBg.jpg');
+    background-image: url('/resources/img/signupbg.jpg');
     background-repeat : no-repeat;
     background-size : cover;
 }
