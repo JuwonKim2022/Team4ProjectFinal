@@ -83,7 +83,7 @@
 			<hr />
 			 
 			<!-- div>
-				<%@include file="nav.jsp" %>
+				<!--%@include file="nav.jsp" %>
 			</div-->
 			<div class="container text-left">
   				<div class="row">

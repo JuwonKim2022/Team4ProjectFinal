@@ -24,7 +24,9 @@
 		})
 		
 	</script>
-	 <nav class="navbar navbar-expand-lg bg-light">
+
+	<body>
+		 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="<c:url value='/'/>">
         <i class="fa-brands fa-freebsd"> market A</i>
@@ -74,9 +76,6 @@
       </div>
     </div>
   </nav>
-  
-	<body>
-	
 		<div class="container">
 			<header>
 				<h1> 댓글 수정</h1>
