@@ -28,7 +28,12 @@ public class SignUpController {
 	
 	@PostMapping("/signUp/join")
     public String insertIdPostd(UserVO userVO,HttpServletRequest req,RedirectAttributes rtt) throws SQLException {
+		String address1 = req.getParameter("sample6_address"); //주소1
+		   String postcode = req.getParameter("sample6_postcode");  //주소2
+		   String detailAddress = req.getParameter("sample6_detailAddress");  //주소3
+		   String address = postcode+"/"+ address1+"/"+detailAddress; //주소 하나로 합침
 
+		   userVO.setAddress(address);  //주소등록
 		
 		String  pw = req.getParameter("pw");
 		String  EncoderPw= "";

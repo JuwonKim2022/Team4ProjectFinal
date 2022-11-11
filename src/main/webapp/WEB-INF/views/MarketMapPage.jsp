@@ -79,6 +79,12 @@ li {
 </head>
 
 <body>
+	<c:if test="${member == null}">
+   	<script type="text/javascript">
+   alert("로그인이 필요합니다.");
+   location.href="/member/login"
+   </script>
+   </c:if>
 	<!-- 네비게이션 -->
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
@@ -107,6 +113,10 @@ li {
 					<li class="nav-item4"><c:if test="${member == null}">
 							<a class="nav-link active4" aria-current="page4" href="/signUp/signUp/">회원가입</a>
 						</c:if></li>
+						<li class="nav-item5">
+         	<c:if test="${member != null}"><p style="margin:0; paddinf:0;" class="nav-link active5 text-end" aria-current="page5">&nbsp;&nbsp;(${member.id}님 안녕하세요.)</p>
+         </c:if>
+         </li>
 				</ul>
 				<form class="d-flex" role="search">
 					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

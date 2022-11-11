@@ -11,13 +11,13 @@ public class UserVO {
 	private String email;
 	private Date regData;
 	private int adminCheck;
+	private String address;
 //	private Timestamp regdate;
 //	private Timestamp updatedate;
 	
 	public UserVO() {
 	}
 
-	
 	
 	public UserVO(String id, String pw) {
 		super();
@@ -27,7 +27,8 @@ public class UserVO {
 
 
 
-	public UserVO(String singNumber, String name, String id, String pw, String email, Date regData, int adminCheck) {
+	public UserVO(String singNumber, String name, String id, String pw, String email, Date regData, int adminCheck,
+			String address) {
 		super();
 		this.singNumber = singNumber;
 		this.name = name;
@@ -36,11 +37,9 @@ public class UserVO {
 		this.email = email;
 		this.regData = regData;
 		this.adminCheck = adminCheck;
-//		this.regdate = regdate;
-//		this.updatedate = updatedate;
+		this.address = address;
 	}
-	
-	
+
 
 	@Override
 	public String toString() {
@@ -106,20 +105,14 @@ public class UserVO {
 		this.adminCheck = adminCheck;
 	}
 
-//	public Timestamp getRegdate() {
-//		return regdate;
-//	}
-//
-//	public void setRegdate(Timestamp regdate) {
-//		this.regdate = regdate;
-//	}
+	public String getAddress() {
+		return address;
+	}
 
-//	public Timestamp getUpdatedate() {
-//		return updatedate;
-//	}
-//
-//	public void setUpdatedate(Timestamp updatedate) {
-//		this.updatedate = updatedate;
-//	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
 		
 }

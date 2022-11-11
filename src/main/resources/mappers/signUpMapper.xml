@@ -19,9 +19,9 @@
    <!-- 아이디 추가 -->
    <insert id="insertSignUp" parameterType="com.kh.vo.UserVO">
   	insert into
-		SIGNUP(SIGNNUMBER, ID, NAME,PW,EMAIL,REGDATA,ADMINCHECK)
+		SIGNUP(SIGNNUMBER, ID, NAME,PW,EMAIL,REGDATA,ADMINCHECK,ADDRESS)
 		values
-		(MEMBERNUM_SEQ.nextval,#{id},#{name},#{pw},#{email},sysdate,1)
+		(MEMBERNUM_SEQ.nextval,#{id},#{name},#{pw},#{email},sysdate,1,#{address})
   </insert>
 
 	<select id="readSignUpWithIDPW" resultType="com.kh.vo.UserVO">
