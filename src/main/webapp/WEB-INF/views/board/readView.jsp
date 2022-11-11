@@ -170,12 +170,16 @@
 								<button type="submit" class="list_btn btn btn-dark">목록</button>	
 							</div>
     				</div>
+    				<!-- 본인이 작성한 게시판 글만 수정 삭제 버튼 활성화 sh 추가 수정 start-->
+    				<c:if test="${member != null && member.id == read.writer}">
     				<div class="col">
       				<div class="d-grid gap-2 d-md-flex justify-content-md-end">	
 								<button type="submit" class="update_btn btn btn-secondary">수정</button>
 								<button type="submit" class="delete_btn btn btn-danger">삭제</button>
 							</div>
     				</div>
+    				</c:if>
+    				<!-- sh 추가 수정 end-->
   				</div>
 				</div>
 				</div>
@@ -205,10 +209,14 @@
         							<p>${replyList.content}</p>
         						</div>
         						<br/>
+        						<!-- sh 수정 작성자 버튼 활성화 start -->
+        						<c:if test="${member != null && member.id == replyList.writer}">
         						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
   										<button type="button" class="replyUpdateBtn btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" data-rno="${replyList.rno}">수정</button>
   										<button type="button" class="replyDeleteBtn btn btn-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" data-rno="${replyList.rno}">삭제</button>
-										</div>
+								</div>
+								</c:if>
+								<!-- end -->
       						</li>
     					</c:forEach>   
   					</ol>
@@ -221,24 +229,31 @@
   					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
   					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 
-  					<div class="form-group">
-    					<label for="writer" class="col-sm-2 control-label">댓글 작성자</label>
-    					<div class="col-sm-10">
-    						<input type="text" id="writer" name="writer" class="form-control"/>
-    					</div>
-    				</div>
-    				<div class="form-group">
-    					<label for="content" class="col-sm-2 control-label">댓글 내용</label>
-    					<div>
-    						<input type="text" id="content" name="content" class="form-control"/>
-    					</div>
-  					</div>
-  					<br/>
-  					<div class="form-group">
-  						<div class="col-sm-offset-2 col-sm-10">
-  							<button type="button" class="replyWriteBtn btn btn-success">작성</button>
-  						</div>
-  					</div>
+  					<!-- 로그인 상태에서 reply 작성 폼 활성화 sh 추가 수정  -->
+                 <c:if test="${member != null}">
+                 <div class="form-group">
+                   <label for="writer" class="col-sm-2 control-label">댓글 작성자</label>
+                   <div class="col-sm-10">
+                   <!-- reply 작성자 id 표기 및 수정 불가 표시 sh 추가 수정 start-->
+                      <input type="text" id="writer" name="writer" class="form-control" value="${member.id}" readonly="readonly"/>
+                      <!-- <input type="text" id="writer" name="writer" class="form-control"/> -->
+                   <!-- sh end-->
+                   </div>
+                </div>
+                <div class="form-group">
+                   <label for="content" class="col-sm-2 control-label">댓글 내용</label>
+                   <div>
+                      <input type="text" id="content" name="content" class="form-control"/>
+                   </div>
+                 </div>
+                 <br/>
+                 <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                       <button type="button" class="replyWriteBtn btn btn-success">작성</button>
+                    </div>
+                 </div>
+                 </c:if>
+                 <!-- sh end -->
 				  </form>
 			  </section>
 			<hr />

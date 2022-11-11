@@ -116,10 +116,12 @@
 						<div class="form-group">
 							<div class="container text-center">
 								<div class="row">
+									<!-- 게시판 글 작성자 id 표기 및 수정 불가 표시 sh 추가 수정 start-->
 									<div class="col">
       									<label for="writer" class="col-sm-2 control-label">작성자</label>
-      									<input type="text" id="writer" name="writer" class="chk"  title="작성자를 입력하세요."/>
+      									<input type="text" id="writer" name="writer" value="${member.id}" readonly="readonly"/>
     								</div>
+    							<!-- sh 추가 수정 end-->
     								<div class="col">
     									<button class="write_btn btn btn-success" type="submit">작성</button>
     								</div>	

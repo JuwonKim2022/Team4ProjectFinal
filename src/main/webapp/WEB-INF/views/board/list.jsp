@@ -77,11 +77,15 @@
 								<button type="submit" class="list_btn btn btn-dark"><a style="list-style:none; text-decoration: none; color: white;" href="/board/list">목록</a></button>	
 							</div>
     				</div>
+    				<!-- 로그인 상태에 게시판 글 작성 가능 sh 추가 수정 start-->
+    				<c:if test="${member != null}">
     				<div class="col">
       				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 								<button type="submit" class="delete_btn btn btn-success"><a style="list-style:none; text-decoration: none; color: white;" href="/board/writeView">글 작성</a></button>
 							</div>
     				</div>
+    				</c:if>
+    				<!-- sh 추가 수정 end-->
   				</div>
 			</div>
 			

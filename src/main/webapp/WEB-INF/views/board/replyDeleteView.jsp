@@ -106,11 +106,11 @@
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 						
 					<br>
-					<p class="text-center fs-2">삭제 하시겠습니까?</p>
+					<p class="text-center fs-4">삭제 하시겠습니까?</p>
 					<br>	
 					<div class="d-grid gap-2 col-6 mx-auto">
 						<br>
-						<button type="submit" class="delete_btn btn btn-dark">예 삭제합니다.</button>
+						<button type="submit" class="delete_btn btn btn-danger">예 삭제합니다.</button>
 						<button type="button" class="cancel_btn btn btn-secondary">아니오. 삭제하지 않습니다.</button>
 					</div>
 				</form>
