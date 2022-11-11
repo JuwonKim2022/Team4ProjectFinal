@@ -1,5 +1,6 @@
 package com.kh.controller;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -25,8 +26,6 @@ import com.kh.vo.MarketDTO;
 
 @Controller
 public class MarketController {
-	boolean searchTrigger = false;
-
 	@Resource(name = "marketService")
 	private MarketService marketService;
 
@@ -91,24 +90,24 @@ public class MarketController {
 
 	// 미작동: R
 	@ResponseBody
-	@RequestMapping(value = "/RTest", method = RequestMethod.POST)
-	public void modal(HttpServletRequest request, @RequestParam String bd_codename) throws Exception {
-		ServletContext context = request.getSession().getServletContext();
-		String csvPath = context.getRealPath("/resources/csv/");
+	@RequestMapping(value = "/MarketMapPage/modal", method = RequestMethod.POST)
+	public void modal(HttpServletRequest request, @RequestParam String searchText) throws Exception {
 		String district = null;
-		if (searchTrigger == true)
-			district = marketService.returnDistrict(bd_codename);
-		else
-			district = bd_codename;
 
-		System.out.println("*********************" + district + "*********************");
-
+		if (searchText.contains("구")) {
+			district = searchText;
+		} else {
+			district = marketService.returnDistrict(searchText);
+		}
+		
 		List<MarketDTO> marketList = marketService.selectRData(district);
 		String csv = "marketyear, marketquarter, marketquartersales, marketquartercount, marketofstores\n";
 		for (MarketDTO marketDTO : marketList)
-			csv += marketDTO.getMarketyear() + "," + marketDTO.getMarketquarter() + ","
-					+ marketDTO.getMarketquartersales() + "," + marketDTO.getMarketquartercount() + ","
-					+ marketDTO.getMarketofstores() + "\n";
+			csv += marketDTO.getMarketyear() + "," + marketDTO.getMarketquarter() + ","	+ marketDTO.getMarketquartersales() + "," + marketDTO.getMarketquartercount() + "," + marketDTO.getMarketofstores() + "\n";
+
+		String csvPath = request.getSession().getServletContext().getRealPath("/");
+		csvPath += "resources\\csv\\";
+		
 		try {
 			FileWriter fw = new FileWriter(csvPath + "r.csv");
 			fw.write(csv);
@@ -116,6 +115,7 @@ public class MarketController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		System.out.println("R연결 시도");
 		rm.rGraph();
 		System.out.println("R연결 종료");

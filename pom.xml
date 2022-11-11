@@ -247,11 +247,23 @@
 			<version>2.12.1</version>
 		</dependency>
 
+
+
 		<dependency>
+			<groupId>com.github.lucarosellini.rJava</groupId>
+			<artifactId>JRIEngine</artifactId>
+			<version>0.9-7</version>
+		</dependency>
+		<dependency>
+			<groupId>net.rforge</groupId>
+			<artifactId>Rserve</artifactId>
+			<version>0.6-8.1</version>
+		</dependency>
+		<!-- <dependency>
 			<groupId>org.nuiton.thirdparty</groupId>
 			<artifactId>Rserve</artifactId>
 			<version>1.7-3</version>
-		</dependency>
+		</dependency> 
 		<dependency>
 			<groupId>org.nuiton.thirdparty</groupId>
 			<artifactId>REngine</artifactId>
@@ -261,7 +273,7 @@
 			<groupId>com.github.jbytecode</groupId>
 			<artifactId>RCaller</artifactId>
 			<version>2.8</version>
-		</dependency>
+		</dependency> -->
 
 	</dependencies>
 	<build>

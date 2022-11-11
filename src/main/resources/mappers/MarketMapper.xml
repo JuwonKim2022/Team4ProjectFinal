@@ -60,10 +60,13 @@
 	<select id="selectRData" parameterType="com.kh.vo.MarketDTO" resultMap="MarketDTO">
 		SELECT marketyear, marketquarter, ROUND(AVG(marketquartersales), -1) AS MARKETQUARTERSALES, ROUND(AVG(marketquartercount), -1) AS MARKETQUARTERCOUNT, ROUND(AVG(marketofstores) , 2) AS MARKETOFSTORES
 		FROM
-		    (SELECT m.marketyear, m.marketquarter, b.district, m.service_codename, m.marketquartersales, m.marketquartercount, m.marketofstores
-		    FROM market m, bd_codelist b WHERE m.service_codename = '패스트푸드점' AND b.district = #{district})
+		    (
+		        SELECT m.marketyear, m.marketquarter, b.district, m.service_codename, m.marketquartersales, m.marketquartercount, m.marketofstores
+		        FROM market m JOIN bd_codelist b 
+		        ON m.bd_code = b.bd_code AND m.service_codename = '패스트푸드점' AND b.district = #{district}
+		    )
 		GROUP BY marketyear, marketquarter
-		ORDER BY marketyear DESC
+		ORDER BY marketyear
 	</select>
 	
 </mapper>                 
