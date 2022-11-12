@@ -245,7 +245,7 @@ li {
 				let tmp = "<table style=\"width:450px\" class=\"table table-striped shadow p-3 mb-5 bg-body rounded\" ><thead><tr><th scope=\"col\" valign=\"middle\">회원번호</th><th scope=\"col\" valign=\"middle\">연도</th><th scope=\"col\" valign=\"middle\">분기</th><th width=\"35%\" valign=\"middle\">주소</th><th scope=\"col\" valign=\"middle\">검색 일자</th></tr></thead><tbody class=\"table-group-divider\">";
 				
 				historyLists.forEach(function(historyList) {
-					tmp += '<tr><td valign=\"middle\">' + historyList.signnumber + '</td>'
+					tmp += '<tr><td valign=\"middle\">' + historyList.member_no + '</td>'
 					tmp += '<td valign=\"middle\">' + historyList.marketyear + '</td>'
 					tmp += '<td valign=\"middle\">' + historyList.marketquarter + '</td>'
 					if(historyList.bd_codename == null){
@@ -272,7 +272,7 @@ li {
 			}
 
 		$('#SearchAndHistory').click(function() {
-			let signnumber;
+			let member_no;
 			let searchText = $('input[name=searchText]').val();
 			let marketyear = $('#marketyear option:selected').val();
 			let marketquarter = $('#marketquarter option:selected').val();
