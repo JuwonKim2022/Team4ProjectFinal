@@ -45,10 +45,10 @@ public class MarketController {
 	@RequestMapping(value = "/MarketMapPage/SearchInsertHistory", method = RequestMethod.POST)
 	public List<HistoryDTO> SearchInsertHistory(Model model, @RequestParam String searchText, @RequestParam int marketyear, @RequestParam int marketquarter, HistoryDTO historyDTO) throws Exception {
 
-		int membernumber = 1;
+		int signnumber = 1;
 
 		if (searchText.contains("구")) {
-			historyDTO.setMembernumber(membernumber); // 회원번호
+			historyDTO.setSignnumber(signnumber); // 회원번호
 			historyDTO.setMarketyear(marketyear); // 년도
 			historyDTO.setMarketquarter(marketquarter); // 분기
 			historyDTO.setDistrict(searchText);
@@ -56,7 +56,7 @@ public class MarketController {
 			historyService.insertSearchBox(historyDTO);
 		} else {
 			String returnDistrict = marketService.returnDistrict(searchText);
-			historyDTO.setMembernumber(membernumber); // 회원번호
+			historyDTO.setSignnumber(signnumber); // 회원번호
 			historyDTO.setMarketyear(marketyear); // 년도
 			historyDTO.setMarketquarter(marketquarter); // 분기
 			historyDTO.setBd_codename(searchText);
@@ -65,7 +65,7 @@ public class MarketController {
 			historyService.insertSearchBox(historyDTO);
 		}
 
-		List<HistoryDTO> historyList = historyService.selectRecentHistory(membernumber);
+		List<HistoryDTO> historyList = historyService.selectRecentHistory(signnumber);
 		model.addAttribute("historyList", historyList);
 		
 		return historyList;

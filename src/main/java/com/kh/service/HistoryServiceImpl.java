@@ -20,8 +20,8 @@ public class HistoryServiceImpl implements HistoryService {
 	}
 	
 	@Override
-	public List<HistoryDTO> selectRecentHistory(int membernumber) throws Exception {
-		return historyDAO.selectRecentHistory(membernumber);
+	public List<HistoryDTO> selectRecentHistory(int signnumber) throws Exception {
+		return historyDAO.selectRecentHistory(signnumber);
 	}
 	
 	@Override

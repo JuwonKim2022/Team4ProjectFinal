@@ -3,7 +3,7 @@
 <mapper namespace="HistoryMapper">
 
 	<resultMap id="HistoryDTO" type="com.kh.vo.HistoryDTO">
-		<result property="membernumber" column="membernumber" />
+		<result property="signnumber" column="signnumber" />
 		<result property="marketyear" column="marketyear" />
 		<result property="marketquarter" column="marketquarter" />
 		<result property="bd_codename" column="bd_codename" />
@@ -16,17 +16,17 @@
 	</select>
 
 	<select id="selectRecentHistory" resultMap="HistoryDTO">
-		SELECT * FROM (SELECT * FROM history WHERE membernumber = #{membernumber} ORDER BY search_date DESC) WHERE ROWNUM <![CDATA[ <= ]]> 5
+		SELECT * FROM (SELECT * FROM history WHERE signnumber = #{signnumber} ORDER BY search_date DESC) WHERE ROWNUM <![CDATA[ <= ]]> 5
 	</select>
 
 	<insert id="insertSearchBoxSearchData" parameterType="com.kh.vo.HistoryDTO">
-		INSERT INTO history (membernumber, marketyear, marketquarter, bd_codename, district, search_date)
-		VALUES (#{membernumber}, #{marketyear}, #{marketquarter}, #{bd_codename, jdbcType=VARCHAR}, #{district, jdbcType=VARCHAR}, #{search_date, jdbcType=TIMESTAMP})
+		INSERT INTO history (historynumber, signnumber, marketyear, marketquarter, bd_codename, district, search_date)
+		VALUES (HISTORY_PK_SEQUENCE.nextval, #{signnumber}, #{marketyear}, #{marketquarter}, #{bd_codename, jdbcType=VARCHAR}, #{district, jdbcType=VARCHAR}, #{search_date, jdbcType=TIMESTAMP})
 	</insert>
 
 	<insert id="insertPolygonSearchData" parameterType="com.kh.vo.HistoryDTO">
-		INSERT INTO history (membernumber, marketyear, marketquarter, bd_codename, district, search_date)
-		VALUES (#{membernumber}, #{marketyear}, #{marketquarter}, '없음', #{district, jdbcType=VARCHAR}, #{search_date, jdbcType=TIMESTAMP})
+		INSERT INTO history (historynumber, signnumber, marketyear, marketquarter, bd_codename, district, search_date)
+		VALUES (HISTORY_PK_SEQUENCE.nextval, #{signnumber}, #{marketyear}, #{marketquarter}, #{bd_codename, jdbcType=VARCHAR}, #{district, jdbcType=VARCHAR}, #{search_date, jdbcType=TIMESTAMP})
 	</insert>
 
 </mapper>                 

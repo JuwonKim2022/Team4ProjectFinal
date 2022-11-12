@@ -20,8 +20,8 @@ public class HistoryDAOImpl implements HistoryDAO {
 	}
 	
 	@Override
-	public List<HistoryDTO> selectRecentHistory(int membernumber) throws Exception {
-		return sqlSession.selectList(NameSpace + ".selectRecentHistory", membernumber);
+	public List<HistoryDTO> selectRecentHistory(int signnumber) throws Exception {
+		return sqlSession.selectList(NameSpace + ".selectRecentHistory", signnumber);
 	}
 	
 	@Override

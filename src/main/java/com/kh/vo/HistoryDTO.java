@@ -6,7 +6,8 @@ import lombok.Data;
 
 @Data
 public class HistoryDTO {
-	private int membernumber;
+	private int historynumber;
+	private int signnumber;
 	private int marketyear;
 	private int marketquarter;
 	private String bd_codename;
@@ -16,9 +17,9 @@ public class HistoryDTO {
 	public HistoryDTO() {
 	}
 
-	public HistoryDTO(int membernumber, int marketyear, int marketquarter, String bd_codename, String district,
-			Timestamp search_date) {
-		this.membernumber = membernumber;
+	public HistoryDTO(int historynumber, int signnumber, int marketyear, int marketquarter, String bd_codename, String district, Timestamp search_date) {
+		this.historynumber = historynumber;
+		this.signnumber = signnumber;
 		this.marketyear = marketyear;
 		this.marketquarter = marketquarter;
 		this.bd_codename = bd_codename;
@@ -26,12 +27,20 @@ public class HistoryDTO {
 		this.search_date = search_date;
 	}
 
-	public int getMembernumber() {
-		return membernumber;
+	public int getHistorynumber() {
+		return historynumber;
 	}
 
-	public void setMembernumber(int membernumber) {
-		this.membernumber = membernumber;
+	public void setHistorynumber(int historynumber) {
+		this.historynumber = historynumber;
+	}
+
+	public int getSignnumber() {
+		return signnumber;
+	}
+
+	public void setSignnumber(int signnumber) {
+		this.signnumber = signnumber;
 	}
 
 	public int getMarketyear() {

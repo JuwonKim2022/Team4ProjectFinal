@@ -44,6 +44,16 @@ public class RManager {
 		rc.voidEval("barplot(resultMOS$marketofstores, names.arg = resultMOS$sumYQ, main=\"Number Of Stores Per Quarter\", cex.names = 0.7, xlab = \"Quarterly by Year\", ylab = \"Total Number of Stores\", las = 1, space = 1)");
 		rc.voidEval("dev.off()");
 
+		
+		
+		rc.voidEval("png(\"C:\\\\Users\\\\GangJu\\\\Desktop\\\\Spring3\\\\workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.wst.server.core\\\\tmp0\\\\wtpwebapps\\\\Team4ProjectFinal\\\\resources\\\\png\\\\open.png\")");
+		rc.voidEval("barplot(resultMOS$marketofstores, names.arg = resultMOS$sumYQ, main=\"Number Of Stores Per Quarter\", cex.names = 0.7, xlab = \"Quarterly by Year\", ylab = \"Total Number of Stores\", las = 1, space = 1)");
+		rc.voidEval("dev.off()");
+		
+		rc.voidEval("png(\"C:\\\\Users\\\\GangJu\\\\Desktop\\\\Spring3\\\\workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.wst.server.core\\\\tmp0\\\\wtpwebapps\\\\Team4ProjectFinal\\\\resources\\\\png\\\\close.png\")");
+		rc.voidEval("barplot(resultMOS$marketofstores, names.arg = resultMOS$sumYQ, main=\"Number Of Stores Per Quarter\", cex.names = 0.7, xlab = \"Quarterly by Year\", ylab = \"Total Number of Stores\", las = 1, space = 1)");
+		rc.voidEval("dev.off()");
+		
 		rc.close();
 	}
 }

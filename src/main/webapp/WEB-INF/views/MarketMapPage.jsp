@@ -79,12 +79,12 @@ li {
 </head>
 
 <body>
-	<c:if test="${member == null}">
+	<%-- <c:if test="${member == null}">
    	<script type="text/javascript">
    alert("로그인이 필요합니다.");
    location.href="/member/login"
    </script>
-   </c:if>
+   </c:if> --%>
 	<!-- 네비게이션 -->
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
@@ -204,6 +204,8 @@ li {
 					<img src="\resources\png\taos.png">
 					<img src="\resources\png\tvos.png">
 					<img src="\resources\png\tnos.png">
+					<img src="\resources\png\open.png">
+					<img src="\resources\png\close.png">
 				</div>
 				<div id="marketOpenClose">
 				</div>
@@ -243,7 +245,7 @@ li {
 				let tmp = "<table style=\"width:450px\" class=\"table table-striped shadow p-3 mb-5 bg-body rounded\" ><thead><tr><th scope=\"col\" valign=\"middle\">회원번호</th><th scope=\"col\" valign=\"middle\">연도</th><th scope=\"col\" valign=\"middle\">분기</th><th width=\"35%\" valign=\"middle\">주소</th><th scope=\"col\" valign=\"middle\">검색 일자</th></tr></thead><tbody class=\"table-group-divider\">";
 				
 				historyLists.forEach(function(historyList) {
-					tmp += '<tr><td valign=\"middle\">' + historyList.membernumber + '</td>'
+					tmp += '<tr><td valign=\"middle\">' + historyList.signnumber + '</td>'
 					tmp += '<td valign=\"middle\">' + historyList.marketyear + '</td>'
 					tmp += '<td valign=\"middle\">' + historyList.marketquarter + '</td>'
 					if(historyList.bd_codename == null){
@@ -270,7 +272,7 @@ li {
 			}
 
 		$('#SearchAndHistory').click(function() {
-			let membernumber;
+			let signnumber;
 			let searchText = $('input[name=searchText]').val();
 			let marketyear = $('#marketyear option:selected').val();
 			let marketquarter = $('#marketquarter option:selected').val();
