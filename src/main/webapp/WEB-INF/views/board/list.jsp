@@ -55,7 +55,7 @@
             <c:if test="${member == null}"><a class="nav-link active4" aria-current="page4" href="/signUp/signUp/">회원가입</a></c:if>
          </li>
          <li class="nav-item5">
-         	<c:if test="${member != null}"><p style="margin:0; paddinf:0;" class="nav-link active5 text-end" aria-current="page5">&nbsp;&nbsp;(${member.id}님 안녕하세요.)</p>
+         	<c:if test="${member != null}"><p style="margin:0; paddinf:0;" class="nav-link active5 text-end" aria-current="page5">&nbsp;&nbsp;(${member.name}님 안녕하세요.)</p>
          </c:if>
          </li>
         </ul>

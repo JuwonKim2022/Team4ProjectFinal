@@ -23,7 +23,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	//로그인
 	@Override
-	public MemberVO login(MemberVO vo) throws Exception {
+	public MemberVO login(String vo) throws Exception {
 		return dao.login(vo);
 	}
 	

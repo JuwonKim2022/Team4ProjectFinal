@@ -69,7 +69,7 @@ body {
             <c:if test="${member == null}"><a class="nav-link active4" aria-current="page4" href="/signUp/signUp/">회원가입</a></c:if>
          </li>
          <!-- li class="nav-item5">
-         	<c:if test="${member != null}"><p style="margin:0; paddinf:0;" class="nav-link active5 text-end" aria-current="page5">&nbsp;&nbsp;(${member.id}님 안녕하세요.)</p>
+         	<c:if test="${member != null}"><p style="margin:0; paddinf:0;" class="nav-link active5 text-end" aria-current="page5">&nbsp;&nbsp;(${member.name}님 안녕하세요.)</p>
          </c:if>
          </li-->
         </ul>
@@ -89,7 +89,7 @@ body {
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-3 text-center">로그인</h4>
 				<br>
-				<form name='homeForm' method="post" action="<%=request.getContextPath()%>/member/login">
+				<form name='homeForm' method="post" action="/member/login">
 					<div class="row">
 					<c:if test="${member == null}">
 						<div class="col-md-12 mb-3">
@@ -111,12 +111,12 @@ body {
 					</c:if>	
 					<c:if test="${member != null }">
 						<div>
-							<p>${member.id}님 환영 합니다.</p>
+							<p>${member.name}님 환영 합니다.</p>
 							<button id="logoutBtn" type="button">로그아웃</button>
 						</div>
 					</c:if>
 					<c:if test="${msg == false}">
-						<p style="color: red;">로그인 실하였습니다.<br> 아이디와 비밀번호 확인해주세요.</p>
+						<p style="color: red; text-align: center;">로그인에 실패하였습니다.<br> 아이디와 비밀번호 확인해주세요.</p>
 					</c:if>	
 					</div>
 				</form>

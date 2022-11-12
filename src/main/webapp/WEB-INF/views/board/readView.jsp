@@ -112,7 +112,7 @@
             <c:if test="${member == null}"><a class="nav-link active4" aria-current="page4" href="/signUp/signUp/">회원가입</a></c:if>
          </li>
          <li class="nav-item5">
-         	<c:if test="${member != null}"><p style="margin:0; paddinf:0;" class="nav-link active5 text-end" aria-current="page5">&nbsp;&nbsp;(${member.id}님 안녕하세요.)</p>
+         	<c:if test="${member != null}"><p style="margin:0; paddinf:0;" class="nav-link active5 text-end" aria-current="page5">&nbsp;&nbsp;(${member.name}님 안녕하세요.)</p>
          </c:if>
          </li>
         </ul>
@@ -156,7 +156,7 @@
   					<div class="row">
     					<div class="col">
       					<label for="writer" class="col-sm-2 control-label">작성자</label>
-      					<input type="text" id="writer" name="writer"  value="${read.writer}"  readonly="readonly"/>
+      					<input type="text" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" id="writer" name="writer"  value="${read.writer}"  readonly="readonly"/>
     					</div>
     					<div class="col">
     						<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
@@ -175,7 +175,7 @@
 							</div>
     				</div>
     				<!-- 본인이 작성한 게시판 글만 수정 삭제 버튼 활성화 sh 추가 수정 start-->
-    				<c:if test="${member != null && member.id == read.writer}">
+    				<c:if test="${member != null && member.name == read.writer}">
     				<div class="col">
       				<div class="d-grid gap-2 d-md-flex justify-content-md-end">	
 								<button type="submit" class="update_btn btn btn-secondary">수정</button>
@@ -214,7 +214,7 @@
         						</div>
         						<br/>
         						<!-- sh 수정 작성자 버튼 활성화 start -->
-        						<c:if test="${member != null && member.id == replyList.writer}">
+        						<c:if test="${member != null && member.name == replyList.writer}">
         						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
   										<button type="button" class="replyUpdateBtn btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" data-rno="${replyList.rno}">수정</button>
   										<button type="button" class="replyDeleteBtn btn btn-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" data-rno="${replyList.rno}">삭제</button>
@@ -239,7 +239,7 @@
                    <label for="writer" class="col-sm-2 control-label">댓글 작성자</label>
                    <div class="col-sm-10">
                    <!-- reply 작성자 id 표기 및 수정 불가 표시 sh 추가 수정 start-->
-                      <input type="text" id="writer" name="writer" class="form-control" value="${member.id}" readonly="readonly"/>
+                      <input type="text" id="writer" name="writer" class="form-control" value="${member.name}" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" readonly="readonly"/>
                       <!-- <input type="text" id="writer" name="writer" class="form-control"/> -->
                    <!-- sh end-->
                    </div>

@@ -8,6 +8,7 @@ public class BoardVO {
 	private String content;
 	private String writer;
 	private Date regdate;
+	private int member_no;
 	
 	public int getBno() {
 		return bno;
@@ -38,6 +39,12 @@ public class BoardVO {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
+	}
+	public int getMember_no() {
+		return member_no;
+	}
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
 	}
 	
 	

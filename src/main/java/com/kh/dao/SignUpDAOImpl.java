@@ -8,7 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.kh.vo.UserVO;
+import com.kh.vo.MemberVO;
+
 
 @Repository
 public class SignUpDAOImpl implements SignUpDAO {
@@ -29,18 +30,18 @@ public class SignUpDAOImpl implements SignUpDAO {
 	
 	//회원가입구현 -> memberMapper.xml 작성 후 아래 메서드 작성 -> MemberDAOtest.java 이동
 	   @Override
-	   public void insertSignUp(UserVO userVo) {
+	   public void insertSignUp(MemberVO MemberVO) {
 	   
-	      sqlSession.insert("signUpMapper.insertSignUp",userVo ); //괄호안은 (쿼리구문, 매개변수)순으로 입력하기
+	      sqlSession.insert("signUpMapper.insertSignUp",MemberVO ); //괄호안은 (쿼리구문, 매개변수)순으로 입력하기
 	   }
 
 	   
 	 //회원 정보 조회-사용자 ID 해당하는 정보 가져오기 - 
 	   @Override
-	   public UserVO readSignUp(String id) throws Exception {
+	   public MemberVO readSignUp(String id) throws Exception {
 	      //테스트(컨트롤러) 호출 -> 정보를 저장 -> DB로이동
 	   
-	   UserVO result;
+	   MemberVO result;
 	   result=sqlSession.selectOne("signUpMapper.readSignUp", id); //괄호안의 물음표를 콤마뒤에 쓰는거임
 	   return result;
 	   }
@@ -48,7 +49,7 @@ public class SignUpDAOImpl implements SignUpDAO {
 	//인터페이스 선언 -> 서브클래스 구현
 	//회원 정보 조회 - ID,PW정보에 해당하는 사용자 정보
 	@Override
-	public UserVO readSignUpWithIDPW(String id, String pw) throws Exception {
+	public MemberVO readSignUpWithIDPW(String id, String pw) throws Exception {
 		//테스트(컨트롤러) 호출 -> 정보를 저장 -> DB로이동
 
 		//String인자를 2개를 가져갈 수 없기때문에 파라미터 두개를 객체인 Map에 넣어서 가지고 넘긴다

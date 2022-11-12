@@ -1,9 +1,9 @@
 package com.kh.vo;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.sql.Date;
 
 public class MemberVO {
-
 	private String singNumber ;
 	private String name;
 	private String id;
@@ -11,11 +11,24 @@ public class MemberVO {
 	private String email;
 	private Date regData;
 	private int adminCheck;
+	private String address;
+//	private Timestamp regdate;
+//	private Timestamp updatedate;
 	
 	public MemberVO() {
 	}
 
-	public MemberVO(String singNumber, String name, String id, String pw, String email, Date regData, int adminCheck) {
+	
+	public MemberVO(String id, String pw) {
+		super();
+		this.id = id;
+		this.pw = pw;
+	}
+
+
+
+	public MemberVO(String singNumber, String name, String id, String pw, String email, Date regData, int adminCheck,
+			String address) {
 		super();
 		this.singNumber = singNumber;
 		this.name = name;
@@ -24,8 +37,17 @@ public class MemberVO {
 		this.email = email;
 		this.regData = regData;
 		this.adminCheck = adminCheck;
+		this.address = address;
 	}
-	
+
+
+	@Override
+	public String toString() {
+		return "MemberVO [singNumber=" + singNumber + ", name=" + name + ", id=" + id + ", pw=" + pw + ", email=" + email
+				+ ", regData=" + regData + ", adminCheck=" + adminCheck + "]";
+	}
+
+
 
 	public String getSingNumber() {
 		return singNumber;
@@ -83,10 +105,14 @@ public class MemberVO {
 		this.adminCheck = adminCheck;
 	}
 
-	@Override
-	public String toString() {
-		return "UserVO [singNumber=" + singNumber + ", name=" + name + ", id=" + id + ", pw="
-				+ pw + ", email=" + email + ", regData=" + regData + ", adminCheck=" + adminCheck +"]";
+	public String getAddress() {
+		return address;
 	}
-	
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+		
 }

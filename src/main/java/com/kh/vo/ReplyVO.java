@@ -9,6 +9,8 @@ public class ReplyVO {
 	private String content;
 	private String writer;
 	private Date regdate;
+	private int member_no;
+	
 	public int getBno() {
 		return bno;
 	}
@@ -40,6 +42,14 @@ public class ReplyVO {
 		this.regdate = regdate;
 	}
 	
+	public int getMember_no() {
+		return member_no;
+	}
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
+	}
+	
+	//member_no는 제외한 상태
 	@Override
 	public String toString() {
 		return "ReplyVO [bno=" + bno + ", rno=" + rno + ", content=" + content + ", writer=" + writer + ", regdate="
