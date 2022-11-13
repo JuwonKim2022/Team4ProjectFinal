@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.kh.vo.UserVO;
+import com.kh.vo.MemberVO;
 import com.kh.service.SignUpService;
 
 @Controller
@@ -27,20 +27,20 @@ public class SignUpController {
 	private static final Logger l = LoggerFactory.getLogger(SignUpController.class);
 	
 	@PostMapping("/signUp/join")
-    public String insertIdPostd(UserVO userVO,HttpServletRequest req,RedirectAttributes rtt) throws SQLException {
+    public String insertIdPostd(MemberVO MemberVO,HttpServletRequest req,RedirectAttributes rtt) throws SQLException {
 		String address1 = req.getParameter("sample6_address"); //주소1
 		   String postcode = req.getParameter("sample6_postcode");  //주소2
 		   String detailAddress = req.getParameter("sample6_detailAddress");  //주소3
 		   String address = postcode+"/"+ address1+"/"+detailAddress; //주소 하나로 합침
 
-		   userVO.setAddress(address);  //주소등록
+		   MemberVO.setAddress(address);  //주소등록
 		
 		String  pw = req.getParameter("pw");
 		String  EncoderPw= "";
 		EncoderPw = Encoder.encode(pw);
-		userVO.setPw(EncoderPw);
+		MemberVO.setPw(EncoderPw);
 			if(Encoder.matches(pw, EncoderPw)){
-			 service.insertSignUp(userVO); 
+			 service.insertSignUp(MemberVO); 
 				l.info("유저등록 완료");
 		}else {
 					
@@ -54,13 +54,13 @@ public class SignUpController {
 	   // AJAX 아이디 체크
 	   @RequestMapping(value = "/signUp/UserIdChk", method = RequestMethod.GET)
 	   @ResponseBody
-	   public String Id(HttpServletRequest req,UserVO userVo) throws Exception {
+	   public String Id(HttpServletRequest req,MemberVO MemberVO) throws Exception {
 	      l.info("ajax 아이디 중복 검사");
 	      
 	        //jsp에 있는 id-input을 받음
 	      String id = req.getParameter("memberId");
 	      //sql 실행해서 데이터를 저장
-	      UserVO user = service.readSignUp(id);   
+	      MemberVO user = service.readSignUp(id);   
 	      //ajax에 리턴할 변수
 	      //id가 이미 있는지 if을 통하여 다른 결과값을 jsp로 리턴!
 	      String result;
@@ -132,18 +132,18 @@ public class SignUpController {
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	//value="/signUpr/insertPro"에서 member를 빼도 됨
-	public String insertPOST(UserVO userVo) throws Exception{
+	public String insertPOST(MemberVO MemberVO) throws Exception{
 		
 		//1. 한글처리 : request객체가 없다 => web.xml에서 filter태그로 인코딩해야한다.
 		
 		//2. 전달된 파라미터 받기
 		//request.getParameter라는 내장객체가 없다. 따라서 메서드의 매개변수를 통해 가져올 수 있다.
 		//l.info("C: "+ request.getParameter()); 에러발생
-		l.info("C: "+ userVo);
+		l.info("C: "+ MemberVO);
 		
 		//3. 서비스객체 생성(직접생성안하고 의존주입)
 		//3-2. 서비스객체호출
-		service.insertSignUp(userVo);		
+		service.insertSignUp(MemberVO);		
 		l.info("C: 회원가입 처리페이지 POST");
 		
 		//4. 로그인페이지로 이동(주소줄과 view페이지 동시에 insert->login 변경되어야함)
@@ -166,17 +166,17 @@ public class SignUpController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	//public String loginPOST(@ModelAttribute("userid") String id, @ModelAttribute("userpw") String pw) throws Exception{
-	public String loginPOST(UserVO userVo, HttpSession httpSession, RedirectAttributes redirectAttributes) throws Exception{
+	public String loginPOST(MemberVO MemberVO, HttpSession httpSession, RedirectAttributes redirectAttributes) throws Exception{
 		l.info("C: 로그인 처리페이지 POST");
 		
 		//1.한글처리 => web.xml에서 완료
 		
 		//2.전달받은 파라미터 저장 => loginPOST()메서드의 파라미터값으로 저장함.
-		l.info("C: "+ userVo.getId() + userVo.getPw());
+		l.info("C: "+ MemberVO.getId() + MemberVO.getPw());
 		
 		//3.서비스객체생성 => 22번째 코드로 의존주입완료
 		//4.서비스 로그인 체크 동작(HttpSession)
-		UserVO returnVO = service.loginSignUp(userVo);
+		MemberVO returnVO = service.loginSignUp(MemberVO);
 		l.info("C: 리턴VO결과(서비스에서 예외처리를 진행했으므로 null이 출력되면 코드에 문제있다는 의미) "+returnVO);
 		
 		//5.메인페이지로 이동(주소줄과 view페이지 동시에 main으로 변경되어야함)

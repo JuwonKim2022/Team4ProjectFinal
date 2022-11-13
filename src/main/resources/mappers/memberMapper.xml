@@ -5,7 +5,7 @@
 <mapper namespace="memberMapper">
       <!-- 회원가입 -->
 	<insert id="register">
-	    INSERT INTO SIGNUP  (    ID 
+	    INSERT INTO SIGNUP2  (    ID 
 	   					       , PW 
 	   					       , NAME 	)
 	                  VALUES(    #{id} 
@@ -15,9 +15,9 @@
     
       <!-- 로그인 -->
 	<select id="login" resultType="com.kh.vo.MemberVO">
-		SELECT ID, PW 
-		  FROM SIGNUP
+		SELECT * 
+		  FROM SIGNUP2
 		 WHERE ID = #{id}
-		   AND PW = #{pw}   
+		  <!--  AND PW = #{pw} -->   
 	</select>
 </mapper>
