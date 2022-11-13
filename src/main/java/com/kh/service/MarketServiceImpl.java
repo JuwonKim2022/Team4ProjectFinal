@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.dao.MarketDAO;
 import com.kh.vo.MarketDTO;
+import com.kh.vo.MarketOpenCloseDTO;
 
 @Service("marketService")
 public class MarketServiceImpl implements MarketService {
@@ -34,7 +35,13 @@ public class MarketServiceImpl implements MarketService {
 	}
 	
 	@Override
-	public List<MarketDTO> selectRData(String district) throws Exception {
-		return marketDAO.selectRData(district);
+	public List<MarketDTO> selectRbargraphData(String district) throws Exception {
+		return marketDAO.selectRbargraphData(district);
 	}
+	
+	@Override
+	public List<MarketOpenCloseDTO> selectRpiegraphData(String district) throws Exception {
+		return marketDAO.selectRpiegraphData(district);
+	}
+	
 }

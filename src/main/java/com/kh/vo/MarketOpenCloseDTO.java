@@ -3,31 +3,30 @@ package com.kh.vo;
 import lombok.Data;
 
 @Data
-public class MarketDTO {
+public class MarketOpenCloseDTO {
 	private int marketyear;
 	private int marketquarter;
 	private int bd_code;
 	private String bd_codename;
 	private String service_code;
 	private String service_codename;
-	private long marketquartersales;
-	private int marketquartercount;
-	private double marketofstores;
+	private int marketopen;
+	private int marketclose;
+	private int marketofstores;
 	private CodelistDTO codelistDTO;
-	
-	public MarketDTO() {
+
+	public MarketOpenCloseDTO() {
 	}
 
-	public MarketDTO(int marketyear, int marketquarter, int bd_code, String bd_codename, String service_code, String service_codename, long marketquartersales, int marketquartercount,
-			double marketofstores, CodelistDTO codelistDTO) {
+	public MarketOpenCloseDTO(int marketyear, int marketquarter, int bd_code, String bd_codename, String service_code, String service_codename, int marketopen, int marketclose, int marketofstores, CodelistDTO codelistDTO) {
 		this.marketyear = marketyear;
 		this.marketquarter = marketquarter;
 		this.bd_code = bd_code;
 		this.bd_codename = bd_codename;
 		this.service_code = service_code;
 		this.service_codename = service_codename;
-		this.marketquartersales = marketquartersales;
-		this.marketquartercount = marketquartercount;
+		this.marketopen = marketopen;
+		this.marketclose = marketclose;
 		this.marketofstores = marketofstores;
 		this.codelistDTO = codelistDTO;
 	}
@@ -80,27 +79,27 @@ public class MarketDTO {
 		this.service_codename = service_codename;
 	}
 
-	public long getMarketquartersales() {
-		return marketquartersales;
+	public int getMarketopen() {
+		return marketopen;
 	}
 
-	public void setMarketquartersales(long marketquartersales) {
-		this.marketquartersales = marketquartersales;
+	public void setMarketopen(int marketopen) {
+		this.marketopen = marketopen;
 	}
 
-	public int getMarketquartercount() {
-		return marketquartercount;
+	public int getMarketclose() {
+		return marketclose;
 	}
 
-	public void setMarketquartercount(int marketquartercount) {
-		this.marketquartercount = marketquartercount;
+	public void setMarketclose(int marketclose) {
+		this.marketclose = marketclose;
 	}
 
-	public double getMarketofstores() {
+	public int getMarketofstores() {
 		return marketofstores;
 	}
 
-	public void setMarketofstores(double marketofstores) {
+	public void setMarketofstores(int marketofstores) {
 		this.marketofstores = marketofstores;
 	}
 

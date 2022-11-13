@@ -3,6 +3,7 @@ package com.kh.service;
 import java.util.List;
 
 import com.kh.vo.MarketDTO;
+import com.kh.vo.MarketOpenCloseDTO;
 
 public interface MarketService {
 	public List<MarketDTO> selectAll() throws Exception;
@@ -13,6 +14,8 @@ public interface MarketService {
 	
 	List<MarketDTO> selectDataByDYQ(String district, int marketyear, int marketquarter) throws Exception;
 
-	List<MarketDTO> selectRData(String district) throws Exception;
+	List<MarketDTO> selectRbargraphData(String district) throws Exception;
+
+	List<MarketOpenCloseDTO> selectRpiegraphData(String district) throws Exception;
 
 }
