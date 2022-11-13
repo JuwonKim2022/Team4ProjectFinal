@@ -16,6 +16,8 @@
 		<result property="service_codename" column="service_codename" />
 		<result property="marketquartersales" column="marketquartersales" />
 		<result property="marketquartercount" column="marketquartercount" />
+		<result property="marketopen" column="marketopen" />
+		<result property="marketclose" column="marketclose" />
 		<result property="marketofstores" column="marketofstores" />
 		<collection property="codelistDTO" resultMap="CodelistDTO"/>
 	</resultMap>
@@ -57,7 +59,7 @@
 		WHERE mop.service_codename = '패스트푸드점' AND b.bd_code = mop.bd_code AND mop.marketyear = #{marketyear} AND mop.marketquarter = #{marketquarter} AND b.district = #{district}
 	</select>
 	
-	<select id="selectRData" parameterType="com.kh.vo.MarketDTO" resultMap="MarketDTO">
+	<select id="selectRbargraphData" parameterType="com.kh.vo.MarketDTO" resultMap="MarketDTO">
 		SELECT marketyear, marketquarter, ROUND(AVG(marketquartersales), -1) AS MARKETQUARTERSALES, ROUND(AVG(marketquartercount), -1) AS MARKETQUARTERCOUNT, ROUND(AVG(marketofstores) , 2) AS MARKETOFSTORES
 		FROM
 		    (

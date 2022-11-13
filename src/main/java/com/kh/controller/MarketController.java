@@ -23,6 +23,7 @@ import com.kh.service.HistoryService;
 import com.kh.service.MarketService;
 import com.kh.vo.HistoryDTO;
 import com.kh.vo.MarketDTO;
+import com.kh.vo.MarketOpenCloseDTO;
 
 @Controller
 public class MarketController {
@@ -100,24 +101,45 @@ public class MarketController {
 			district = marketService.returnDistrict(searchText);
 		}
 		
-		List<MarketDTO> marketList = marketService.selectRData(district);
-		String csv = "marketyear, marketquarter, marketquartersales, marketquartercount, marketofstores\n";
+		List<MarketDTO> marketList = marketService.selectRbargraphData(district);
+		String bargraphCSV = "marketyear, marketquarter, marketquartersales, marketquartercount, marketofstores\n";
 		for (MarketDTO marketDTO : marketList)
-			csv += marketDTO.getMarketyear() + "," + marketDTO.getMarketquarter() + ","	+ marketDTO.getMarketquartersales() + "," + marketDTO.getMarketquartercount() + "," + marketDTO.getMarketofstores() + "\n";
+			bargraphCSV += marketDTO.getMarketyear() + "," + marketDTO.getMarketquarter() + ","	+ marketDTO.getMarketquartersales() + "," + marketDTO.getMarketquartercount() + "," + marketDTO.getMarketofstores() + "\n";
 
-		String csvPath = request.getSession().getServletContext().getRealPath("/");
-		csvPath += "resources\\csv\\";
+		String csvbarPath = request.getSession().getServletContext().getRealPath("/");
+		csvbarPath += "resources\\csv\\";
 		
 		try {
-			FileWriter fw = new FileWriter(csvPath + "r.csv");
-			fw.write(csv);
+			FileWriter fw = new FileWriter(csvbarPath + "bargraph.csv");
+			fw.write(bargraphCSV);
 			fw.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 		
+		List<MarketOpenCloseDTO> marketOpenCloseList = marketService.selectRpiegraphData(district);
+		String piegraphCSV = "marketyear, marketquarter, marketopen, marketclose , marketofstores\n";
+		for (MarketOpenCloseDTO marketopencloseDTO : marketOpenCloseList)
+			piegraphCSV += marketopencloseDTO.getMarketyear() + "," + marketopencloseDTO.getMarketquarter() + ","	+ marketopencloseDTO.getMarketopen() + "," + marketopencloseDTO.getMarketclose() + "," + marketopencloseDTO.getMarketofstores() + "\n";
+		
+		String csvpiePath = request.getSession().getServletContext().getRealPath("/");
+		csvpiePath += "resources\\csv\\";
+		
+		
+		try {
+//			FileWriter fw = new FileWriter(csvpiePath + "piegraph.csv");
+			FileWriter fw = new FileWriter("/resources/csv/piegraph.csv");
+			System.out.println("aaaaaaaaaaaaaaaa");
+			fw.write(piegraphCSV);
+			fw.close();
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+		
+		System.out.println(csvbarPath);
+		
 		System.out.println("R연결 시도");
-		rm.rGraph();
+//		rm.rGraph();
 		System.out.println("R연결 종료");
 	}
 }

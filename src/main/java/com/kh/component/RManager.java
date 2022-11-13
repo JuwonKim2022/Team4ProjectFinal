@@ -20,7 +20,7 @@ public class RManager {
 		System.out.println("R연결완료");
 		
 		rc.voidEval("Sys.setenv(JAVA_HOME='C:/Program Files/Java/jre1.8.0_333')");
-		rc.voidEval("data <- read.csv(\"C:\\\\Users\\\\GangJu\\\\Desktop\\\\Spring3\\\\workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.wst.server.core\\\\tmp0\\\\wtpwebapps\\\\Team4ProjectFinal\\\\resources\\\\csv\\\\r.csv\",header=T,sep=\",\")");
+		rc.voidEval("data <- read.csv(\"C:\\\\Users\\\\GangJu\\\\Desktop\\\\Spring3\\\\workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.wst.server.core\\\\tmp0\\\\wtpwebapps\\\\Team4ProjectFinal\\\\resources\\\\csv\\\\bargraph.csv\",header=T,sep=\",\")");
 		rc.voidEval("yq <- data[0:2]");
 		rc.voidEval("sumYQ <- paste(yq$marketyear, yq$marketquarter)");
 		rc.voidEval("marketquartersales <-data[3]");
@@ -44,7 +44,8 @@ public class RManager {
 		rc.voidEval("barplot(resultMOS$marketofstores, names.arg = resultMOS$sumYQ, main=\"Number Of Stores Per Quarter\", cex.names = 0.7, xlab = \"Quarterly by Year\", ylab = \"Total Number of Stores\", las = 1, space = 1)");
 		rc.voidEval("dev.off()");
 
-		
+		// 원그래프
+		rc.voidEval("data <- read.csv(\"C:\\\\Users\\\\GangJu\\\\Desktop\\\\Spring3\\\\workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.wst.server.core\\\\tmp0\\\\wtpwebapps\\\\Team4ProjectFinal\\\\resources\\\\csv\\\\r.csv\",header=T,sep=\",\")");
 		
 		rc.voidEval("png(\"C:\\\\Users\\\\GangJu\\\\Desktop\\\\Spring3\\\\workspace\\\\.metadata\\\\.plugins\\\\org.eclipse.wst.server.core\\\\tmp0\\\\wtpwebapps\\\\Team4ProjectFinal\\\\resources\\\\png\\\\open.png\")");
 		rc.voidEval("barplot(resultMOS$marketofstores, names.arg = resultMOS$sumYQ, main=\"Number Of Stores Per Quarter\", cex.names = 0.7, xlab = \"Quarterly by Year\", ylab = \"Total Number of Stores\", las = 1, space = 1)");
