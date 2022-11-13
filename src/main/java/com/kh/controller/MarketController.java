@@ -107,7 +107,7 @@ public class MarketController {
 			bargraphCSV += marketDTO.getMarketyear() + "," + marketDTO.getMarketquarter() + ","	+ marketDTO.getMarketquartersales() + "," + marketDTO.getMarketquartercount() + "," + marketDTO.getMarketofstores() + "\n";
 
 		String csvbarPath = request.getSession().getServletContext().getRealPath("/");
-		csvbarPath += "resources\\csv\\";
+		csvbarPath += "/resources/csv/";
 		
 		try {
 			FileWriter fw = new FileWriter(csvbarPath + "bargraph.csv");
@@ -123,20 +123,15 @@ public class MarketController {
 			piegraphCSV += marketopencloseDTO.getMarketyear() + "," + marketopencloseDTO.getMarketquarter() + ","	+ marketopencloseDTO.getMarketopen() + "," + marketopencloseDTO.getMarketclose() + "," + marketopencloseDTO.getMarketofstores() + "\n";
 		
 		String csvpiePath = request.getSession().getServletContext().getRealPath("/");
-		csvpiePath += "resources\\csv\\";
-		
+		csvpiePath += "/resources/csv/";
 		
 		try {
-//			FileWriter fw = new FileWriter(csvpiePath + "piegraph.csv");
-			FileWriter fw = new FileWriter("/resources/csv/piegraph.csv");
-			System.out.println("aaaaaaaaaaaaaaaa");
+			FileWriter fw = new FileWriter(csvpiePath + "piegraph.csv");
 			fw.write(piegraphCSV);
 			fw.close();
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
-		
-		System.out.println(csvbarPath);
 		
 		System.out.println("R연결 시도");
 //		rm.rGraph();
