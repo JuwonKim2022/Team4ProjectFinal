@@ -14,8 +14,8 @@
 <script src="https://kit.fontawesome.com/e4a42c4ca5.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fd83cebb54ee789e97f96b80202a3688"></script> <!-- 송강주 -->
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=178acc040ba10cc91f6038853c5e14b9"></script> <!-- 김주원 -->
+<!--  script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fd83cebb54ee789e97f96b80202a3688"></script> < 송강주 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=178acc040ba10cc91f6038853c5e14b9"></script> <!-- 김주원 -->
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -36,6 +36,11 @@
 	margin: 0;
 	padding: 0;
 	font-family: "Noto Sans KR", sans-serif;
+}
+
+h2 {
+	margin: 0;
+	padding: 6px
 }
 
 a {
@@ -60,9 +65,11 @@ li {
 
 
 .modalContainer {
-	background-color: yellow;
-	width: 100%;
-	height: 1000px;
+	background-color: white;
+	width: 100% - 600px;
+	height: 100%;
+	padding: 0;
+	margin: 0;
 	opacity: 0;
 	position: fixed;
 	transition: 0.5s;
@@ -74,17 +81,23 @@ li {
 	opacity: 1;
 	pointer-events: all;
 }
+
+#marketOfStores{
+	margin: 50px;
+	max-width: 1950px;
+}
+
 </style>
 
 </head>
 
 <body>
-	<%-- <c:if test="${member == null}">
-   	<script type="text/javascript">
-   alert("로그인이 필요합니다.");
-   location.href="/member/login"
-   </script>
-   </c:if> --%>
+	<c:if test="${member == null}">
+   		<script type="text/javascript">
+   			alert("로그인이 필요합니다.");
+   			location.href="/member/login"
+   		</script>
+   </c:if>
 	<!-- 네비게이션 -->
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
@@ -114,7 +127,7 @@ li {
 							<a class="nav-link active4" aria-current="page4" href="/signUp/signUp/">회원가입</a>
 						</c:if></li>
 						<li class="nav-item5">
-         	<c:if test="${member != null}"><p style="margin:0; paddinf:0;" class="nav-link active5 text-end" aria-current="page5">&nbsp;&nbsp;(${member.id}님 안녕하세요.)</p>
+         	<c:if test="${member != null}"><p style="margin:0; paddinf:0;" class="nav-link active5 text-end" aria-current="page5">&nbsp;&nbsp;(${member.name}님 안녕하세요.)</p>
          </c:if>
          </li>
 				</ul>
@@ -126,7 +139,7 @@ li {
 		</div>
 	</nav>
 	<!-- 전체박스 -->
-	<div class="mainContainer shadow p-3 mb-5 bg-body rounded" style="width: 100%; height: 100%; margin: 0; padding: 0; display: flex;">
+	<div class="mainContainer" style="width: 100%; height: 100%; margin: 0; padding: 0; display: flex;">
 		<!-- 왼쪽박스전체 -->
 		<div class="leftContaine container" style="width: 600px; height: 1000px; text-align: center; display: flex; flex-direction: column;">
 
@@ -197,17 +210,45 @@ li {
 
 		<!-- 지도 -->
 		<div class="rightContainer" id="rightContainer" style="width: 100%; height: 1000px;">
-			<div class="modalContainer">
-				<div id="modalName"></div>
-				<button class="modalCloseBtn">&times;</button>
-				<div id="marketOfStores">
-					<img src="\resources\png\taos.png">
-					<img src="\resources\png\tvos.png">
-					<img src="\resources\png\tnos.png">
-					<img src="\resources\png\open.png">
-					<img src="\resources\png\close.png">
-				</div>
-				<div id="marketOpenClose">
+			<div class="modalContainer border overflow-auto">
+				<div id="modalName" class="container-fluid">
+				<br>
+					<div class="row">
+						<div class="col-md-10 b text-start fw-bold container"><h2>&nbsp;&nbsp;&nbsp; 자세한 분석 그래프</h2></div>
+						<div class="col-md-2 b d-md-flex justify-content-md-end">
+							<button class="modalCloseBtn btn btn-dark me-md-2" style="margin: 6px;">&times;</button>
+						</div>
+					</div>
+					<div class="row g-0 bg-light position-relative h-" id="marketOfStores">
+						<div class="col-md-6 mb-md-0 p-md-4">
+							<img src="\resources\graph\QuarterlySales.png" class="w-100" alt="...">
+						</div>
+  						<div class="col-md-6 p-4 ps-md-0">
+    						<h5 class="mt-0">Columns with stretched link</h5>
+    						<p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+    						<a href="#" class="stretched-link">Go somewhere</a>
+  						</div>	
+  						<div class="col-md-6 mb-md-0 p-md-4">
+							<img src="\resources\graph\NumOfStorePerQuarter.png" class="w-100" alt="...">
+						</div>
+  						<div class="col-md-6 p-4 ps-md-0">
+    						<h5 class="mt-0">Columns with stretched link</h5>
+    						<p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+    						<a href="#" class="stretched-link">Go somewhere</a>
+  						</div>
+  						<div class="col-md-6 mb-md-0 p-md-4">
+							<img src="\resources\graph\QuarterlySalesVol.png" class="w-100" alt="...">
+						</div>
+  						<div class="col-md-6 p-4 ps-md-0">
+    						<h5 class="mt-0">Columns with stretched link</h5>
+    						<p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+    						<a href="#" class="stretched-link">Go somewhere</a>
+  						</div>
+					</div>
+					<!-- img src="\resources\graph\open.png">
+					<img src="\resources\graph\close.png"-->
+					<div id="marketOpenClose">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -4045,6 +4086,6 @@ var areas = [
 		}
 		
 	</script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
