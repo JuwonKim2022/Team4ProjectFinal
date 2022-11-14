@@ -1,5 +1,6 @@
 package com.kh.controller;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.sql.Timestamp;
@@ -7,7 +8,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,23 +118,26 @@ public class MarketController {
 		}
 		
 		List<MarketOpenCloseDTO> marketOpenCloseList = marketService.selectRpiegraphData(district);
-		String piegraphCSV = "marketyear, marketquarter, marketopen, marketclose , marketofstores\n";
+		String piegraphCSV = "marketyear, marketopen, marketclose , marketofstores\n";
 		for (MarketOpenCloseDTO marketopencloseDTO : marketOpenCloseList)
-			piegraphCSV += marketopencloseDTO.getMarketyear() + "," + marketopencloseDTO.getMarketquarter() + ","	+ marketopencloseDTO.getMarketopen() + "," + marketopencloseDTO.getMarketclose() + "," + marketopencloseDTO.getMarketofstores() + "\n";
+			piegraphCSV += marketopencloseDTO.getMarketyear() + "," + marketopencloseDTO.getMarketopen() + "," + marketopencloseDTO.getMarketclose() + "," + marketopencloseDTO.getMarketofstores() + "\n";
 		
 		String csvpiePath = request.getSession().getServletContext().getRealPath("/");
 		csvpiePath += "/resources/csv/";
 		
+		File csv = new File("C:/Users/GangJu/Desktop/Spring3/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Team4ProjectFinal/resources/csv/" + "piegraph.csv");
+		BufferedWriter bw = null;
 		try {
-			FileWriter fw = new FileWriter(csvpiePath + "piegraph.csv");
-			fw.write(piegraphCSV);
-			fw.close();
-		} catch (Exception e2) {
-			e2.printStackTrace();
+			bw = new BufferedWriter(new FileWriter(csv));
+			bw.write(piegraphCSV);
+			bw.flush();
+			bw.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		System.out.println("R연결 시도");
-//		rm.rGraph();
+		rm.rGraph();
 		System.out.println("R연결 종료");
 	}
 }
