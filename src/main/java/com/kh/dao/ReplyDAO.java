@@ -20,7 +20,4 @@ public interface ReplyDAO {
 	//선택된 댓글 조회
 	public ReplyVO selectReply(int rno) throws Exception;
 
-	List<Integer> rnoReply(int bno) throws Exception;
-
-
 }

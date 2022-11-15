@@ -5,8 +5,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.kh.vo.BoardVO;
@@ -19,13 +17,9 @@ public class BoardDAOImpl implements BoardDAO {
 	@Inject
 	private SqlSession sqlSession;
 	
-	private Logger logger = LoggerFactory.getLogger(BoardDAOImpl.class);
-	
 	// 게시글 작성
 	@Override
 	public void write(BoardVO boardVO) throws Exception {
-		logger.info("write(BoardVO)");
-		logger.info("boardVO:{} in BoardDAOImpl", boardVO);
 		sqlSession.insert("boardMapper.insert", boardVO);
 	}
 	

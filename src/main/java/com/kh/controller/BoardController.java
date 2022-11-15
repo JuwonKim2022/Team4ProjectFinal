@@ -43,10 +43,6 @@ public class BoardController {
 	public String write(BoardVO boardVO) throws Exception{
 		logger.info("write");
 		
-		logger.info(boardVO.getName());
-		
-		logger.info("boardVO:{} in BoardController", boardVO);
-		
 		service.write(boardVO);
 		
 		return "redirect:/board/list";
@@ -100,7 +96,6 @@ public class BoardController {
 		
 		service.update(boardVO);
 		
-		rttr.addAttribute("member_no", boardVO.getMember_no());
 		rttr.addAttribute("page", scri.getPage());
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());
 		rttr.addAttribute("searchType", scri.getSearchType());
@@ -111,18 +106,11 @@ public class BoardController {
 
 	// 게시판 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String delete(ReplyVO vo, BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
+	public String delete(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 		logger.info("delete");
 		
-		List<Integer> rnoReply = replyService.rnoReply(boardVO.getBno());
-		for (int replyVO : rnoReply) {
-			vo.setRno(replyVO);
-			replyService.deleteReply(vo);
-		}
-
-		
 		service.delete(boardVO.getBno());
-		rttr.addAttribute("member_no", boardVO.getMember_no());
+		
 		rttr.addAttribute("page", scri.getPage());
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());
 		rttr.addAttribute("searchType", scri.getSearchType());
@@ -137,17 +125,14 @@ public class BoardController {
 	public String replyWrite(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 		logger.info("reply Write");
 			
+		replyService.writeReply(vo);
+			
 		rttr.addAttribute("bno", vo.getBno());
-		rttr.addAttribute("member_no", vo.getMember_no());
 		rttr.addAttribute("page", scri.getPage());
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());
 		rttr.addAttribute("searchType", scri.getSearchType());
 		rttr.addAttribute("keyword", scri.getKeyword());
-
-		System.out.println(vo);
-		
-		replyService.writeReply(vo);
-	
+			
 		return "redirect:/board/readView";
 	}
 	
@@ -168,7 +153,7 @@ public class BoardController {
 		logger.info("reply Write");
 			
 		replyService.updateReply(vo);
-			//되로 되돌아갈 때 이전 페이지 보이도록 
+			
 		rttr.addAttribute("bno", vo.getBno());
 		rttr.addAttribute("page", scri.getPage());
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());
@@ -195,11 +180,10 @@ public class BoardController {
 	@RequestMapping(value="/replyDelete", method = RequestMethod.POST)
 	public String replyDelete(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 		logger.info("reply Write");
-
+			
 		replyService.deleteReply(vo);
-
+			
 		rttr.addAttribute("bno", vo.getBno());
-		rttr.addAttribute("member_no", vo.getMember_no());
 		rttr.addAttribute("page", scri.getPage());
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());
 		rttr.addAttribute("searchType", scri.getSearchType());

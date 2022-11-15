@@ -30,7 +30,9 @@
             				<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">내 공간</a>
             				<ul class="dropdown-menu">
               					<li><a class="dropdown-item" href="#">내 정보</a></li>
+             	 				<li><hr class="dropdown-divider"></li>
               					<li><a class="dropdown-item" href="#">내 기록</a></li>
+              					<li><a class="dropdown-item" href="#">북마크</a></li>
             				</ul>
           				</li>
 				        <!-- li class="nav-item3">
@@ -40,7 +42,7 @@
 				            <a class="nav-link active4" aria-current="page4" href="<c:url value='/signUp/signUp'/>">회원가입</a>
 				        </li-->
 				        <li class="nav-item3">
-				        	<c:if test="${member != null}"><a class="nav-link active3" aria-current="page3" href="/member/logout" onclick="alert('로그아웃 되었습니다.');">로그아웃</a></c:if>
+				        	<c:if test="${member != null}"><a class="nav-link active3" aria-current="page3" href="/member/logout">로그아웃</a></c:if>
 				            <c:if test="${member == null}"><a class="nav-link active3" aria-current="page3" href="/member/login">로그인</a></c:if>
 				        </li>
 				        <li class="nav-item4">

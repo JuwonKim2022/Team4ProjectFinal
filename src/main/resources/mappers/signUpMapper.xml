@@ -12,21 +12,21 @@
 	 get() 또는 set() 마이바티스가 결정해서 메서드실행-->
 	<select id="readSignUp" parameterType="String" resultType="com.kh.vo.MemberVO">
       select id
-      from MEMBER
+      from SIGNUP2
       where id=#{id}
    </select>
 
    <!-- 아이디 추가 -->
    <insert id="insertSignUp" parameterType="com.kh.vo.MemberVO">
   	insert into
-		MEMBER(MEMBER_NO, ID, NAME,PW,EMAIL,REGDATA,ADMINCHECK,ADDRESS)
+		SIGNUP2(MEMBER_NO, ID, NAME,PW,EMAIL,REGDATA,ADMINCHECK,ADDRESS)
 		values
 		(MEMBERNUM_SEQ.nextval,#{id},#{name},#{pw},#{email},sysdate,1,#{address})
   </insert>
 
 	<select id="readSignUpWithIDPW" resultType="com.kh.vo.MemberVO">
 		select *
-		from MEMBER
+		from SIGNUP2
 		where id=#{id} and pw=#{pw}
 	</select>	
 

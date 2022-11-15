@@ -26,12 +26,6 @@ public class SignUpController {
 	
 	private static final Logger l = LoggerFactory.getLogger(SignUpController.class);
 	
-	//3-1. 서비스 처리 객체를 주입(DI)
-			@Inject
-			private SignUpService service;
-			@Autowired
-			BCryptPasswordEncoder Encoder;
-	
 	@PostMapping("/signUp/join")
     public String insertIdPostd(MemberVO MemberVO,HttpServletRequest req,RedirectAttributes rtt) throws SQLException {
 		String address1 = req.getParameter("sample6_address"); //주소1
@@ -116,7 +110,11 @@ public class SignUpController {
 	
 
 	
-	
+	//3-1. 서비스 처리 객체를 주입(DI)
+		@Inject
+		private SignUpService service;
+		@Autowired
+		BCryptPasswordEncoder Encoder;
 	
 	/* 회원가입 처리하는 동작 */
 	//insert라는 하나의 주소로 get과 post방식 즉 입력과 출력 둘 다 처리 가능

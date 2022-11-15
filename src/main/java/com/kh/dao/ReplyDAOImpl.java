@@ -13,11 +13,6 @@ import com.kh.vo.ReplyVO;
 public class ReplyDAOImpl implements ReplyDAO {
 	@Inject SqlSession sql;
 	
-	@Override
-	public List<Integer> rnoReply(int bno) throws Exception {
-		return sql.selectList("replyMapper.rnoReply", bno);
-	}
-	
 	//댓글조회
 	@Override
 	public List<ReplyVO> readReply(int bno) throws Exception{
