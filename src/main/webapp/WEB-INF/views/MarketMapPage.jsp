@@ -247,11 +247,12 @@ li {
 		//////////////////// 자세한 분석 정보  ////////////////////
 
 		let toHtmlHi = function(historyLists) {
-				let tmp = "<table style=\"width:450px\" class=\"table table-striped shadow p-3 mb-5 bg-body rounded\" ><thead><tr><th scope=\"col\" valign=\"middle\">회원번호</th><th scope=\"col\" valign=\"middle\">연도</th><th scope=\"col\" valign=\"middle\">분기</th><th width=\"35%\" valign=\"middle\">주소</th><th scope=\"col\" valign=\"middle\">검색 일자</th></tr></thead><tbody class=\"table-group-divider\">";
-				
+/* 				let tmp = "<table style=\"width:450px\" class=\"table table-striped shadow p-3 mb-5 bg-body rounded\" ><thead><tr><th scope=\"col\" valign=\"middle\">회원번호</th><th scope=\"col\" valign=\"middle\">연도</th><th scope=\"col\" valign=\"middle\">분기</th><th width=\"35%\" valign=\"middle\">주소</th><th scope=\"col\" valign=\"middle\">검색 일자</th></tr></thead><tbody class=\"table-group-divider\">"; */
+				let tmp = "<table style=\"width:450px\" class=\"table table-striped shadow p-3 mb-5 bg-body rounded\" ><thead><tr><th scope=\"col\" valign=\"middle\">연도</th><th scope=\"col\" valign=\"middle\">분기</th><th width=\"35%\" valign=\"middle\">주소</th><th scope=\"col\" valign=\"middle\">검색 일자</th></tr></thead><tbody class=\"table-group-divider\">";
+
 				historyLists.forEach(function(historyList) {
-					tmp += '<tr><td valign=\"middle\">' + historyList.member_no + '</td>'
-					tmp += '<td valign=\"middle\">' + historyList.marketyear + '</td>'
+/* 					tmp += '<tr><td valign=\"middle\">' + historyList.member_no + '</td>' */
+					tmp += '<tr><td valign=\"middle\">' + historyList.marketyear + '</td>'
 					tmp += '<td valign=\"middle\">' + historyList.marketquarter + '</td>'
 					if(historyList.bd_codename == null){
 						tmp += '<td valign=\"middle\">' + historyList.district + '</td>'

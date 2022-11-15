@@ -59,6 +59,7 @@ public class MemberController {
 				if (Encoder.matches(password, DBPassword)) {
 					logger.info("로그인 성공");
 					session.setAttribute("member", login);
+					session.setAttribute("member_no", login.getMember_no());
 					System.out.println(login);
 					return "redirect:/";
 				} else {

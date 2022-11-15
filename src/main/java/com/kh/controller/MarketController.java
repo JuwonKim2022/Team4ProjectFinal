@@ -11,6 +11,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,17 +44,17 @@ public class MarketController {
 	private RManager rm;
 
 	@RequestMapping(value = "/MarketMapPage", method = RequestMethod.GET)
-	public String MapGet(MemberVO memberVO) {
-		System.out.println("member : " + memberVO);
+	public String MapGet(HttpServletRequest request, MemberVO memberVO) {
 		return "MarketMapPage";
 	}
 
 	// 작동: 검색 및 검색기록 조회 / 회원번호 설정 필요
 	@ResponseBody
 	@RequestMapping(value = "/MarketMapPage/SearchInsertHistory", method = RequestMethod.POST)
-	public List<HistoryDTO> SearchInsertHistory(Model model, @RequestParam String searchText, @RequestParam int marketyear, @RequestParam int marketquarter, HistoryDTO historyDTO) throws Exception {
-
-		int member_no = 1;
+	public List<HistoryDTO> SearchInsertHistory(HttpServletRequest request, Model model, @RequestParam String searchText, @RequestParam int marketyear, @RequestParam int marketquarter, HistoryDTO historyDTO) throws Exception {
+		HttpSession session = request.getSession();
+		int member_no = (int) session.getAttribute("member_no");
+		System.out.println("MapPageMember_No: " + member_no);
 
 		if (searchText.contains("구")) {
 			historyDTO.setMember_no(member_no); // 회원번호
