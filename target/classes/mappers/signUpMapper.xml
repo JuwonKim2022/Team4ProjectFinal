@@ -10,23 +10,23 @@
 
 	<!-- values(?,?,?,?) sql문법 대신에 Mybatis 문법#{}을 사용
 	 get() 또는 set() 마이바티스가 결정해서 메서드실행-->
-	<select id="readSignUp" parameterType="String" resultType="com.kh.vo.MemberVO">
+	<select id="readSignUp" parameterType="String" resultType="com.kh.vo.UserVO">
       select id
-      from SIGNUP2
+      from SIGNUP
       where id=#{id}
    </select>
 
    <!-- 아이디 추가 -->
-   <insert id="insertSignUp" parameterType="com.kh.vo.MemberVO">
+   <insert id="insertSignUp" parameterType="com.kh.vo.UserVO">
   	insert into
-		SIGNUP2(MEMBER_NO, ID, NAME,PW,EMAIL,REGDATA,ADMINCHECK,ADDRESS)
+		SIGNUP(SIGNNUMBER, ID, NAME,PW,EMAIL,REGDATA,ADMINCHECK)
 		values
-		(MEMBERNUM_SEQ.nextval,#{id},#{name},#{pw},#{email},sysdate,1,#{address})
+		(MEMBERNUM_SEQ.nextval,#{id},#{name},#{pw},#{email},sysdate,1)
   </insert>
 
-	<select id="readSignUpWithIDPW" resultType="com.kh.vo.MemberVO">
+	<select id="readSignUpWithIDPW" resultType="com.kh.vo.UserVO">
 		select *
-		from SIGNUP2
+		from SIGNUP
 		where id=#{id} and pw=#{pw}
 	</select>	
 
