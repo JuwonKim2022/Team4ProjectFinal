@@ -28,7 +28,7 @@ body {
 .input-form {
 	display: grid;
 	max-width: 680px;
-	margin-top: 1%;
+	margin-top: 2%;
 	padding: 32px;
 	background: #fff;
 	-webkit-border-radius: 10px;
@@ -178,10 +178,10 @@ body {
 			</div>
 		</div>
 	</div>
-	<div style="margin-top: 4px;">
+	<!-- div style="margin-top: 4px;">
 	
 		<jsp:include page="../footer.jsp" />
-	</div>
+	</div-->
 
 	<script>
      var idCheck = false;         // 아이디

@@ -81,9 +81,9 @@ body {
 			</div>
 		</div>
 	</div>
-	<div style="margin-top: 120px;">
+	<!--div style="margin-top: 120px;">
 		<jsp:include page="../footer.jsp" />
-	</div>
+	</div-->
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
