@@ -10,21 +10,22 @@
 <style>
     *{  
  
-        font-size: 10px;
+        font-size: 13px;
     }
     .b{
-        border: 1px solid black;
+    
+      background-color: rgb(255, 209, 209);
         height: 800px
     }
-    .c{ 
-          background-color: rgb(204, 221, 255);
-        border: 1px solid black;
+    .c{   
+          background-color: rgb(255, 255, 255);
+        border-right: 1px solid black;
         height: 800px;
         margin: 100px,50px;
-        padding: 10px 50px;
+        padding: 40px 50px;
     
     }
-    .d{
+    .d{ margin: 5px 0px;
         height: 50px;
         border: 1px solid black;
     }
@@ -47,7 +48,7 @@
     }
     .e2{   
         display: none;
-        background-color: rgb(232, 230, 81);
+    
         border: 1px solid black;
         width: 46%;    
     }
@@ -57,50 +58,76 @@
     .e3{
   
      
-        background-color: aquamarine;
+        background-color: rgb(249, 249, 249);
         margin-top: 20px;
         justify-content: center;
 
     }
     .as{
-        background-color :yellowgreen ;
+        background-color :rgb(255, 255, 255) ;
       display: inline-flex;
       width: 100%;
       justify-content: space-around;
+  
        
+    }
+    .kim{
+      background-color: rgb(246, 252, 189);
+       display: none;
+      height: 700px;
+    }
+    .song{
+      background-color: rgb(56, 225, 255);
+      display: none;
+      height: 700px;
     }
 </style>
 </head>
 <body>
   <div class="container-fluid">
     <div class="row">
-    <div class="col-md-3 c ">hello
+    <div class="col-md-3 c ">
  
         <form class="validation-form join_form " id="join_form" method="POST" novalidate > 
        
-        <h4>아이디 :</h4>
+        <h5>아이디 :</h5>
         <div class="d form-control idid">${id.id}</div>
-           <h4>이름 :</h4>
+           <h5>이름 :</h5>
         <div class="d form-control">${id.name}</div>
-               <h4>주소 :</h4>
+               <h5>주소 :</h5>
         <div class="d form-control">${id.address}</div>
-           <h4>메일 :</h4>
+        <div class="reemail">
+          <label for="email"><h5>변경 주소 </h5></label>
+          <input type="email" id="editEmail" name="editEmail" class="remail_input form-control " placeholder="you@example.com" required>
+          </div>
+           <h5>메일 :</h5>
         <div class="d form-control">${id.email}</div>
         <div class="reemail">
-        <label for="email"><h4>변경할 메일 주소 </h4></label>
+        <label for="email"><h5>변경할 메일 주소 </h5></label>
         <input type="email" id="editEmail" name="editEmail" class="remail_input form-control " placeholder="you@example.com" required>
         </div>
         <div class="e3">
+          <div class="as"> <button class="btn btn-primary  join_button e2 " type="button"  id="edit1" >변경 완료</button>
+            <button class="btn btn-primary  join_button e2" type="reset" id="edit2"  >취소</button></div>
         <button class="btn btn-primary join_button e "  id="edit" type="button">개인정보 수정</button><br>
-       <div class="as"> <button class="btn btn-primary  join_button e2 " type="button"  id="edit1" >변경 완료</button>
-      <button class="btn btn-primary  join_button e2" type="reset" id="edit2"  >취소</button></div>
-        <button class="btn btn-primary  join_button e" type="button">작성글 보기</button><br>
-        <button class="btn btn-primary  join_button e" type="button">검색 기록보기</button><br>
+         <button class="btn btn-primary  join_button e " id="song" type="button">작성글 보기</button><br>
+        <button class="btn btn-primary  join_button e"  id="kim" type="button">검색 기록보기</button><br>
         </div>
         </form>
    
 </div>
-    <div class="col-md-9 b">hello  </div>
+    <div class="col-md-9 b">데이터 부분
+      
+      <div class="song"> 
+
+      </div>
+
+      <div class="kim"> 
+
+      </div>
+
+
+    </div>
   
 </div>  
 </div>
@@ -129,7 +156,14 @@
     $(".e2").css('display','none');
     $(".reemail").css('display','none');
   });
-  
+  $("#song").click(function(){
+    $(".kim").css('display','none');
+    $(".song").css('display','block');
+  });
+  $("#kim").click(function(){
+    $(".song").css('display','none');
+    $(".kim").css('display','block');
+  });
 
   
   $("#edit1").click(function(){
