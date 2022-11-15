@@ -217,7 +217,9 @@ li {
 			</div>
 		</div>
 	</div>
-
+	<!-- div>
+		<jsp:include page="footer.jsp"/>
+	</div-->
 	<script>
 		
 		$('#resetButton').click(function(){
@@ -4051,9 +4053,7 @@ var areas = [
 		}
 		
 	</script>
-	<!-- div>
-	<jsp:include page="footer.jsp"/>
-</div-->
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
