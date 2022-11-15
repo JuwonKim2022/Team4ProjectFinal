@@ -21,5 +21,8 @@
     <input type="submit" value="회원가입">          
   </form>  
 </fieldset>
+<div>
+	<jsp:include page="footer.jsp"/>
+</div>
 </body>
 </html>

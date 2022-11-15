@@ -26,6 +26,7 @@ import com.kh.service.MarketService;
 import com.kh.vo.HistoryDTO;
 import com.kh.vo.MarketDTO;
 import com.kh.vo.MarketOpenCloseDTO;
+import com.kh.vo.MemberVO;
 
 @Controller
 public class MarketController {
@@ -42,7 +43,8 @@ public class MarketController {
 	private RManager rm;
 
 	@RequestMapping(value = "/MarketMapPage", method = RequestMethod.GET)
-	public String MapGet() {
+	public String MapGet(MemberVO memberVO) {
+		System.out.println("member : " + memberVO);
 		return "MarketMapPage";
 	}
 

@@ -14,6 +14,11 @@ public class ReplyServiceImpl implements ReplyService {
 	@Inject
 	private ReplyDAO dao;
 	
+	@Override
+	public List<Integer> rnoReply(int bno) throws Exception {
+		return dao.rnoReply(bno);
+	}
+	
 	//댓글 조회
 	@Override
 	public List<ReplyVO> readReply(int bno) throws Exception{
