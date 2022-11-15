@@ -3,7 +3,7 @@ package com.kh.vo;
 import java.util.Date;
 
 public class BoardVO {
-	
+	//
 	private int bno;
 	private int member_no;
 	private String title;
