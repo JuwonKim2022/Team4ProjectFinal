@@ -3,11 +3,13 @@ package com.kh.controller;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.net.URL;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ public class MarketController {
 	@Resource(name = "historyService")
 	private HistoryService historyService;
 
+	@Autowired
+	ServletContext servletContext;
+	
 	@Autowired
 	private RManager rm;
 
@@ -94,7 +99,20 @@ public class MarketController {
 	@RequestMapping(value = "/MarketMapPage/modal", method = RequestMethod.POST)
 	public void modal(HttpServletRequest request, @RequestParam String searchText) throws Exception {
 		String district = null;
-
+		String webappRoot = servletContext.getRealPath("/");
+		
+		File Folder = new File(webappRoot + File.separator + "resources" + File.separator + "csv");
+		if(!Folder.exists())  {
+			try {
+				Folder.mkdir();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		String csvFolder = webappRoot + File.separator + "resources" + File.separator + "csv" + File.separator;
+		String graphFolder = webappRoot + File.separator + "resources" + File.separator + "graph" + File.separator;
+		
 		if (searchText.contains("구")) {
 			district = searchText;
 		} else {
@@ -104,40 +122,31 @@ public class MarketController {
 		List<MarketDTO> marketList = marketService.selectRbargraphData(district);
 		String bargraphCSV = "marketyear, marketquarter, marketquartersales, marketquartercount, marketofstores\n";
 		for (MarketDTO marketDTO : marketList)
-			bargraphCSV += marketDTO.getMarketyear() + "," + marketDTO.getMarketquarter() + ","	+ marketDTO.getMarketquartersales() + "," + marketDTO.getMarketquartercount() + "," + marketDTO.getMarketofstores() + "\n";
+			bargraphCSV += marketDTO.getMarketyear() + "," + marketDTO.getMarketquarter() + "," + marketDTO.getMarketquartersales() + "," + marketDTO.getMarketquartercount() + "," + marketDTO.getMarketofstores() + "\n";
 
-		String csvbarPath = request.getSession().getServletContext().getRealPath("/");
-		csvbarPath += "/resources/csv/";
-		
 		try {
-			FileWriter fw = new FileWriter(csvbarPath + "bargraph.csv");
+			FileWriter fw = new FileWriter(csvFolder + "bargraph.csv");
 			fw.write(bargraphCSV);
+			fw.flush();
 			fw.close();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
+
 		List<MarketOpenCloseDTO> marketOpenCloseList = marketService.selectRpiegraphData(district);
 		String piegraphCSV = "marketyear, marketopen, marketclose , marketofstores\n";
 		for (MarketOpenCloseDTO marketopencloseDTO : marketOpenCloseList)
 			piegraphCSV += marketopencloseDTO.getMarketyear() + "," + marketopencloseDTO.getMarketopen() + "," + marketopencloseDTO.getMarketclose() + "," + marketopencloseDTO.getMarketofstores() + "\n";
-		
-		String csvpiePath = request.getSession().getServletContext().getRealPath("/");
-		csvpiePath += "/resources/csv/";
-		
-		File csv = new File("C:/Users/GangJu/Desktop/Spring3/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Team4ProjectFinal/resources/csv/" + "piegraph.csv");
-		BufferedWriter bw = null;
+
 		try {
-			bw = new BufferedWriter(new FileWriter(csv));
-			bw.write(piegraphCSV);
-			bw.flush();
-			bw.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+			FileWriter fw = new FileWriter(csvFolder + "piegraph.csv");
+			fw.write(piegraphCSV);
+			fw.flush();
+			fw.close();
+		} catch (Exception e2) {
+			e2.printStackTrace();
 		}
-		
-		System.out.println("R연결 시도");
-		rm.rGraph();
-		System.out.println("R연결 종료");
+
+//		rm.rGraph(csvFolder, graphFolder);
 	}
 }

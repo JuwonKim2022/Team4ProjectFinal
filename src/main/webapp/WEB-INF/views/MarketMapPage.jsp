@@ -94,12 +94,12 @@ li {
 </head>
 
 <body>
-	<c:if test="${member == null}">
+	<%-- <c:if test="${member == null}">
    		<script type="text/javascript">
    			alert("로그인이 필요합니다.");
    			location.href="/member/login"
    		</script>
-   </c:if>
+   </c:if> --%>
 	<!-- 네비게이션 -->
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
