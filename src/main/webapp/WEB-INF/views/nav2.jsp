@@ -53,10 +53,10 @@
 							안녕하세요.)</p>
 					</c:if></li>
 			</ul>
-			<form class="d-flex" role="search" action="http://www.google.com/search" method="GET">
-				<input class="form-control me-2" type="text" placeholder="Search"
+			<form class="d-flex" role="search">
+				<input class="form-control me-2" type="search" placeholder="Search"
 					aria-label="Search">
-				<button class="btn btn-secondary" type="text">Search</button>
+				<button class="btn btn-secondary" type="submit">Search</button>
 			</form>
 		</div>
 	</div>
