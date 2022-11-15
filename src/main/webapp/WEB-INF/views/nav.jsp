@@ -27,7 +27,7 @@
             				<a class="nav-link active2" aria-current="page2" href="<c:url value='/board/list'/>">자유게시판</a>
           				</li>
           				<li class="nav-item dropdown">
-            				<a class="nav-link dropdown-toggle"  href="<c:url value='/signUp/myInformation'/>" role="button" data-bs-toggle="dropdown" >내 공간</a>
+            				<a class="nav-link dropdown-toggle"  href="<c:url value='/signUp/myInformation'/>" role="button" data-bs-toggle="dropdown"  aria-expanded="false">내 공간</a>
             				<ul class="dropdown-menu">
               					<li><a class="dropdown-item" href="#">내 정보</a></li>
               					<li><a class="dropdown-item" href="#">내 기록</a></li>
