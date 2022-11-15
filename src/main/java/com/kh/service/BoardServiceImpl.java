@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.kh.controller.BoardController;
 import com.kh.dao.BoardDAO;
 import com.kh.vo.BoardVO;
 import com.kh.vo.Criteria;
@@ -13,6 +16,8 @@ import com.kh.vo.SearchCriteria;
 
 @Service
 public class BoardServiceImpl implements BoardService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
 
 	@Inject
 	private BoardDAO dao;
@@ -20,6 +25,8 @@ public class BoardServiceImpl implements BoardService {
 	// 게시글 작성
 	@Override
 	public void write(BoardVO boardVO) throws Exception {
+		logger.info("name:{}", boardVO.getName());
+		logger.info("boardVO:{} in BoardServiceImpl", boardVO);
 		dao.write(boardVO);
 	}
 	
