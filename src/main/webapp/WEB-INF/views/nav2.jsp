@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-
 <nav class="navbar navbar-expand-lg bg-light">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="<c:url value='/'/>"> <i
@@ -31,8 +30,8 @@
 					</ul>
 				</li>
 				<li class="nav-item3"><c:if test="${member != null}">
-						<a class="nav-link active3" aria-current="page3"
-							href="/member/logout" onclick="alert('로그아웃 되었습니다.');">로그아웃</a>
+						<a class="nav-link active3" aria-current="page3" onclick="return confirm('정말 로그아웃 하시겠습니까?');" href="/member/logout" >로그아웃</a>
+							
 					</c:if> <c:if test="${member == null}">
 						<a class="nav-link active3" aria-current="page3"
 							href="/member/login">로그인</a>
@@ -47,10 +46,10 @@
 							안녕하세요.)</p>
 					</c:if></li>
 			</ul>
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="Search"
-					aria-label="Search">
-				<button class="btn btn-secondary" type="submit">Search</button>
+			<!-- 구글검색창 -->
+			<form method=get action="http://www.google.com/search" targer="_blank" class="d-flex" role="search">
+				<input type="text" name="q" value="" class="form-control me-2" placeholder="검색어 입력" aria-label="Search">
+				<button type="submit" name="btnG" class="btn btn-secondary" >Google</button>
 			</form>
 		</div>
 	</div>

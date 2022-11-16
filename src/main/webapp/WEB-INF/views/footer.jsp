@@ -8,7 +8,7 @@
             <div class="site_info">
                 <div>
                     <p class="text-muted"><span>저작권 정책 : <a href="#" style="text-decoration: none;" class="text-muted">책임의 한계와 법적 고지</a></span></p>
-                    <p class="text-muted"><span>데이터 업데이트 : 2022년07월 13일</span></p>
+                    <p class="text-muted"><span>데이터 업데이트 : 2022년 07월 13일</span></p>
                     <p><span><a href="#" style="text-decoration: none;" class="text-dark">개인정보처리방침</a></span>
                         <span>E-mail : <a href="mailto:sparklep519@naver.com" style="text-decoration: none;">sparklep519@naver.com</a></span>
                     </p>

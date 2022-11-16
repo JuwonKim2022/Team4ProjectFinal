@@ -13,7 +13,7 @@
             <div class="site_info">
                 <div>
                     <p><span>저작권 정책 : <a href="#">책임의 한계와 법적 고지</a></span>&nbsp
-                        <span>데이터 업데이트 : 2022년07월 13일</span> <br>
+                        <span>데이터 업데이트 : 2022년 07월 13일</span> <br>
                     <p><span><a href="#">개인정보처리방침</a></span>&nbsp
                         <span>E-mail : <a href="mailto:sparklep519@naver.com">sparklep519@naver.com</a></span>
                     </p>
