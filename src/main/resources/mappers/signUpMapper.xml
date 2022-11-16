@@ -30,12 +30,12 @@
 		where id=#{id} and pw=#{pw}
 	</select>	
 	<!-- 메일 변경 -->
-  <update id="updateEmail" parameterType="com.kh.vo.UserVO">
+  <update id="updateEmail" parameterType="com.kh.vo.MemberVO">
     update MEMBER
    SET EMAIL = #{email} WHERE ID =#{id}
   
   </update>
-    <update id="updateAddress" parameterType="com.kh.vo.UserVO">
+    <update id="updateAddress" parameterType="com.kh.vo.MemberVO">
     update MEMBER
    SET ADDRESS = #{address} WHERE ID =#{id}
   
