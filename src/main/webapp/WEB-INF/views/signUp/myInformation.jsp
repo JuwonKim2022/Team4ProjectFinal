@@ -85,13 +85,7 @@
 </style>
 </head>
 <body>
-<!-- 로그인 시 접속하도록 -->
-	<!--c:if test="${member == null}">
-   		<script type="text/javascript">
-   			alert("로그인이 필요합니다.");
-   			location.href="/member/login"
-   		</script>
-   </c:if-->
+
   <div class="container-fluid">
     <div class="row">
     <div class="col-md-3 c ">
