@@ -252,40 +252,7 @@
         // 아이디,비번체크 후 데이터 전송여부 결정
             email=$('.remail_input').val()
            address=$('.sample6_address').val();
-   
-            
-    
-    if(email==""){
-        alert('1');
-        
-      
-    }
-    if(address==""){
-        alert('2');
-        
-      
-    }
-    if(email==null){
-        alert('11');
-        
-      
-    }
-    if(address==null){
-        alert('22');
-        
-      
-    }
-    if(address3==null){
-        alert('44');
-        
-      
-    }
-    if(address3==""){
-        alert('55');
-        
-      
-    }
-
+  
         
        //주소 메일 입력값 없을때
      if(email==""&&address==""||email==null&&address==null){
