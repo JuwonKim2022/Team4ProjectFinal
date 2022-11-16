@@ -172,23 +172,18 @@ public class SignUpController {
 
 		HttpSession session = req.getSession();
 		
-	
-		 MemberVO userVO2= (MemberVO) session.getAttribute("id");
-/*
+		l.info("2222222222");
+		 MemberVO userVO2= (MemberVO) session.getAttribute("member");
+			l.info("33333");
+			String address = userVO2.getAddress();
+			l.info(address);
 			
-		 String e= userVO2.getEmail();
+			 String[] addStrings = address.trim().split("/");
+			  model.addAttribute("address",addStrings);
 		
-			String id = "asdasd2";
-		
-			List<UserVO> user = service.user(id);
-			if(!user.isEmpty()) {
-				for(Object value : user) {
-					System.out.println(value);
-				}
-			}
-	
-		System.out.println("***---***");
-			*/
+
+
+
 					return "/signUp/myInformation";
 	}
 	   
