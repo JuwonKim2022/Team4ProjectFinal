@@ -194,7 +194,7 @@ public class SignUpController {
 	}
 	   
 	   @PostMapping("/signUp/edit")
-	   public String insertIdPostds(MemberVO memberVO,HttpServletRequest req,RedirectAttributes rtt) throws SQLException {
+	   public String insertIdPostds(MemberVO memberVO,HttpServletRequest req,RedirectAttributes rtt) throws Exception {
 	   l.info("이메일 변경");
 	   
 	   HttpSession session = req.getSession();
