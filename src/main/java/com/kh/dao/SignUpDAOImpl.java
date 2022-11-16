@@ -1,7 +1,6 @@
 package com.kh.dao;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashMap;import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -9,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.vo.MemberVO;
+
 
 
 @Repository
@@ -65,5 +65,21 @@ public class SignUpDAOImpl implements SignUpDAO {
 		paramMap.put("pw", pw);
 
 		return sqlSession.selectOne(namespace+".readMemberWithIDPW", paramMap);		
+	}
+
+
+
+	@Override
+	public MemberVO updateEamil(MemberVO memberVO) {
+	
+		sqlSession.update("signUpMapper.updateEmail",memberVO );
+	
+		return null;
+	}
+
+	@Override
+	public MemberVO updateAddress(MemberVO memberVO) {
+		sqlSession.update("signUpMapper.updateAddress",memberVO );
+		return null;
 	}
 }

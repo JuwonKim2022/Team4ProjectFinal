@@ -15,5 +15,8 @@ public interface SignUpService {
 	
 	 //Ajax 중복아이디 확인
 	   public MemberVO readSignUp(String id) throws Exception ;
-	
+	  //이메일 변경
+	   public MemberVO updateEmail(MemberVO MemberVO) throws Exception ;
+	   //주소 변경
+	   public MemberVO updateAddress(MemberVO MemberVO) throws Exception ;
 }

@@ -1,10 +1,10 @@
 package com.kh.service;
 
-import javax.inject.Inject;
-import org.springframework.stereotype.Service;
+import javax.inject.Inject;import org.springframework.stereotype.Service;
 
 import com.kh.dao.SignUpDAO;
 import com.kh.vo.MemberVO;
+
 
 
 @Service
@@ -43,4 +43,16 @@ public class SignUpServiceImpl implements SignUpService {
 //	       l.info("123123==",id);
 	      return    signUpDao.readSignUp(id);
 	   }
+
+	@Override
+	public MemberVO updateEmail(MemberVO MemberVO) throws Exception {
+		
+		return  signUpDao.updateEamil(MemberVO);
+	}
+
+	@Override
+	public MemberVO updateAddress(MemberVO MemberVO) throws Exception {
+		
+		return  signUpDao.updateAddress(MemberVO);
+	}
 }
