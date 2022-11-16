@@ -192,5 +192,37 @@ public class SignUpController {
 			*/
 					return "/signUp/myInformation";
 	}
-	
+	   
+	   @PostMapping("/signUp/edit")
+	   public String insertIdPostds(MemberVO memberVO,HttpServletRequest req,RedirectAttributes rtt) throws SQLException {
+	   l.info("이메일 변경");
+	   
+	   HttpSession session = req.getSession();
+	   //세션에서 가져온 아이디 저장
+	   MemberVO userVO2= (MemberVO) session.getAttribute("member");
+	      l.info("DB 검색 아이디"+userVO2.getId());    
+	      //JSP에 입력한 새메일,주소 저장 받아서 저장
+	      if(req.getParameter("editEmail")!=null&&req.getParameter("editEmail")!="") {
+	         String Email = req.getParameter("editEmail");  
+	         l.info("변경 이메일+"+Email);      
+	         userVO2.setEmail(Email);
+	           //DB에 변경 업데이트 
+	         MemberVO editMail = service.updateEmail(userVO2);
+	               /* MemberVO editAddress= service.updateAddress(userVO2); */
+	         
+	         
+	      }
+	      if(req.getParameter("editAddress")!=null&&req.getParameter("editAddress")!="") {
+	         String Address= req.getParameter("editAddress");   
+	         l.info("변경 주소+"+Address);   
+	         userVO2.setAddress(Address);
+	         MemberVO editAddress = service.updateAddress(userVO2);
+	         }
+	      
+	      
+
+	      
+
+	      return "index";
+	   }
 }
