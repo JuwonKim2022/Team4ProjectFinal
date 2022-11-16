@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title></title>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
@@ -84,6 +85,13 @@
 </style>
 </head>
 <body>
+<!-- 로그인 시 접속하도록 -->
+	<!--c:if test="${member == null}">
+   		<script type="text/javascript">
+   			alert("로그인이 필요합니다.");
+   			location.href="/member/login"
+   		</script>
+   </c:if-->
   <div class="container-fluid">
     <div class="row">
     <div class="col-md-3 c ">

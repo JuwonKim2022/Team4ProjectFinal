@@ -23,19 +23,13 @@
 				<li class="nav-item2"><a class="nav-link active2"
 					aria-current="page2" href="<c:url value='/board/list'/>">자유게시판</a>
 				</li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" role="button"
-					data-bs-toggle="dropdown" aria-expanded="false">내 공간</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">내 공간</a>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">내 정보</a></li>
+						<li><a class="dropdown-item" href="<c:url value='/signUp/myInformation'/>">내 정보</a></li>
 						<li><a class="dropdown-item" href="#">내 기록</a></li>
-					</ul></li>
-				<!-- li class="nav-item3">
-				            <a class="nav-link active3" aria-current="page3" href="<c:url value='/member/login'/>">로그인</a>
-				        </li>
-				        <li class="nav-item4">
-				            <a class="nav-link active4" aria-current="page4" href="<c:url value='/signUp/signUp'/>">회원가입</a>
-				        </li-->
+					</ul>
+				</li>
 				<li class="nav-item3"><c:if test="${member != null}">
 						<a class="nav-link active3" aria-current="page3"
 							href="/member/logout" onclick="alert('로그아웃 되었습니다.');">로그아웃</a>

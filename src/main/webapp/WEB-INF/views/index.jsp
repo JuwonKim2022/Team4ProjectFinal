@@ -19,9 +19,7 @@ a {
 </style>
 </head>
 <body>
-	<div>
-		<jsp:include page="nav.jsp" />
-	</div>
+	<jsp:include page="nav2.jsp"/>
 	<div id="carouselExampleCaptions" class="carousel slide"
 		data-bs-ride="false">
 		<div class="carousel-indicators">
@@ -84,8 +82,7 @@ a {
 		</div>
 		<div class="col">
 			<div class="card h-100">
-				<a href="<c:url value='/board/list'/>"><img src="/resources/img/community.jpg" class="card-img-top"
-					alt="..."></a>
+				<a href="<c:url value='/board/list'/>"><img src="/resources/img/community.jpg" class="card-img-top" alt="..."></a>
 				<div class="card-body">
 					<h5 class="card-title">이야기 공간</h5>
 					<p class="card-text">상권 및 창업과 관련된 자유로운 이야기 공간.</p>

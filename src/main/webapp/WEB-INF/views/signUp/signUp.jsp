@@ -28,7 +28,7 @@ body {
 .input-form {
 	display: grid;
 	max-width: 680px;
-	margin-top: 2%;
+	margin-top: 10%;
 	padding: 32px;
 	background: #fff;
 	-webkit-border-radius: 10px;
