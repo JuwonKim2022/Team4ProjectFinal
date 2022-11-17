@@ -36,25 +36,24 @@ a {
 				<img src="/resources/img/marketB1.jpeg" class="d-block w-100"
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
-					<h5>First slide label</h5>
-					<p>Some representative placeholder content for the first slide.</p>
+					<h3><b>서울시 상권 정보</b></h3>
+					<p>서울시 전역의 상권 정보를 쉽고 빠르게 얻을 수 있습니다.</p>
 				</div>
 			</div>
 			<div class="carousel-item">
 				<img src="/resources/img/marketB2.jpeg" class="d-block w-100"
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
-					<h5>Second slide label</h5>
-					<p>Some representative placeholder content for the second
-						slide.</p>
+					<h3><b>지도를 통한 빠른 접근성</b></h3>
+					<p>지도 API를 활용하여 클릭 한 번으로 원하는 지역의 상권 정보를 얻을 수 있습니다.</p>
 				</div>
 			</div>
 			<div class="carousel-item">
 				<img src="/resources/img/marketB3.jpeg" class="d-block w-100"
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
-					<h5>Third slide label</h5>
-					<p>Some representative placeholder content for the third slide.</p>
+					<h3><b>그래프와 도표를 통한 분석</b></h3>
+					<p>R프로그램을 통해 분석한 자료를 그래프와 도표로 보여줍니다.</p>
 				</div>
 			</div>
 		</div>
