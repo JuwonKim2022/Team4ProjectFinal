@@ -11,18 +11,19 @@ import com.kh.vo.MemberVO;
 public class MemberDAOImpl implements MemberDAO {
 	
 	@Inject SqlSession sql;
-	// 회원가입
 
-	@Override
-	public void register(MemberVO vo) throws Exception {
-		sql.insert("memberMapper.register", vo);
-	}
-	
-	//로그인
-
+	// 로그인
 	@Override
 	public MemberVO login(String vo) throws Exception {
 
 		return sql.selectOne("memberMapper.login", vo);
 	}
+
+	// 아이디 찾기
+	@Override
+	public MemberVO findId(MemberVO vo) throws Exception {
+
+		return sql.selectOne("memberMapper.findId", vo);
+	}
+
 }

@@ -7,8 +7,7 @@
 <head>
 <title>Home</title>
 <script src="https://kit.fontawesome.com/e4a42c4ca5.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
 body {
@@ -49,12 +48,12 @@ body {
 					<div class="row">
 						<c:if test="${member == null}">
 							<div class="col-md-12 mb-3">
-								<label class="form-label" for="id">아이디</label> <input
-									class="form-control" type="text" id="id" name="id">
+								<label class="form-label" for="id">아이디</label> 
+								<input class="form-control" type="text" id="id" name="id">
 							</div>
 							<div class="mb-3">
-								<label class="form-label" for="pw">비밀번호</label> <input
-									class="form-control" type="password" id="pw" name="pw">
+								<label class="form-label" for="pw">비밀번호</label> 
+								<input class="form-control" type="password" id="pw" name="pw">
 							</div>
 							<div class="mb-3"></div>
 							<div class="mb-3"></div>
@@ -62,6 +61,9 @@ body {
 								<button class="btn btn-dark btn btn-primary" type="submit">로그인</button>
 								<button class="btn btn-secondary btn btn-primary" type="button">
 									<a class="nav-link active" href="/signUp/signUp/">회원가입</a>
+								</button>
+								<button class="btn btn-secondary btn btn-primary" type="button">
+									<a class="nav-link active" href="/member/findId/">아이디 찾기</a>
 								</button>
 							</div>
 						</c:if>

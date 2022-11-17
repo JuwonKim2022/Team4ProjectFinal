@@ -80,29 +80,6 @@ public class MemberController {
 		
 		
 	}
-		
-		
-
-	/*
-	String address1 = req.getParameter("sample6_address"); //주소1
-	   String postcode = req.getParameter("sample6_postcode");  //주소2
-	   String detailAddress = req.getParameter("sample6_detailAddress");  //주소3
-	   String address = postcode+"/"+ address1+"/"+detailAddress; //주소 하나로 합침
-
-	   userVO.setAddress(address);  //주소등록
-	
-	String  pw = req.getParameter("pw");
-	String  EncoderPw= "";
-	EncoderPw = Encoder.encode(pw);
-	userVO.setPw(EncoderPw);
-		if(Encoder.matches(pw, EncoderPw)){
-		 service.insertSignUp(userVO); 
-			l.info("유저등록 완료");
-	*/
-	
-	
-	
-	
 	
 	@RequestMapping(value = "/member/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
@@ -111,4 +88,28 @@ public class MemberController {
 
 		return "redirect:/";
 	}
+	
+	
+
+	// 아이디 찾기 GET
+	@RequestMapping(value = "/member/findId", method = RequestMethod.GET)
+	public String findId(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+		logger.info("Find Id Page");
+		return "/member/findId";
+	}
+
+	// 아이디 찾기 POST
+	@RequestMapping(value = "/member/findId", method = RequestMethod.POST)
+	public String findIdAction(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+		MemberVO memberVO = service.findId(vo);
+		logger.info("Find Id Page Execution");
+		if (memberVO == null) {
+			rttr.addFlashAttribute("check", 1);
+		} else {
+			rttr.addFlashAttribute("check", 0);
+			rttr.addFlashAttribute("id", memberVO.getId());
+		}
+		return "redirect:/member/findId";
+	}
+	
 }
