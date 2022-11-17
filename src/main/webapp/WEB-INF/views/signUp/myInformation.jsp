@@ -277,7 +277,7 @@
            //메일만 변경
               if(email!=""&&address3==""){
                  
-                 alert('메일만 입력');
+                 alert('메일을 수정하였습니다.');
                  //메일만 변경할 경우 주소는 null값으로 데이터 전송
                  document.getElementById("editAddress").value = null;
                  
@@ -286,7 +286,7 @@
               //주소만 변경
               if(address3!=""&&email==""){   
              
-                alert('주소만입력');
+                alert('주소를 수정하였습니다.');
                 //우편번호,주소,세부주소 변수를 합침
                addressJoin();
                //주소만 변경할 경우 메일은 null값으로 데이터 전송
@@ -296,7 +296,7 @@
               //주소,메일 모두 변경
             
               if(address3!=""&&email!=""){
-                 alert('주소메일입력');
+                 alert('정보를 수정하였습니다.');
                  //우편번호,주소,세부주소 변수를 합침
                  addressJoin();
                  result = true;
