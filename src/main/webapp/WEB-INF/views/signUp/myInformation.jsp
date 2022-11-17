@@ -40,7 +40,7 @@
 	width: 100%;
 }
 
-/*작은버튼*/
+/*작은 버튼*/
 .e2 {
 	display: none;
 	width: 50%;
