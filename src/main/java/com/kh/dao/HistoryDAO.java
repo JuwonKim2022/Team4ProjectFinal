@@ -13,4 +13,6 @@ public interface HistoryDAO {
 	int insertPolygon(HistoryDTO historyDTO) throws Exception;
 
 	int insertSearchBox(HistoryDTO historyDTO) throws Exception;
+
+	List<HistoryDTO> selectAllRecentHistory(int member_no) throws Exception;
 }
