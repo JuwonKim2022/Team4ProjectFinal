@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kh</groupId>
 	<artifactId>myapp</artifactId>
 	<name>Team4MarketA</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-	
+
 	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>5.0.7.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
-		
+
 	</properties>
 
 	<!-- 오라클 -->
@@ -22,6 +20,11 @@
 		<repository>
 			<id>oracle</id>
 			<url>http://maven.jahia.org/maven2</url>
+		</repository>
+		<repository>
+			<id>bedatadriven</id>
+			<name>bedatadriven public repo</name>
+			<url>https://nexus.bedatadriven.com/content/groups/public/</url>
 		</repository>
 	</repositories>
 
@@ -54,15 +57,13 @@
 
 		<!-- Logging -->
 		<!-- Log4J 또는 Logback과 같은 백엔드 Logging Framework의 facade pattern -->
-		<!-- 다양한 Logging Framework에 대한 추상화 SLF4J는 추상 로깅 프레임워크이기 때문에 단독으로는 사용하지 
-			않는다. SLF4J api를 사용하면 구현체의 종류에 상관없이 일관된 로깅 코드를 작성 -->
+		<!-- 다양한 Logging Framework에 대한 추상화 SLF4J는 추상 로깅 프레임워크이기 때문에 단독으로는 사용하지 않는다. SLF4J api를 사용하면 구현체의 종류에 상관없이 일관된 로깅 코드를 작성 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${org.slf4j-version}</version>
 		</dependency>
-		<!-- jcl-over-slf4j -jcl-over-slf4j는 commons-logging과 동일한 구조를 가진 라이브러리 
-			-내부적으로 SLF4J를 사용하여 로그를 남긴다. -->
+		<!-- jcl-over-slf4j -jcl-over-slf4j는 commons-logging과 동일한 구조를 가진 라이브러리 -내부적으로 SLF4J를 사용하여 로그를 남긴다. -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
@@ -78,8 +79,7 @@
 		</dependency>
 		<!-- log4j 추가 -->
 		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
-		<!-- Java 코딩 도중 프로그램의 로그를 기록해주는 라이브러리 자동으로 지정한 경로에 로그를 저장 Java 기반 로깅 유틸리티로 
-			여러 자바 로깅 프레임워크들 가운데 하나 -->
+		<!-- Java 코딩 도중 프로그램의 로그를 기록해주는 라이브러리 자동으로 지정한 경로에 로그를 저장 Java 기반 로깅 유틸리티로 여러 자바 로깅 프레임워크들 가운데 하나 -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -114,31 +114,19 @@
 
 		<!-- Servlet -->
 		<dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
-        </dependency>
-		
-		<!-- 
-		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.1</version>
-			<scope>provided</scope>
-		</dependency> -->
+
+		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>servlet-api</artifactId> <version>2.5</version> <scope>provided</scope> </dependency> <dependency> <groupId>javax.servlet.jsp</groupId> <artifactId>jsp-api</artifactId> <version>2.1</version> <scope>provided</scope> </dependency> -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 
 		<!-- spring-jdbc -->
 		<dependency>
@@ -248,18 +236,12 @@
 		</dependency>
 
 
-
-		<dependency>
-			<groupId>com.github.lucarosellini.rJava</groupId>
-			<artifactId>JRIEngine</artifactId>
-			<version>0.9-7</version>
-		</dependency>
-		<dependency>
-			<groupId>net.rforge</groupId>
-			<artifactId>Rserve</artifactId>
-			<version>0.6-8.1</version>
-		</dependency>
 		<!-- <dependency>
+		    <groupId>org.rosuda.REngine</groupId>
+		    <artifactId>Rserve</artifactId>
+		    <version>1.8.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.nuiton.thirdparty</groupId>
 			<artifactId>Rserve</artifactId>
 			<version>1.7-3</version>
@@ -268,12 +250,19 @@
 			<groupId>org.nuiton.thirdparty</groupId>
 			<artifactId>REngine</artifactId>
 			<version>1.7-3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.jbytecode</groupId>
-			<artifactId>RCaller</artifactId>
-			<version>2.8</version>
 		</dependency> -->
+		
+		<dependency>
+	        <groupId>org.rosuda.REngine</groupId>
+	        <artifactId>Rserve</artifactId>
+	        <version>1.8.1</version>
+		</dependency>         
+		<dependency>
+			<groupId>org.nuiton.thirdparty</groupId>
+	        <artifactId>REngine</artifactId>
+	        <version>1.7-3</version>
+		</dependency>
+
 
 	</dependencies>
 	<build>

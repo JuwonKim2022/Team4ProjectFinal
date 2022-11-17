@@ -18,6 +18,10 @@
 	<select id="selectRecentHistory" resultMap="HistoryDTO">
 		SELECT * FROM (SELECT * FROM history WHERE member_no = #{member_no} ORDER BY search_date DESC) WHERE ROWNUM <![CDATA[ <= ]]> 5
 	</select>
+	
+	<select id="selectAllRecentHistory" resultMap="HistoryDTO">
+		SELECT * FROM (SELECT * FROM history WHERE member_no = #{member_no} ORDER BY search_date DESC)
+	</select>
 
 	<insert id="insertSearchBoxSearchData" parameterType="com.kh.vo.HistoryDTO">
 		INSERT INTO history (historynumber, member_no, marketyear, marketquarter, bd_codename, district, search_date)

@@ -25,6 +25,11 @@ public class HistoryServiceImpl implements HistoryService {
 	}
 	
 	@Override
+	public List<HistoryDTO> selectAllRecentHistory(int member_no) throws Exception {
+		return historyDAO.selectAllRecentHistory(member_no);
+	}
+	
+	@Override
 	public int insertSearchBox(HistoryDTO historyDTO) throws Exception {
 		return historyDAO.insertSearchBox(historyDTO);
 	}

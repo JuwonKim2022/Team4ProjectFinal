@@ -27,7 +27,7 @@
 		    (
 		        SELECT mop.marketyear, mop.marketquarter, b.district, mop.service_codename, mop.marketopen, mop.marketclose, mop.marketofstores
 		        FROM marketopenclose mop JOIN bd_codelist b 
-		        ON mop.bd_code = b.bd_code AND mop.service_codename = '패스트푸드점' AND b.district = #{district}
+		        ON mop.bd_code = b.bd_code AND mop.service_codename = '치킨전문점' AND b.district = #{district}
 		    )
 		GROUP BY marketyear, marketquarter
 		ORDER BY marketyear -->
@@ -36,7 +36,7 @@
 		    (
 		        SELECT mop.marketyear, mop.marketquarter, b.district, mop.service_codename, mop.marketopen, mop.marketclose, mop.marketofstores
 		        FROM marketopenclose mop JOIN bd_codelist b 
-		        ON mop.bd_code = b.bd_code AND mop.service_codename = '패스트푸드점' AND b.district = #{district}
+		        ON mop.bd_code = b.bd_code AND mop.service_codename = '치킨전문점' AND b.district = #{district}
 		    )
 		GROUP BY marketyear
 		ORDER BY marketyear

@@ -25,6 +25,11 @@ public class HistoryDAOImpl implements HistoryDAO {
 	}
 	
 	@Override
+	public List<HistoryDTO> selectAllRecentHistory(int member_no) throws Exception {
+		return sqlSession.selectList(NameSpace + ".selectAllRecentHistory", member_no);
+	}
+	
+	@Override
 	public int insertSearchBox(HistoryDTO historyDTO) throws Exception {
 		return sqlSession.insert(NameSpace + ".insertSearchBoxSearchData", historyDTO);
 	}
