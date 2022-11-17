@@ -5,8 +5,8 @@
 
 <nav class="navbar navbar-expand-lg bg-light">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="<c:url value='/'/>"> <i
-			class="fa-brands fa-freebsd"> market A</i>
+		<a class="navbar-brand" href="<c:url value='/'/>"> 
+		<i class="fa-brands fa-freebsd"> market A</i>
 		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"

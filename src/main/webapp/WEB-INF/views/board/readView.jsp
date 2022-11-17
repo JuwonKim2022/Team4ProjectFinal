@@ -91,8 +91,7 @@
 										});
 					})
 
-	//<input type="text" id="content" name="content" class="chk2 form-control"/>
-	//댓글 아무것도 입력 안하고 작성 시 알람 및 현재 페이지 유지
+	//댓글 아무것도 입력 안하고 작성 시 알람
 	$(document).ready(function() {
 		var formObj = $("form[name='replyForm']");
 		$(".replyWriteBtn").on("click", function() {
@@ -178,7 +177,6 @@
 								<button type="submit" class="list_btn btn btn-dark">목록</button>
 							</div>
 						</div>
-						<!-- 본인이 작성한 게시판 글만 수정 삭제 버튼 활성화 sh 추가 수정 start-->
 						<c:if test="${member != null && member.name == read.name}">
 							<div class="col">
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -187,13 +185,49 @@
 								</div>
 							</div>
 						</c:if>
-						<!-- sh 추가 수정 end-->
 					</div>
 				</div>
 			</div>
 
+<!-- 댓글 시작 -->
+			<form name="replyForm" method="post" class="form-horizontal shadow-sm p-3 mb-5 bg-body rounded">
+				<input type="hidden" id="bno" name="bno" value="${read.bno}" /> <input
+					type="hidden" id="page" name="page" value="${scri.page}"> <input
+					type="hidden" id="perPageNum" name="perPageNum"
+					value="${scri.perPageNum}"> <input type="hidden"
+					id="searchType" name="searchType" value="${scri.searchType}">
+				<input type="hidden" id="keyword" name="keyword"
+					value="${scri.keyword}">
 
-			<!-- 댓글 -->
+				<!-- 댓글작성  -->
+				<c:if test="${member != null}">
+					<div class="form-group">
+						<label for="writer" class="col-sm-2 control-label">댓글 작성자</label>
+						<div class="col-sm-10">
+							<input type="text" id="writer" name="name" class="form-control"
+								value="${member.name}"
+								style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"
+								readonly="readonly" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="content" class="col-sm-2 control-label">댓글 내용</label>
+						<div>
+							<input type="text" id="content" name="content"
+								class="chk2 form-control" title="댓글 내용을 입력하세요." />
+						</div>
+					</div>
+					<br />
+					<div class="form-group">
+						<input type="hidden" name="member_no" value="${member.member_no}">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="button" class="replyWriteBtn btn btn-success">작성</button>
+						</div>
+					</div>
+				</c:if>
+			</form>
+
+			<!-- 댓글목록 -->
 			<div id="reply">
 
 				<ol class="replyList shadow-sm p-3 mb-5 bg-body rounded">
@@ -214,8 +248,9 @@
 							</p>
 							<div class="form-control">
 								<p>${replyList.content}</p>
-							</div> <br /> <!-- sh 수정 작성자 버튼 활성화 start --> <c:if
-								test="${member != null && member.name == replyList.name}">
+							</div> 
+							<br/> 
+							<c:if test="${member != null && member.name == replyList.name}">
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 									<button type="button" class="replyUpdateBtn btn btn-secondary"
 										style="-bs-btn-padding-y: .25rem; - -bs-btn-padding-x: .5rem; - -bs-btn-font-size: .75rem;"
@@ -224,61 +259,20 @@
 										style="-bs-btn-padding-y: .25rem; - -bs-btn-padding-x: .5rem; - -bs-btn-font-size: .75rem;"
 										data-rno="${replyList.rno}">삭제</button>
 								</div>
-							</c:if> <!-- end -->
+							</c:if>
 						</li>
 					</c:forEach>
 				</ol>
 			</div>
 
-			<form name="replyForm" method="post" class="form-horizontal">
-				<input type="hidden" id="bno" name="bno" value="${read.bno}" /> <input
-					type="hidden" id="page" name="page" value="${scri.page}"> <input
-					type="hidden" id="perPageNum" name="perPageNum"
-					value="${scri.perPageNum}"> <input type="hidden"
-					id="searchType" name="searchType" value="${scri.searchType}">
-				<input type="hidden" id="keyword" name="keyword"
-					value="${scri.keyword}">
-
-				<!-- 로그인 상태에서 reply 작성 폼 활성화 sh 추가 수정  -->
-				<c:if test="${member != null}">
-					<div class="form-group">
-						<label for="writer" class="col-sm-2 control-label">댓글 작성자</label>
-						<div class="col-sm-10">
-							<!-- reply 작성자 id 표기 및 수정 불가 표시 sh 추가 수정 start-->
-							<input type="text" id="writer" name="name" class="form-control"
-								value="${member.name}"
-								style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"
-								readonly="readonly" />
-							<!-- <input type="text" id="writer" name="name" class="form-control"/> -->
-							<!-- sh end-->
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="content" class="col-sm-2 control-label">댓글 내용</label>
-						<div>
-							<input type="text" id="content" name="content"
-								class="chk2 form-control" title="댓글 내용을 입력하세요." />
-						</div>
-					</div>
-					<br />
-					<div class="form-group">
-						<input type="hidden" name="member_no" value="${member.member_no}">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" class="replyWriteBtn btn btn-success">작성</button>
-						</div>
-					</div>
-				</c:if>
-				<!-- sh end -->
-			</form>
 		</section>
-		<hr />
+		<hr/>
 	</div>
 	<div>
 		<jsp:include page="../footer.jsp" />
 	</div>
 	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 </body>
 </html>

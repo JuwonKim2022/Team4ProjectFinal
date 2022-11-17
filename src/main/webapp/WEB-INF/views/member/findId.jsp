@@ -65,7 +65,7 @@ body {
 					<c:if test="${check == 1}">
 						<script>
 							opener.document.findform.name.value = "";
-							opener.document.findform.email.value = "";
+							opener.document.findform.email.value = ""; 
 						</script>
 						<label style="color: red;">일치하는 정보가 존재하지 않습니다.</label>
 					</c:if>
