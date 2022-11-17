@@ -49,14 +49,16 @@ body {
 				<br>
 				<form method="post" class="form-signin" action="/member/findId" name="findform">
 					<div class="form-label-group">
-						<label for="name">name</label> <input type="text" id="name" name="name" class="form-control" />
+						<label for="name" style="margin-bottom:3px">이름</label> 
+						<input type="text" style="margin-bottom:18px" id="name" name="name" class="form-control" />
 					</div>
 					<div class="form-label-group">
-						<label for="email">email</label> <input type="email" id="email" name="email" class="form-control" />
+						<label for="email" style="margin-bottom:3px">이메일</label> 
+						<input type="email" id="email" name="email" class="form-control" />
 					</div>
 					<br>
 					<div class="form-label-group mb-3 d-grid gap-2 d-md-bloc">
-						<button class="btn btn-dark btn btn-primary" type="submit">체크</button>
+						<button class="btn btn-dark btn btn-primary" type="submit">체 크</button>
 					</div>
 					<br>
 					<!-- 이름과 전화번호가 일치하지 않을 때 -->
