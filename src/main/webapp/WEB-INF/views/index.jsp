@@ -45,7 +45,7 @@ a {
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
 					<h3><b>지도를 통한 빠른 접근성</b></h3>
-					<p>지도 API를 활용하여 클릭 한 번으로 원하는 지역의 상권 정보를 얻을 수 있습니다.</p>
+					<p>카카오 지도 API를 활용하여 클릭 한 번으로 원하는 지역의 상권 정보를 얻을 수 있습니다.</p>
 				</div>
 			</div>
 			<div class="carousel-item">
