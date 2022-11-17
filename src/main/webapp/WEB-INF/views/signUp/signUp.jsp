@@ -98,19 +98,17 @@ body {
 					novalidate>
 					<div class="row">
 						<div class="col-md-12 mb-3">
-							<label for="id">아이디</label> <input type="text"
-								class="id_input form-control" name="id" id="id" placeholder=""
-								value="" required> <span class="id_input_re_1">사용
-								가능한 아이디입니다.</span> <span class="id_input_re_2">아이디가 이미 존재합니다.</span>
+							<label for="id">아이디</label> 
+							<input type="text" class="id_input form-control" name="id" id="id" placeholder="" value="" required> 
+							<span class="id_input_re_1">사용	가능한 아이디입니다.</span> <span class="id_input_re_2">아이디가 이미 존재합니다.</span>
 							<div class="invalid-feedback">이름을 입력해주세요.</div>
 						</div>
 
 					</div>
 					<div class="mb-3">
-						<label for="password">비밀번호</label> <input type="password"
-							class="pw_input form-control" id="pw" name="pw"
-							placeholder="비밀번호를 입력해주세요" required> <span
-							class="pw_input_re_1">8글자 이상 + 문자와 숫자 조합</span>
+						<label for="password">비밀번호</label> 
+						<input type="password" class="pw_input form-control" id="pw" name="pw" placeholder="비밀번호를 입력해주세요" required> 
+						<span class="pw_input_re_1">8글자 이상 + 문자와 숫자 조합</span>
 						<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 					</div>
 					<div class="mb-3">

@@ -22,12 +22,8 @@
 				<li class="nav-item2"><a class="nav-link active2"
 					aria-current="page2" href="<c:url value='/board/list'/>">자유게시판</a>
 				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">내 공간</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="<c:url value='/signUp/myInformation'/>">내 정보</a></li>
-						<li><a class="dropdown-item" href="#">내 기록</a></li>
-					</ul>
+				<li class="nav-item3">
+   					<a class="nav-link active3" aria-current="page3" href="<c:url value='/signUp/myInformation'/>">내 공간</a>
 				</li>
 				<li class="nav-item3"><c:if test="${member != null}">
 						<a class="nav-link active3" aria-current="page3" onclick="return confirm('정말 로그아웃 하시겠습니까?');" href="/member/logout" >로그아웃</a>
@@ -47,9 +43,9 @@
 					</c:if></li>
 			</ul>
 			<!-- 구글검색창 -->
-			<form method=get action="http://www.google.com/search" targer="_blank" class="d-flex" role="search">
-				<input type="text" name="q" value="" class="form-control me-2" placeholder="검색어 입력" aria-label="Search">
-				<button type="submit" name="btnG" class="btn btn-secondary" >Google</button>
+			<form method=get action="http://www.google.com/search" targer="_blank" class="d-flex" role="search" >
+				<input type="text" name="q" value="" class="form-control me-2" placeholder="검색어 입력" aria-label="Search" style="margin:auto;">
+				<button type="submit" name="btnG" class="btn btn-secondary" style="margin:auto;">Google</button>
 			</form>
 		</div>
 	</div>
