@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 지도는 구, 검색창은 도로명주소 -->
@@ -176,43 +177,51 @@ li {
 		<div class="rightContainer" id="rightContainer" style="width: 100%; height: 1000px;">
 			<div class="modalContainer border overflow-auto">
 				<div id="modalName" class="container-fluid">
-				<br>
+					<br>
 					<div class="row">
-						<div class="col-md-10 b text-start fw-bold container"><h2>&nbsp;&nbsp;&nbsp; 자세한 분석 그래프</h2></div>
+						<div class="col-md-10 b text-start fw-bold container">
+							<h2>&nbsp;&nbsp;&nbsp; 자세한 분석 그래프</h2>
+						</div>
 						<div class="col-md-2 b d-md-flex justify-content-md-end">
 							<button class="modalCloseBtn btn btn-dark me-md-2" style="margin: 6px;">&times;</button>
 						</div>
 					</div>
 					<div class="row g-0 bg-light position-relative h-" id="marketOfStores">
 						<div class="col-md-6 mb-md-0 p-md-4">
-							<img src="\resources\graph\QuarterlySales.png" class="w-100" alt="...">
+							<img src="<spring:url value='/localImage/QuarterlySales.png'/>" class="w-100" alt="...">
 						</div>
-  						<div class="col-md-6 p-4 ps-md-0">
-    						<h5 class="mt-0">Columns with stretched link</h5>
-    						<p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-    						<a href="#" class="stretched-link">Go somewhere</a>
-  						</div>	
-  						<div class="col-md-6 mb-md-0 p-md-4">
-							<img src="\resources\graph\NumOfStorePerQuarter.png" class="w-100" alt="...">
+						<div class="col-md-6 p-4 ps-md-0">
+							<h5 class="mt-0">Columns with stretched link</h5>
+							<p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+							<a href="#" class="stretched-link">Go somewhere</a>
 						</div>
-  						<div class="col-md-6 p-4 ps-md-0">
-    						<h5 class="mt-0">Columns with stretched link</h5>
-    						<p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-    						<a href="#" class="stretched-link">Go somewhere</a>
-  						</div>
-  						<div class="col-md-6 mb-md-0 p-md-4">
-							<img src="\resources\graph\QuarterlySalesVol.png" class="w-100" alt="...">
+						<div class="col-md-6 mb-md-0 p-md-4">
+							<img src="<spring:url value='/localImage/QuarterlySalesVol.png'/>" class="w-100" alt="...">
 						</div>
-  						<div class="col-md-6 p-4 ps-md-0">
-    						<h5 class="mt-0">Columns with stretched link</h5>
-    						<p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-    						<a href="#" class="stretched-link">Go somewhere</a>
-  						</div>
+						<div class="col-md-6 p-4 ps-md-0">
+							<h5 class="mt-0">Columns with stretched link</h5>
+							<p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+							<a href="#" class="stretched-link">Go somewhere</a>
+						</div>
+						<div>
+							<img src="<spring:url value='/localImage/NumOfStorePerQuarter.png'/>" class="w-100" alt="...">
+						</div>
+						<div>
+							<img src="<spring:url value='/localImage/marketopen.png'/>" class="w-100" alt="...">
+						</div>
+						<div>
+							<img src="<spring:url value='/localImage/marketclose.png'/>" class="w-100" alt="...">
+						</div>
+						<div>
+							<img src="<spring:url value='/localImage/marketstores.png'/>" class="w-100" alt="...">
+						</div>
+						<div class="col-md-6 p-4 ps-md-0">
+							<h5 class="mt-0">Columns with stretched link</h5>
+							<p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
+							<a href="#" class="stretched-link">Go somewhere</a>
+						</div>
 					</div>
-					<!-- img src="\resources\graph\open.png">
-					<img src="\resources\graph\close.png"-->
-					<div id="marketOpenClose">
-					</div>
+					<div id="marketOpenClose"></div>
 				</div>
 			</div>
 		</div>

@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="selectAllRecentHistory" resultMap="HistoryDTO">
-		SELECT * FROM (SELECT * FROM history WHERE member_no = #{member_no} ORDER BY search_date DESC)
+		SELECT * FROM (SELECT * FROM history WHERE member_no = #{member_no} ORDER BY search_date DESC) WHERE ROWNUM <![CDATA[ <= ]]> 10
 	</select>
 
 	<insert id="insertSearchBoxSearchData" parameterType="com.kh.vo.HistoryDTO">
