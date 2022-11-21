@@ -6,13 +6,10 @@ import com.kh.vo.HistoryDTO;
 
 public interface HistoryDAO {
 
-	public List<HistoryDTO> selectAll() throws Exception;
-
 	public List<HistoryDTO> selectRecentHistory(int membernumber) throws Exception;
 
-	int insertPolygon(HistoryDTO historyDTO) throws Exception;
+	public List<HistoryDTO> selectAllRecentHistory(int member_no) throws Exception;
 
-	int insertSearchBox(HistoryDTO historyDTO) throws Exception;
+	public int insertSearchBox(HistoryDTO historyDTO) throws Exception;
 
-	List<HistoryDTO> selectAllRecentHistory(int member_no) throws Exception;
 }

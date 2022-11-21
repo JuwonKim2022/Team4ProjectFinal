@@ -1,10 +1,10 @@
 package com.kh.vo;
 
-public class SearchCriteria extends Criteria{
+public class SearchCriteria extends Criteria {
 
 	private String searchType = "";
 	private String keyword = "";
-	 
+
 	public String getSearchType() {
 		return searchType;
 	}
@@ -21,5 +21,5 @@ public class SearchCriteria extends Criteria{
 	public String toString() {
 		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + "]";
 	}
-	
+
 }

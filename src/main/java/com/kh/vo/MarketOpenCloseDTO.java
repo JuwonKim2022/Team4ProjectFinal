@@ -110,6 +110,5 @@ public class MarketOpenCloseDTO {
 	public void setCodelistDTO(CodelistDTO codelistDTO) {
 		this.codelistDTO = codelistDTO;
 	}
-	
-	
+
 }

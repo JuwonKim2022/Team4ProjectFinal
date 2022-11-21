@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <html>
 <head>
@@ -19,9 +18,9 @@ body {
 }
 
 .input-form {
- 	display: grid;
-  	place-items: center;
-  	min-height: 60vh;
+	display: grid;
+	place-items: center;
+	min-height: 60vh;
 	max-width: 480px;
 	margin-top: 17%;
 	min-height: 60px;
@@ -48,11 +47,11 @@ body {
 					<div class="row">
 						<c:if test="${member == null}">
 							<div class="col-md-12 mb-3">
-								<label class="form-label" for="id">아이디</label> 
+								<label class="form-label" for="id">아이디</label>
 								<input class="form-control" type="text" id="id" name="id">
 							</div>
 							<div class="mb-3">
-								<label class="form-label" for="pw">비밀번호</label> 
+								<label class="form-label" for="pw">비밀번호</label>
 								<input class="form-control" type="password" id="pw" name="pw">
 							</div>
 							<div class="mb-3"></div>
@@ -69,7 +68,7 @@ body {
 						</c:if>
 						<c:if test="${member != null }">
 							<div>
-								<p>${member.name}님환영 합니다.</p>
+								<p>${member.name}님환영합니다.</p>
 								<button id="logoutBtn" type="button">로그아웃</button>
 							</div>
 						</c:if>
@@ -87,8 +86,6 @@ body {
 		<jsp:include page="../footer.jsp" />
 	</div-->
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

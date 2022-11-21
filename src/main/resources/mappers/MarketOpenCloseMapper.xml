@@ -8,7 +8,7 @@
 	</resultMap>
 
 	<resultMap id="MarketOpenCloseDTO" type="com.kh.vo.MarketOpenCloseDTO">
- 		<result property="marketyear" column="marketyear" />
+		<result property="marketyear" column="marketyear" />
 		<result property="marketquarter" column="marketquarter" />
 		<result property="bd_code" column="bd_code" />
 		<result property="bd_codename" column="bd_codename" />
@@ -18,28 +18,19 @@
 		<result property="marketopen" column="marketopen" />
 		<result property="marketclose" column="marketclose" />
 		<result property="marketofstroes" column="marketofstroes" />
-		<collection property="codelistDTO" resultMap="CodelistDTO"/>
+		<collection property="codelistDTO" resultMap="CodelistDTO" />
 	</resultMap>
 
 	<select id="selectRpiegraphData" parameterType="com.kh.vo.MarketOpenCloseDTO" resultMap="MarketOpenCloseDTO">
-		<!-- SELECT marketyear, marketquarter, sum(marketopen) AS marketopen, sum(marketclose) AS marketclose, sum(marketofstores) AS marketofstores
-		FROM
-		    (
-		        SELECT mop.marketyear, mop.marketquarter, b.district, mop.service_codename, mop.marketopen, mop.marketclose, mop.marketofstores
-		        FROM marketopenclose mop JOIN bd_codelist b 
-		        ON mop.bd_code = b.bd_code AND mop.service_codename = '치킨전문점' AND b.district = #{district}
-		    )
-		GROUP BY marketyear, marketquarter
-		ORDER BY marketyear -->
 		SELECT marketyear, sum(marketopen) AS marketopen, sum(marketclose) AS marketclose, sum(marketofstores) AS marketofstores
 		FROM
-		    (
-		        SELECT mop.marketyear, mop.marketquarter, b.district, mop.service_codename, mop.marketopen, mop.marketclose, mop.marketofstores
-		        FROM marketopenclose mop JOIN bd_codelist b 
-		        ON mop.bd_code = b.bd_code AND mop.service_codename = '치킨전문점' AND b.district = #{district}
-		    )
+		(
+		SELECT mop.marketyear, mop.marketquarter, b.district, mop.service_codename, mop.marketopen, mop.marketclose, mop.marketofstores
+		FROM marketopenclose mop JOIN bd_codelist b
+		ON mop.bd_code = b.bd_code AND mop.service_codename = '치킨전문점' AND b.district = #{district}
+		)
 		GROUP BY marketyear
 		ORDER BY marketyear
 	</select>
-	
+
 </mapper>                 

@@ -3,15 +3,14 @@ package com.kh.vo;
 import java.util.Date;
 
 public class BoardVO {
-	
+
 	private int bno;
 	private int member_no;
 	private String title;
 	private String content;
 	private String name;
 	private Date regdate;
-	
-	
+
 	public int getBno() {
 		return bno;
 	}
@@ -48,13 +47,10 @@ public class BoardVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "BoardVO [bno=" + bno + ", member_no=" + member_no + ", title=" + title + ", content=" + content
-				+ ", name=" + name + ", regdate=" + regdate + "]";
+		return "BoardVO [bno=" + bno + ", member_no=" + member_no + ", title=" + title + ", content=" + content + ", name=" + name + ", regdate=" + regdate + "]";
 	}
-	
-	
 
 }

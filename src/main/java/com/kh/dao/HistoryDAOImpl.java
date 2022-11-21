@@ -10,32 +10,24 @@ import com.kh.vo.HistoryDTO;
 
 @Repository("historyDAO")
 public class HistoryDAOImpl implements HistoryDAO {
+
 	@Autowired
 	private SqlSession sqlSession;
 	private String NameSpace = "HistoryMapper";
 
 	@Override
-	public List<HistoryDTO> selectAll() throws Exception {
-		return sqlSession.selectList(NameSpace + ".selectAll");
-	}
-	
-	@Override
 	public List<HistoryDTO> selectRecentHistory(int member_no) throws Exception {
 		return sqlSession.selectList(NameSpace + ".selectRecentHistory", member_no);
 	}
-	
+
 	@Override
 	public List<HistoryDTO> selectAllRecentHistory(int member_no) throws Exception {
 		return sqlSession.selectList(NameSpace + ".selectAllRecentHistory", member_no);
 	}
-	
+
 	@Override
 	public int insertSearchBox(HistoryDTO historyDTO) throws Exception {
 		return sqlSession.insert(NameSpace + ".insertSearchBoxSearchData", historyDTO);
 	}
-	
-	@Override
-	public int insertPolygon(HistoryDTO historyDTO) throws Exception {
-		return sqlSession.insert(NameSpace + ".insertPolygonSearchData", historyDTO);
-	}
+
 }

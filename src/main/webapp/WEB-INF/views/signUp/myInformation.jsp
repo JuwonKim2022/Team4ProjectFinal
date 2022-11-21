@@ -14,149 +14,145 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <style>
-
 .d {
-   margin: 10px 0px;
-   height: 100px;
+	margin: 10px 0px;
+	height: 100px;
 }
 
 .re {
-   display: none;
+	display: none;
 }
 
 /*개인정보 내용 칸 스타일*/
 .form-control {
-   background-color: #F2F2F2;
-   height: 30px;
+	background-color: #F2F2F2;
+	height: 30px;
 }
 
 /*버튼 사이 간격*/
 .btn {
-   margin-top: 6px;
+	margin-top: 6px;
 }
 
 /*큰 버튼*/
 .e {
-   width: 100%;
+	width: 100%;
 }
 
 /*작은 버튼*/
 .e2 {
-   display: none;
-   width: 50%;
+	display: none;
+	width: 50%;
 }
 
 .reemail {
-   display: none;
+	display: none;
 }
 
 .as {
-   background-color: rgb(255, 255, 255);
-   display: inline-flex;
-   width: 100%;
-   justify-content: space-around;
+	background-color: rgb(255, 255, 255);
+	display: inline-flex;
+	width: 100%;
+	justify-content: space-around;
 }
 
 .kim {
-   background-color: rgb(246, 252, 189);
-   display: none;
+	background-color: rgb(246, 252, 189);
+	display: none;
 }
 
 .song {
-   background-color: rgb(56, 225, 255);
-   display: none;
+	background-color: rgb(56, 225, 255);
+	display: none;
 }
-.reAddress_inputSP{
-   display: none;
-    color: red;
- 
- 
 
+.reAddress_inputSP {
+	display: none;
+	color: red;
 }
- .editEmailSP{ 
-    color: red;
-    display: none;
-  }
+
+.editEmailSP {
+	color: red;
+	display: none;
+}
 </style>
 </head>
 
 <body>
-   <c:if test="${member == null}">
-         <script type="text/javascript">
+	<c:if test="${member == null}">
+		<script type="text/javascript">
             alert("로그인이 필요합니다.");
             location.href="/member/login"
          </script>
-      </c:if>
-   <!-- 네비게이션 -->
-   <jsp:include page="../nav2.jsp" />
+	</c:if>
+	<!-- 네비게이션 -->
+	<jsp:include page="../nav2.jsp" />
 
-   <div class="container-fluid" style="align: center; padding-top: 40px;">
-   <br>
-   <br>
-   
-      <div class="row" style="margin-left: 1px">
-         <div class="col-md-5 c">
-            <form class="validation-form join_form" id="join_form" method="POST" novalidate style="max-width:500px;">
-               <label for="id">아이디</label>
-               <div class="d form-label form-control idid" style="margin-top: 0;">${member.id}</div>
-               
-            
-               
-               <label for="name">이름</label>
-               <div class="d form-control" style="margin-top: 0;">${member.name}</div>
-               
-               <label for="pss" style="margin-top:4px;">주소</label>
-               <div class="d form-control" style="margin-top: 0;">${address[0]}</div>
-               <div class="d form-control">${address[1]}</div>
-               <div class="d form-control">${address[2]}</div>
-               <div class="reemail">
-         <label for="pss" style="margin-top:3px;">주소</label>
-                  <input type="text" class="form-control" style="background-color: white;" name="sample6_postcode" id="sample6_postcode" onclick="sample6_execDaumPostcode()"  placeholder="우편번호">
-                  
-                  <input type="text" class="address_input_3 form-control sample6_address btn-sm" style="background-color: white;" name="editAddress" id="editAddress"onclick="sample6_execDaumPostcode()"   placeholder="서울특별시 강남구">
-                  <div class="invalid-feedback">주소를 입력해주세요.</div>
-                  
-                  <input type="text" class="form-control reAddress_input" style="background-color: white;" name="sample6_detailAddress" id="sample6_detailAddress" placeholder="상세주소를 입력해주세요.">
-                  <br>
-                  <span class="reAddress_inputSP">주소를 모두 입력해주세요</span>
-               </div>
-               <label for="email" style="margin-top:6px;">이메일</label>
-               <div class="d form-control" style="margin-top: 0;">${member.email}</div>
-               <div class="reemail">
-                  <label for="email">변경할 메일 주소</label>
-                  <input style="margin-top: 0; background-color: white;" type="email" id="editEmail" name="editEmail" class="remail_input form-control" placeholder="이메일 입력" required>
-                      <span class="editEmailSP">이메일 형식이 아닙니다.</span>
-               </div>
-               <div class="e3">
-                  <div class="as">
-                     <button class="btn btn-secondary join_button e2 " type="button" id="edit1" style="margin-right:5px">변경 완료</button>
-                     <button class="btn btn-danger  join_button e2" type="reset" id="edit2" style="margin-left:5px">취소</button>
-                  </div>
-                  <button class="btn btn-dark join_button e " id="edit" type="button">개인정보 수정</button>
-                  <br>
-                  <button class="btn btn-outline-dark  join_button e " id="kim" type="button">작성글 보기</button>
-                  <br>
-               </div>
-            </form>
-            <button class="btn btn-outline-dark  join_button e" id="myInfoHistory" type="submit" style="max-width:500px;">검색 기록보기</button>
-            <br>
-         </div>
-         
-         
-         <div class="col-md-7 b">
-            <div class="history" id="historyList"></div>
-            <div class="kim"></div>
-         </div>
-      </div>
-   </div>
-   <!-- 푸터-->
-   
-   <div style="margin-top: 120px;">
-      <jsp:include page="../footer.jsp" />
-   </div>
+	<div class="container-fluid" style="align: center; padding-top: 40px;">
+		<br> <br>
 
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-   <script>
+		<div class="row" style="margin-left: 1px">
+			<div class="col-md-5 c">
+				<form class="validation-form join_form" id="join_form" method="POST" novalidate style="max-width: 500px;">
+					<label for="id">아이디</label>
+					<div class="d form-label form-control idid" style="margin-top: 0;">${member.id}</div>
+
+
+
+					<label for="name">이름</label>
+					<div class="d form-control" style="margin-top: 0;">${member.name}</div>
+
+					<label for="pss" style="margin-top: 4px;">주소</label>
+					<div class="d form-control" style="margin-top: 0;">${address[0]}</div>
+					<div class="d form-control">${address[1]}</div>
+					<div class="d form-control">${address[2]}</div>
+					<div class="reemail">
+						<label for="pss" style="margin-top: 3px;">주소</label>
+						<input type="text" class="form-control" style="background-color: white;" name="sample6_postcode" id="sample6_postcode" onclick="sample6_execDaumPostcode()" placeholder="우편번호">
+
+						<input type="text" class="address_input_3 form-control sample6_address btn-sm" style="background-color: white;" name="editAddress" id="editAddress" onclick="sample6_execDaumPostcode()" placeholder="서울특별시 강남구">
+						<div class="invalid-feedback">주소를 입력해주세요.</div>
+
+						<input type="text" class="form-control reAddress_input" style="background-color: white;" name="sample6_detailAddress" id="sample6_detailAddress" placeholder="상세주소를 입력해주세요.">
+						<br> <span class="reAddress_inputSP">주소를 모두 입력해주세요</span>
+					</div>
+					<label for="email" style="margin-top: 6px;">이메일</label>
+					<div class="d form-control" style="margin-top: 0;">${member.email}</div>
+					<div class="reemail">
+						<label for="email">변경할 메일 주소</label>
+						<input style="margin-top: 0; background-color: white;" type="email" id="editEmail" name="editEmail" class="remail_input form-control" placeholder="이메일 입력" required>
+						<span class="editEmailSP">이메일 형식이 아닙니다.</span>
+					</div>
+					<div class="e3">
+						<div class="as">
+							<button class="btn btn-secondary join_button e2 " type="button" id="edit1" style="margin-right: 5px">변경 완료</button>
+							<button class="btn btn-danger  join_button e2" type="reset" id="edit2" style="margin-left: 5px">취소</button>
+						</div>
+						<button class="btn btn-dark join_button e " id="edit" type="button">개인정보 수정</button>
+						<br>
+						<button class="btn btn-outline-dark  join_button e " id="kim" type="button">작성글 보기</button>
+						<br>
+					</div>
+				</form>
+				<button class="btn btn-outline-dark  join_button e" id="myInfoHistory" type="submit" style="max-width: 500px;">검색 기록보기</button>
+				<br>
+			</div>
+
+
+			<div class="col-md-7 b">
+				<div class="history" id="historyList"></div>
+				<div class="kim"></div>
+			</div>
+		</div>
+	</div>
+	<!-- 푸터-->
+
+	<div style="margin-top: 120px;">
+		<jsp:include page="../footer.jsp" />
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
       var email = "";
       
       var addr = ''; // 다음 주소 정보 이용

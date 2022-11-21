@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <html>
 <head>
@@ -21,9 +20,9 @@ body {
 }
 
 .input-form {
- 	display: grid;
-  	place-items: center;
-  	min-height: 60vh;
+	display: grid;
+	place-items: center;
+	min-height: 60vh;
 	max-width: 480px;
 	margin-top: 20%;
 	min-height: 60px;
@@ -41,7 +40,7 @@ body {
 <body>
 
 	<jsp:include page="../nav2.jsp" />
-	
+
 	<div class="container">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
@@ -49,11 +48,11 @@ body {
 				<br>
 				<form method="post" class="form-signin" action="/member/findId" name="findform">
 					<div class="form-label-group">
-						<label for="name" style="margin-bottom:3px">이름</label> 
-						<input type="text" style="margin-bottom:18px" id="name" name="name" class="form-control" />
+						<label for="name" style="margin-bottom: 3px">이름</label>
+						<input type="text" style="margin-bottom: 18px" id="name" name="name" class="form-control" />
 					</div>
 					<div class="form-label-group">
-						<label for="email" style="margin-bottom:3px">이메일</label> 
+						<label for="email" style="margin-bottom: 3px">이메일</label>
 						<input type="email" id="email" name="email" class="form-control" />
 					</div>
 					<br>
@@ -77,7 +76,7 @@ body {
 			</div>
 		</div>
 	</div>
-	
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

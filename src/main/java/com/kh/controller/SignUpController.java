@@ -157,13 +157,11 @@ public class SignUpController {
 	}// end of loginPOST()
 
 	@GetMapping("/signUp/myInformation")
-	public String myInformation(MemberVO memberVO, HttpServletRequest req, HttpServletResponse response, Model model)
-			throws Exception {
+	public String myInformation(MemberVO memberVO, HttpServletRequest req, HttpServletResponse response, Model model) throws Exception {
 		System.out.println("insertIdPostd");
 
 		HttpSession session = req.getSession();
 
-		l.info("2222222222");
 		MemberVO userVO2 = (MemberVO) session.getAttribute("member");
 		System.out.println("USERVO2 :" + userVO2);
 
@@ -174,7 +172,6 @@ public class SignUpController {
 			out.flush();
 		}
 
-		l.info("33333");
 		String address = userVO2.getAddress();
 		l.info(address);
 

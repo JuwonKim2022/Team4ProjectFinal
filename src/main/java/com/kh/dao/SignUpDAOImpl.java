@@ -1,6 +1,7 @@
 package com.kh.dao;
 
-import java.util.HashMap;import java.util.Map;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -8,8 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.vo.MemberVO;
-
-
 
 @Repository
 public class SignUpDAOImpl implements SignUpDAO {
@@ -23,28 +22,26 @@ public class SignUpDAOImpl implements SignUpDAO {
 
 	@Override
 	public String getTime() {
-		String result = sqlSession.selectOne(namespace+".getTime"); //괄호안에 쿼리구문입력하기
+		String result = sqlSession.selectOne(namespace + ".getTime"); //괄호안에 쿼리구문입력하기
 		return result;
 	}
 
-	
 	//회원가입구현 -> memberMapper.xml 작성 후 아래 메서드 작성 -> MemberDAOtest.java 이동
-	   @Override
-	   public void insertSignUp(MemberVO MemberVO) {
-	   
-	      sqlSession.insert("signUpMapper.insertSignUp",MemberVO ); //괄호안은 (쿼리구문, 매개변수)순으로 입력하기
-	   }
+	@Override
+	public void insertSignUp(MemberVO MemberVO) {
 
-	   
-	 //회원 정보 조회-사용자 ID 해당하는 정보 가져오기 - 
-	   @Override
-	   public MemberVO readSignUp(String id) throws Exception {
-	      //테스트(컨트롤러) 호출 -> 정보를 저장 -> DB로이동
-	   
-	   MemberVO result;
-	   result=sqlSession.selectOne("signUpMapper.readSignUp", id); //괄호안의 물음표를 콤마뒤에 쓰는거임
-	   return result;
-	   }
+		sqlSession.insert("signUpMapper.insertSignUp", MemberVO); //괄호안은 (쿼리구문, 매개변수)순으로 입력하기
+	}
+
+	//회원 정보 조회-사용자 ID 해당하는 정보 가져오기 - 
+	@Override
+	public MemberVO readSignUp(String id) throws Exception {
+		//테스트(컨트롤러) 호출 -> 정보를 저장 -> DB로이동
+
+		MemberVO result;
+		result = sqlSession.selectOne("signUpMapper.readSignUp", id); //괄호안의 물음표를 콤마뒤에 쓰는거임
+		return result;
+	}
 
 	//인터페이스 선언 -> 서브클래스 구현
 	//회원 정보 조회 - ID,PW정보에 해당하는 사용자 정보
@@ -64,22 +61,20 @@ public class SignUpDAOImpl implements SignUpDAO {
 		paramMap.put("id", id);
 		paramMap.put("pw", pw);
 
-		return sqlSession.selectOne(namespace+".readMemberWithIDPW", paramMap);		
+		return sqlSession.selectOne(namespace + ".readMemberWithIDPW", paramMap);
 	}
-
-
 
 	@Override
 	public MemberVO updateEamil(MemberVO memberVO) {
-	
-		sqlSession.update("signUpMapper.updateEmail",memberVO );
-	
+
+		sqlSession.update("signUpMapper.updateEmail", memberVO);
+
 		return null;
 	}
 
 	@Override
 	public MemberVO updateAddress(MemberVO memberVO) {
-		sqlSession.update("signUpMapper.updateAddress",memberVO );
+		sqlSession.update("signUpMapper.updateAddress", memberVO);
 		return null;
 	}
 }

@@ -13,20 +13,11 @@ import com.kh.vo.MarketOpenCloseDTO;
 
 @Repository("marketDAO")
 public class MarketDAOImpl implements MarketDAO {
+
 	@Autowired
 	private SqlSession sqlSession;
 	private String NameSpace = "MarketMapper";
 	private String NameSpace1 = "MarketOpenCloseMapper";
-
-	@Override
-	public List<MarketDTO> selectAll() throws Exception {
-		return sqlSession.selectList(NameSpace + ".selectAll");
-	}
-
-	@Override
-	public List<MarketDTO> selectByDistrict(String district) throws Exception {
-		return sqlSession.selectList(NameSpace + ".selectByDistrict", district);
-	}
 
 	@Override
 	public String returnDistrict(String bd_codename) throws Exception {

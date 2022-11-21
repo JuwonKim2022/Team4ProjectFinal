@@ -235,36 +235,19 @@
 			<version>2.12.1</version>
 		</dependency>
 
-
-		<!-- <dependency>
-		    <groupId>org.rosuda.REngine</groupId>
-		    <artifactId>Rserve</artifactId>
-		    <version>1.8.1</version>
-		</dependency>
 		<dependency>
-			<groupId>org.nuiton.thirdparty</groupId>
+			<groupId>org.rosuda.REngine</groupId>
 			<artifactId>Rserve</artifactId>
-			<version>1.7-3</version>
-		</dependency> 
+			<version>1.8.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.nuiton.thirdparty</groupId>
 			<artifactId>REngine</artifactId>
 			<version>1.7-3</version>
-		</dependency> -->
-		
-		<dependency>
-	        <groupId>org.rosuda.REngine</groupId>
-	        <artifactId>Rserve</artifactId>
-	        <version>1.8.1</version>
-		</dependency>         
-		<dependency>
-			<groupId>org.nuiton.thirdparty</groupId>
-	        <artifactId>REngine</artifactId>
-	        <version>1.7-3</version>
 		</dependency>
 
-
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>

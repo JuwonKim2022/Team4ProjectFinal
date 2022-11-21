@@ -9,8 +9,9 @@ import com.kh.vo.MemberVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
-	
-	@Inject SqlSession sql;
+
+	@Inject
+	SqlSession sql;
 
 	// 로그인
 	@Override

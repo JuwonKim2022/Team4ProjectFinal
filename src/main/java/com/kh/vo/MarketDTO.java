@@ -14,12 +14,11 @@ public class MarketDTO {
 	private int marketquartercount;
 	private double marketofstores;
 	private CodelistDTO codelistDTO;
-	
+
 	public MarketDTO() {
 	}
 
-	public MarketDTO(int marketyear, int marketquarter, int bd_code, String bd_codename, String service_code, String service_codename, long marketquartersales, int marketquartercount,
-			double marketofstores, CodelistDTO codelistDTO) {
+	public MarketDTO(int marketyear, int marketquarter, int bd_code, String bd_codename, String service_code, String service_codename, long marketquartersales, int marketquartercount, double marketofstores, CodelistDTO codelistDTO) {
 		this.marketyear = marketyear;
 		this.marketquarter = marketquarter;
 		this.bd_code = bd_code;
@@ -111,6 +110,5 @@ public class MarketDTO {
 	public void setCodelistDTO(CodelistDTO codelistDTO) {
 		this.codelistDTO = codelistDTO;
 	}
-	
-	
+
 }

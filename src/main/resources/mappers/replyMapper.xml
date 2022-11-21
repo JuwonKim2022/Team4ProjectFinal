@@ -10,18 +10,18 @@
 
 	<!-- 댓글 조회 -->
 	<select id="readReply" resultType="com.kh.vo.ReplyVO">
-    	SELECT
-    		  RNO, CONTENT, NAME, REGDATE
-    	 FROM REPLY
-    	WHERE BNO = #{bno}
+		SELECT
+		RNO, CONTENT, NAME, REGDATE
+		FROM REPLY
+		WHERE BNO = #{bno}
 	</select>
-	
+
 	<!-- 댓글 작성 -->
 	<insert id="writeReply">
 		INSERT INTO REPLY(BNO, RNO, MEMBER_NO, CONTENT, NAME)
-		VALUES( #{bno}, MP_REPLY_SEQ.NEXTVAL, #{member_no}, #{content}, #{name}	)
+		VALUES( #{bno}, MP_REPLY_SEQ.NEXTVAL, #{member_no}, #{content}, #{name} )
 	</insert>
-	
+
 	<!-- 댓글 수정 -->
 	<update id="updateReply" parameterType="com.kh.vo.ReplyVO">
 		UPDATE REPLY SET CONTENT = #{content}
@@ -33,7 +33,7 @@
 		DELETE FROM REPLY
 		WHERE RNO = #{rno}
 	</delete>
-	
+
 	<!-- 선택된 댓글 조회 -->
 	<select id="selectReply" resultType="com.kh.vo.ReplyVO">
 		SELECT BNO, RNO, CONTENT, NAME, REGDATE

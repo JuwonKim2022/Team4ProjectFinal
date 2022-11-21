@@ -10,7 +10,7 @@ public class ReplyVO {
 	private String content;
 	private String name;
 	private Date regdate;
-	
+
 	public int getBno() {
 		return bno;
 	}
@@ -62,16 +62,7 @@ public class ReplyVO {
 	//member_no는 제외한 상태
 	@Override
 	public String toString() {
-		return "ReplyVO [bno=" + bno + ", rno=" + rno + ", member_no=" + member_no + ", content=" + content + ", name="
-				+ name + ", regdate=" + regdate + "]";
+		return "ReplyVO [bno=" + bno + ", rno=" + rno + ", member_no=" + member_no + ", content=" + content + ", name=" + name + ", regdate=" + regdate + "]";
 	}
 
-
-	
-
-
-
-
-	
-	
 }

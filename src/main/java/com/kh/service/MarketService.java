@@ -6,16 +6,13 @@ import com.kh.vo.MarketDTO;
 import com.kh.vo.MarketOpenCloseDTO;
 
 public interface MarketService {
-	public List<MarketDTO> selectAll() throws Exception;
 
-	List<MarketDTO> selectByDistrict(String district) throws Exception;
-	
-	String returnDistrict(String bd_codename) throws Exception;
-	
-	List<MarketDTO> selectDataByDYQ(String district, int marketyear, int marketquarter) throws Exception;
+	public String returnDistrict(String bd_codename) throws Exception;
 
-	List<MarketDTO> selectRbargraphData(String district) throws Exception;
+	public List<MarketDTO> selectDataByDYQ(String district, int marketyear, int marketquarter) throws Exception;
 
-	List<MarketOpenCloseDTO> selectRpiegraphData(String district) throws Exception;
+	public List<MarketDTO> selectRbargraphData(String district) throws Exception;
+
+	public List<MarketOpenCloseDTO> selectRpiegraphData(String district) throws Exception;
 
 }

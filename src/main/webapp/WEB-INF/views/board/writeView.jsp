@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.kh.vo.MemberVO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -9,12 +8,10 @@ out.print(memberVO);
 %-->
 <html>
 <head>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>게시판</title>
 <script src="https://kit.fontawesome.com/e4a42c4ca5.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <script type="text/javascript">
 		$(document).ready(function(){
@@ -52,8 +49,7 @@ out.print(memberVO);
 				<div class="col">
 					<div class="d-grid gap-2 d-md-block">
 						<button type="submit" class="list_btn btn btn-dark">
-							<a style="list-style: none; text-decoration: none; color: white;"
-								href="/board/list">목록</a>
+							<a style="list-style: none; text-decoration: none; color: white;" href="/board/list">목록</a>
 						</button>
 					</div>
 				</div>
@@ -70,15 +66,13 @@ out.print(memberVO);
 
 				<div class="shadow-sm p-3 mb-5 bg-body rounded">
 					<div class="form-group ">
-						<label for="title" class="col-sm-2 control-label">제목</label> <input
-							type="text" id="title" name="title" class="chk form-control"
-							title="제목을 입력하세요." />
+						<label for="title" class="col-sm-2 control-label">제목</label>
+						<input type="text" id="title" name="title" class="chk form-control" title="제목을 입력하세요." />
 					</div>
 					<br />
 					<div class="form-group">
 						<label for="content" class="col-sm-2 control-label">내용</label>
-						<textarea id="content" name="content" class="chk form-control"
-							title="내용을 입력하세요." style="height: 330px;"></textarea>
+						<textarea id="content" name="content" class="chk form-control" title="내용을 입력하세요." style="height: 330px;"></textarea>
 					</div>
 					<br />
 					<div class="form-group">
@@ -87,10 +81,7 @@ out.print(memberVO);
 								<!-- 게시판 글 작성자 id 표기 및 수정 불가 표시 sh 추가 수정 start-->
 								<div class="col">
 									<label for="writer" class="col-sm-2 control-label">작성자</label>
-									<input type="text"
-										style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"
-										id="writer" name="name" value="${member.name}"
-										readonly="readonly" />
+									<input type="text" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;" id="writer" name="name" value="${member.name}" readonly="readonly" />
 								</div>
 								<!-- sh 추가 수정 end-->
 								<div class="col">
@@ -107,7 +98,6 @@ out.print(memberVO);
 	<div>
 		<jsp:include page="../footer.jsp" />
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

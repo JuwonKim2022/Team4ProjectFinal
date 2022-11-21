@@ -3,22 +3,18 @@ package com.kh.controller;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.OutputStreamWriter;
-import java.net.URL;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.rosuda.REngine.Rserve.RConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kh.component.RManager;
 import com.kh.service.HistoryService;
 import com.kh.service.MarketService;
 import com.kh.vo.HistoryDTO;
@@ -44,19 +39,14 @@ public class MarketController {
 	@Resource(name = "historyService")
 	private HistoryService historyService;
 
-	@Autowired
-	private RManager rm;
-
 	@RequestMapping(value = "/MarketMapPage", method = RequestMethod.GET)
-	public String MapGet(HttpServletRequest request, MemberVO memberVO) {
+	public String MapGet(MemberVO memberVO) {
 		return "MarketMapPage";
 	}
 
-	// 작동: 검색 및 검색기록 조회 / 회원번호 설정 필요
 	@ResponseBody
 	@RequestMapping(value = "/MarketMapPage/SearchInsertHistory", method = RequestMethod.POST)
-	public List<HistoryDTO> SearchInsertHistory(HttpServletRequest request, Model model, @RequestParam String searchText, @RequestParam int marketyear, @RequestParam int marketquarter,
-			HistoryDTO historyDTO) throws Exception {
+	public List<HistoryDTO> SearchInsertHistory(HttpServletRequest request, Model model, @RequestParam String searchText, @RequestParam int marketyear, @RequestParam int marketquarter, HistoryDTO historyDTO) throws Exception {
 		HttpSession session = request.getSession();
 		int member_no = (int) session.getAttribute("member_no");
 		System.out.println("MapPageMember_No: " + member_no);
@@ -85,7 +75,6 @@ public class MarketController {
 		return historyList;
 	}
 
-	// 작동: 정보 조회 / 회원번호 설정 필요
 	@ResponseBody
 	@RequestMapping(value = "/MarketMapPage/marketAnalysis", method = RequestMethod.POST)
 	public List<MarketDTO> marketAnalysis(Model model, @RequestParam String searchText, @RequestParam int marketyear, @RequestParam int marketquarter) throws Exception {
@@ -102,14 +91,10 @@ public class MarketController {
 		}
 	}
 
-	// 미작동: R
 	@ResponseBody
 	@RequestMapping(value = "/MarketMapPage/modal", method = RequestMethod.POST)
-	public void modal(HttpServletRequest request, @RequestParam String searchText) throws Exception {
+	public void modal(@RequestParam String searchText) throws Exception {
 		String district = null;
-		String webappRoot = request.getSession().getServletContext().getRealPath("/");
-		String csvFolder = webappRoot + "resources" + File.separator + "csv" + File.separator;
-		String graphFolder = webappRoot + "resources" + File.separator + "graph" + File.separator;
 
 		File Folder1 = new File("C:/Temp");
 		if (!Folder1.exists()) {
@@ -167,7 +152,7 @@ public class MarketController {
 			logger.info("graph(BTAOS) 생성");
 			connection.eval("resultMQS <- cbind(QuarterlyByYear, marketquartersales)");
 			connection.eval("png(\"C:/Temp/QuarterlySales.png\")");
-			connection.eval( "barplot(resultMQS$marketquartersales/10000, names.arg = resultMQS$QuarterlyByYear, main=\"Quarterly Sales\", cex.names = 0.7, xlab = \"Quarterly by Year\", ylab = \"Total Amount of Sales(Unit: 10,000won)\", las = 1, space = 1)");
+			connection.eval("barplot(resultMQS$marketquartersales/10000, names.arg = resultMQS$QuarterlyByYear, main=\"Quarterly Sales\", cex.names = 0.7, xlab = \"Quarterly by Year\", ylab = \"Total Amount of Sales(Unit: 10,000won)\", las = 1, space = 1)");
 			connection.eval("dev.off()");
 
 			logger.info("graph(BTSV) 생성");
@@ -175,45 +160,43 @@ public class MarketController {
 			connection.eval("png(\"C:/Temp/QuarterlySalesVol.png\")");
 			connection.eval("barplot(resultMQC$marketquartercount/1000, names.arg = resultMQC$QuarterlyByYear, main=\"Quarterly Sales Volume\", cex.names = 0.7, xlab = \"Quarterly by Year\", ylab = \"Total Sales Volume(Unit: 1,000ea)\", las = 1, space = 1)");
 			connection.eval("dev.off()");
-			
+
 			logger.info("graph(BNOSPQ) 생성");
 			connection.eval("resultMOS <- cbind(QuarterlyByYear, marketofstores)");
 			connection.eval("png(\"C:/Temp/NumOfStorePerQuarter.png\")");
 			connection.eval("barplot(resultMOS$marketofstores, names.arg = resultMOS$QuarterlyByYear, main=\"Number Of Stores Per Quarter\", cex.names = 0.7, xlab = \"Quarterly by Year\", ylab = \"Total Number of Stores\", las = 1, space = 1)");
 			connection.eval("dev.off()");
-			
+
 			connection.eval("pieGraphData <- read.csv(\"C:/Temp/piegraph.csv\",header=T,sep=\",\")");
 			connection.eval("sumOC <- apply(pieGraphData[2:3], 1, sum)");
 			connection.eval("pieGraphData$marketofstores <- pieGraphData$marketofstores - sumOC");
-			
+
 			logger.info("graph(PORBY) 생성");
 			connection.eval("totalMarketOpen <- sum(pieGraphData$marketopen)");
 			connection.eval("openPercent <- round(pieGraphData$marketopen/totalMarketOpen, 3)");
 			connection.eval("png(\"C:/Temp/marketopen.png\")");
 			connection.eval("pie(x = pieGraphData$marketopen, labels = paste(pieGraphData$marketyear, \"Years\", round(openPercent*100,1),\"%\"), clockwise = TRUE, col = rainbow(8), main = \"Opening Rate By Year\")");
 			connection.eval("dev.off()");
-			
+
 			logger.info("graph(PCRBY) 생성");
 			connection.eval("totalMarketClose <- sum(pieGraphData$marketclose)");
 			connection.eval("closePercent <- round(pieGraphData$marketclose/totalMarketClose, 3)");
 			connection.eval("png(\"C:/Temp/marketclose.png\")");
 			connection.eval("pie(x = pieGraphData$marketclose, labels = paste(pieGraphData$marketyear, \"Years\", round(closePercent*100,1),\"%\"), clockwise = TRUE, col = rainbow(8), main = \"Closure Rate By Year\")");
 			connection.eval("dev.off()");
-			
+
 			logger.info("graph(PMS) 생성");
 			connection.eval("totalMarketKeep <- sum(pieGraphData$marketofstores)");
 			connection.eval("keepPercent <- round(pieGraphData$marketofstores/totalMarketKeep, 3)");
 			connection.eval("png(\"C:/Temp/marketstores.png\")");
 			connection.eval("pie(x = pieGraphData$marketofstores, labels = paste(pieGraphData$marketyear, \"Years\", round(keepPercent*100,1),\"%\"), clockwise = TRUE, col = rainbow(8), main = \"Operating Rate By Year\")");
 			connection.eval("dev.off()");
-			
+
 			logger.info("종료");
 			connection.close();
 
 		} catch (Exception e3) {
 			e3.printStackTrace();
 		}
-
-		//		rm.rGraph(csvFolder, graphFolder);
 	}
 }

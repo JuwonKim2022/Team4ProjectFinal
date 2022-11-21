@@ -7,16 +7,12 @@ import com.kh.vo.MarketOpenCloseDTO;
 
 public interface MarketDAO {
 
-	List<MarketDTO> selectAll() throws Exception;
+	public String returnDistrict(String bd_codename) throws Exception;
 
-	List<MarketDTO> selectByDistrict(String district) throws Exception;
+	public List<MarketDTO> selectDataByDYQ(String district, int marketyear, int marketquarter) throws Exception;
 
-	String returnDistrict(String bd_codename) throws Exception;
-	
-	List<MarketDTO> selectDataByDYQ(String district, int marketyear, int marketquarter) throws Exception;
+	public List<MarketDTO> selectRbargraphData(String district) throws Exception;
 
-	List<MarketDTO> selectRbargraphData(String district) throws Exception;
-
-	List<MarketOpenCloseDTO> selectRpiegraphData(String district) throws Exception;
+	public List<MarketOpenCloseDTO> selectRpiegraphData(String district) throws Exception;
 
 }

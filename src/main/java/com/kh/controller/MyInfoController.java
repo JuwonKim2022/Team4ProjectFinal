@@ -38,7 +38,7 @@ public class MyInfoController {
 
 		List<HistoryDTO> historyList = historyService.selectAllRecentHistory(member_no);
 		model.addAttribute("historyList", historyList);
-		
+
 		System.out.println(historyList);
 
 		return historyList;

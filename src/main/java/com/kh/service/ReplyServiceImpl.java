@@ -13,39 +13,39 @@ import com.kh.vo.ReplyVO;
 public class ReplyServiceImpl implements ReplyService {
 	@Inject
 	private ReplyDAO dao;
-	
+
 	@Override
 	public List<Integer> rnoReply(int bno) throws Exception {
 		return dao.rnoReply(bno);
 	}
-	
+
 	//댓글 조회
 	@Override
-	public List<ReplyVO> readReply(int bno) throws Exception{
+	public List<ReplyVO> readReply(int bno) throws Exception {
 		return dao.readReply(bno);
 	}
-	
+
 	//댓글 작성
 	@Override
-	public void writeReply(ReplyVO vo) throws Exception{
+	public void writeReply(ReplyVO vo) throws Exception {
 		dao.writeReply(vo);
 	}
 
 	//댓글 수정
 	@Override
-	public void updateReply(ReplyVO vo) throws Exception{
+	public void updateReply(ReplyVO vo) throws Exception {
 		dao.updateReply(vo);
 	}
-		
+
 	//댓글 삭제
 	@Override
-	public void deleteReply(ReplyVO vo) throws Exception{
+	public void deleteReply(ReplyVO vo) throws Exception {
 		dao.deleteReply(vo);
 	}
-		
+
 	//선택된 댓글 조회
 	@Override
-	public ReplyVO selectReply(int rno) throws Exception{
+	public ReplyVO selectReply(int rno) throws Exception {
 		return dao.selectReply(rno);
 	}
 }

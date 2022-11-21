@@ -1,17 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.kh.vo.MemberVO"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
 <head>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>게시판</title>
 <script src="https://kit.fontawesome.com/e4a42c4ca5.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <script type="text/javascript">
@@ -127,39 +124,30 @@
 		<section id="container">
 			<form name="readForm" role="form" method="post">
 				<input type="hidden" name="member_no" value="${member.member_no}">
-				<input type="hidden" id="bno" name="bno" value="${read.bno}" /> <input
-					type="hidden" id="page" name="page" value="${scri.page}"> <input
-					type="hidden" id="perPageNum" name="perPageNum"
-					value="${scri.perPageNum}"> <input type="hidden"
-					id="searchType" name="searchType" value="${scri.searchType}">
-				<input type="hidden" id="keyword" name="keyword"
-					value="${scri.keyword}">
+				<input type="hidden" id="bno" name="bno" value="${read.bno}" />
+				<input type="hidden" id="page" name="page" value="${scri.page}">
+				<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}">
+				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}">
+				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">
 			</form>
 
 			<div class="shadow-sm p-3 mb-5 bg-body rounded">
 				<div class="form-group ">
-					<label for="title" class="col-sm-2 control-label">제목</label> <input
-						type="text" id="title" name="title" class="form-control"
-						value="${read.title}" readonly="readonly" />
+					<label for="title" class="col-sm-2 control-label">제목</label>
+					<input type="text" id="title" name="title" class="form-control" value="${read.title}" readonly="readonly" />
 				</div>
 				<br />
 				<div class="form-group">
 					<label for="content" class="col-sm-2 control-label">내용</label>
-					<textarea id="content" name="content" class="fulltext form-control"
-						onkeydown="resize(this)" onkeyup="resize(this)"
-						readonly="readonly" style="height: 330px;"><c:out
-							value="${read.content}" /></textarea>
+					<textarea id="content" name="content" class="fulltext form-control" onkeydown="resize(this)" onkeyup="resize(this)" readonly="readonly" style="height: 330px;"><c:out value="${read.content}" /></textarea>
 				</div>
 				<br />
 				<div class="form-group">
 					<div class="container text-center">
 						<div class="row">
 							<div class="col">
-								<label for="writer" class="col-sm-2 control-label">작성자</label> <input
-									type="text"
-									style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"
-									id="writer" name="name" value="${read.name}"
-									readonly="readonly" />
+								<label for="writer" class="col-sm-2 control-label">작성자</label>
+								<input type="text" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;" id="writer" name="name" value="${read.name}" readonly="readonly" />
 							</div>
 							<div class="col">
 								<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
@@ -189,32 +177,26 @@
 				</div>
 			</div>
 
-<!-- 댓글 시작 -->
+			<!-- 댓글 시작 -->
 			<form name="replyForm" method="post" class="form-horizontal shadow-sm p-3 mb-5 bg-body rounded">
-				<input type="hidden" id="bno" name="bno" value="${read.bno}" /> <input
-					type="hidden" id="page" name="page" value="${scri.page}"> <input
-					type="hidden" id="perPageNum" name="perPageNum"
-					value="${scri.perPageNum}"> <input type="hidden"
-					id="searchType" name="searchType" value="${scri.searchType}">
-				<input type="hidden" id="keyword" name="keyword"
-					value="${scri.keyword}">
+				<input type="hidden" id="bno" name="bno" value="${read.bno}" />
+				<input type="hidden" id="page" name="page" value="${scri.page}">
+				<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}">
+				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}">
+				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">
 
 				<!-- 댓글작성  -->
 				<c:if test="${member != null}">
 					<div class="form-group">
 						<label for="writer" class="col-sm-2 control-label">댓글 작성자</label>
 						<div class="col-sm-10">
-							<input type="text" id="writer" name="name" class="form-control"
-								value="${member.name}"
-								style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"
-								readonly="readonly" />
+							<input type="text" id="writer" name="name" class="form-control" value="${member.name}" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;" readonly="readonly" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="content" class="col-sm-2 control-label">댓글 내용</label>
 						<div>
-							<input type="text" id="content" name="content"
-								class="chk2 form-control" title="댓글 내용을 입력하세요." />
+							<input type="text" id="content" name="content" class="chk2 form-control" title="댓글 내용을 입력하세요." />
 						</div>
 					</div>
 					<br />
@@ -240,24 +222,17 @@
 									<div class="col"></div>
 									<div class="col">
 										작성 날짜 :
-										<fmt:formatDate value="${replyList.regdate}"
-											pattern="yyyy-MM-dd" />
+										<fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
 									</div>
 								</div>
 							</div>
 							</p>
 							<div class="form-control">
 								<p>${replyList.content}</p>
-							</div> 
-							<br/> 
-							<c:if test="${member != null && member.name == replyList.name}">
+							</div> <br /> <c:if test="${member != null && member.name == replyList.name}">
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-									<button type="button" class="replyUpdateBtn btn btn-secondary"
-										style="-bs-btn-padding-y: .25rem; - -bs-btn-padding-x: .5rem; - -bs-btn-font-size: .75rem;"
-										data-rno="${replyList.rno}">수정</button>
-									<button type="button" class="replyDeleteBtn btn btn-danger"
-										style="-bs-btn-padding-y: .25rem; - -bs-btn-padding-x: .5rem; - -bs-btn-font-size: .75rem;"
-										data-rno="${replyList.rno}">삭제</button>
+									<button type="button" class="replyUpdateBtn btn btn-secondary" style="-bs-btn-padding-y: .25rem; - -bs-btn-padding-x: .5rem; - -bs-btn-font-size: .75rem;" data-rno="${replyList.rno}">수정</button>
+									<button type="button" class="replyDeleteBtn btn btn-danger" style="-bs-btn-padding-y: .25rem; - -bs-btn-padding-x: .5rem; - -bs-btn-font-size: .75rem;" data-rno="${replyList.rno}">삭제</button>
 								</div>
 							</c:if>
 						</li>
@@ -266,13 +241,12 @@
 			</div>
 
 		</section>
-		<hr/>
+		<hr />
 	</div>
 	<div>
 		<jsp:include page="../footer.jsp" />
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
