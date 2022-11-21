@@ -192,43 +192,99 @@ li {
 							<h2>&nbsp;&nbsp;&nbsp; 자세한 분석 그래프</h2>
 						</div>
 						<div class="col-md-2 b d-md-flex justify-content-md-end">
-							<button class="modalCloseBtn btn btn-dark me-md-2" style="margin: 6px;">&times;</button>
+							<button class="modalCloseBtn btn btn-dark me-md-2" style="margin: 6px; position: fixed">&times;</button>
 						</div>
 					</div>
 					<div class="row g-0 bg-light position-relative h-" id="marketOfStores">
 						<div class="col-md-6 mb-md-0 p-md-4">
 							<img src="<spring:url value='/localImage/QuarterlySales.png'/>" class="w-100" alt="...">
 						</div>
-						<div class="col-md-6 p-4 ps-md-0">
-							<h5 class="mt-0">Columns with stretched link</h5>
-							<p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-							<a href="#" class="stretched-link">Go somewhere</a>
+						<div class="col-md-6 p-4 ps-md-0 text-center">
+							<br>
+							<br>
+							<h5 class="mt-0"><b style="color: orange;">&lt;연간 총 판매량&gt;</b></h5>
+							<br>
+							<br>
+							<p>서울시 구 및 도로명 별</p> 
+							<p>치킨업종 연간 총 판매량을</p>
+							<p><b>막대 그래프</b>로 표현하였습니다.</p>
 						</div>
+						
+						
 						<div class="col-md-6 mb-md-0 p-md-4">
 							<img src="<spring:url value='/localImage/QuarterlySalesVol.png'/>" class="w-100" alt="...">
 						</div>
-						<div class="col-md-6 p-4 ps-md-0">
-							<h5 class="mt-0">Columns with stretched link</h5>
-							<p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-							<a href="#" class="stretched-link">Go somewhere</a>
+						<div class="col-md-6 p-4 ps-md-0 text-center">
+							<br>
+							<br>
+							<h5 class="mt-0"><b style="color: orange;">&lt;분기별 판매량&gt;</b></h5>
+							<br>
+							<br>
+							<p>서울시 구 및 도로명 별</p> 
+							<p>치킨업종 분기별 판매량을</p>
+							<p><b>막대 그래프</b>로 표현하였습니다.</p>
 						</div>
-						<div>
+						
+						
+						<div class="col-md-6 mb-md-0 p-md-4">
 							<img src="<spring:url value='/localImage/NumOfStorePerQuarter.png'/>" class="w-100" alt="...">
 						</div>
-						<div>
+						<div class="col-md-6 p-4 ps-md-0 text-center">
+							<br>
+							<br>
+							<h5 class="mt-0"><b style="color: orange;">&lt;분기별 가게수&gt;</b></h5>
+							<br>
+							<br>
+							<p>서울시 구 및 도로명 별</p> 
+							<p>치킨업종 분기별 가게수를</p>
+							<p><b>막대 그래프</b>로 표현하였습니다.</p>
+						</div>
+						
+						
+						<div class="col-md-6 mb-md-0 p-md-4">
 							<img src="<spring:url value='/localImage/marketopen.png'/>" class="w-100" alt="...">
 						</div>
-						<div>
+						<div class="col-md-6 p-4 ps-md-0 text-center">
+							<br>
+							<br>
+							<h5 class="mt-0"><b style="color: orange;">&lt;연간 운영 비율&gt;</b></h5>
+							<br>
+							<br>
+							<p>서울시 구 및 도로명 별</p> 
+							<p>치킨업종 연간 운영 비율을</p>
+							<p><b>원형 그래프</b>로 표현하였습니다.</p>
+						</div>
+						
+						
+						<div class="col-md-6 mb-md-0 p-md-4">
 							<img src="<spring:url value='/localImage/marketclose.png'/>" class="w-100" alt="...">
 						</div>
-						<div>
+						<div class="col-md-6 p-4 ps-md-0 text-center">
+							<br>
+							<br>
+							<h5 class="mt-0"><b style="color: orange;">&lt;연간 개업률&gt;</b></h5>
+							<br>
+							<br>
+							<p>서울시 구 및 도로명 별</p> 
+							<p>치킨업종 연간 총 개업률을</p>
+							<p><b>원형 그래프</b>로 표현하였습니다.</p>
+						</div>
+						
+						
+						<div class="col-md-6 mb-md-0 p-md-4">
 							<img src="<spring:url value='/localImage/marketstores.png'/>" class="w-100" alt="...">
 						</div>
-						<div class="col-md-6 p-4 ps-md-0">
-							<h5 class="mt-0">Columns with stretched link</h5>
-							<p>Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-							<a href="#" class="stretched-link">Go somewhere</a>
+						<div class="col-md-6 p-4 ps-md-0 text-center">
+							<br>
+							<br>
+							<h5 class="mt-0"><b style="color: orange;">&lt;연간 폐업률&gt;</b></h5>
+							<br>
+							<br>
+							<p>서울시 구 및 도로명 별</p> 
+							<p>치킨업종 연간 총 폐업률을</p>
+							<p><b>원형 그래프</b>로 표현하였습니다.</p>
 						</div>
+				
 					</div>
 					<div id="marketOpenClose"></div>
 				</div>
