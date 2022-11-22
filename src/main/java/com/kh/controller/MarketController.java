@@ -117,7 +117,6 @@ public class MarketController {
 		for (MarketDTO marketDTO : marketList)
 			bargraphCSV += marketDTO.getMarketyear() + "," + marketDTO.getMarketquarter() + "," + marketDTO.getMarketquartersales() + "," + marketDTO.getMarketquartercount() + "," + marketDTO.getMarketofstores() + "\n";
 		try {
-			//			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(csvFolder + "/bargraph.csv"), "UTF-8"));
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:\\Temp\\bargraph.csv"), "UTF-8"));
 			writer.write(bargraphCSV);
 			writer.flush();
@@ -138,7 +137,7 @@ public class MarketController {
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
-
+		
 		RConnection connection = null;
 		try {
 			connection = new RConnection();

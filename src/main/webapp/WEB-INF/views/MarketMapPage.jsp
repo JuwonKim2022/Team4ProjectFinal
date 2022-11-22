@@ -70,6 +70,17 @@ li {
 	text-align: center;
 }
 
+.area {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #888;
+    border-radius: 3px;
+    font-size: 12px;
+    top: -5px;
+    left: 15px;
+    padding:2px;
+}
+
 .modalContainer {
 	background-color: white;
 	width: 100%- 600px;
@@ -96,12 +107,12 @@ li {
 </head>
 
 <body>
-	<c:if test="${member == null}">
+<%-- 	<c:if test="${member == null}">
 		<script type="text/javascript">
 			alert("로그인이 필요합니다.");
 			location.href = "/member/login"
 		</script>
-	</c:if>
+	</c:if> --%>
 	<!-- 네비게이션 -->
 	<jsp:include page="nav2.jsp" />
 	<!-- 전체박스 -->
@@ -386,11 +397,9 @@ li {
 								marketLists.forEach(function(marketList) {
 									tmp += '<tr><td valign=\"middle\">' + marketList.marketyear + '</td>'
 									tmp += '<td valign=\"middle\">' + marketList.marketquarter + '</td>'
-									tmp += '<td valign=\"middle\">' + marketList.codelistDTO.district
-											+ '</td>'
+									tmp += '<td valign=\"middle\">' + marketList.codelistDTO.district + '</td>'
 									tmp += '<td valign=\"middle\">' + marketList.service_codename + '</td>'
-									tmp += '<td valign=\"middle\">₩' + marketList.marketquartersales
-											+ '</td>'
+									tmp += '<td valign=\"middle\">₩' + marketList.marketquartersales + '</td>'
 									tmp += '<td valign=\"middle\">' + marketList.marketquartercount + '</td>'
 									tmp += '<td valign=\"middle\">' + marketList.marketofstores + '</td>'
 									tmp += '</tr>'
@@ -4020,15 +4029,17 @@ li {
 			level : 8
 		// 지도의 확대 레벨
 		};
-
-		var map = new kakao.maps.Map(mapContainer, mapOption), customOverlay = new kakao.maps.CustomOverlay(
-				{}), infowindow = new kakao.maps.InfoWindow({
-			removable : true
+		
+		var map = new kakao.maps.Map(mapContainer, mapOption), 
+			customOverlay = new kakao.maps.CustomOverlay({}),
+			infowindow = new kakao.maps.InfoWindow({
+				removable : true
 		});
 
 		map.setDraggable(false);
 		map.setZoomable(false);
 
+		var name = '';
 		// 지도에 영역데이터를 폴리곤으로 표시합니다
 		for (var i = 0, len = areas.length; i < len; i++) {
 			displayArea(areas[i]);
@@ -4036,7 +4047,7 @@ li {
 
 		// 다각형을 생상하고 이벤트를 등록하는 함수입니다
 		function displayArea(area) {
-
+						
 			// 다각형을 생성합니다
 			var polygon = new kakao.maps.Polygon({
 				map : map, // 다각형을 표시할 지도 객체
@@ -4052,10 +4063,10 @@ li {
 			// 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
 			kakao.maps.event.addListener(polygon, 'mouseover', function(mouseEvent) {
 				polygon.setOptions({
-					fillColor : '#09f' // 다각형 색깔
+					fillColor : '#09f'
 				});
 
-				/* customOverlay.setContent('<div class="area">' + area.name + '</div>'); */
+				customOverlay.setContent('<div class="area">' + area.name + '</div>');
 				customOverlay.setPosition(mouseEvent.latLng);
 				customOverlay.setMap(map);
 			});
@@ -4077,6 +4088,7 @@ li {
 			// 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다
 			kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
 				$('input[name=searchText]').prop('value', area.name);
+			
 			});
 		}
 	</script>
